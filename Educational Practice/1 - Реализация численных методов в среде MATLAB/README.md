@@ -11,3 +11,7 @@
 
 <img width="558" alt="image" src="https://github.com/user-attachments/assets/7888abfc-d96a-4a1d-9796-1e73500c6df3">
 
+
+Найдите приближенное значение интеграла Лапласа:
+
+<img width="398" alt="image" src="https://github.com/user-attachments/assets/81f478b4-cd04-4584-9fc1-5e56aada750f">
