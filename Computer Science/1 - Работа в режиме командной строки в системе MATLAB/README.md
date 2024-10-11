@@ -23,7 +23,10 @@
  6. В переменной str5 поменять все заглавные буквы на строчные.
 
 Задание №1
+
 <img width="316" alt="image" src="https://github.com/user-attachments/assets/322ba3b5-404b-4237-90a4-f7199e7d1508">
 
+
 Задание №2
+
 <img width="161" alt="image" src="https://github.com/user-attachments/assets/329d0bfe-3c9c-4293-93ee-664b842be7f6">
