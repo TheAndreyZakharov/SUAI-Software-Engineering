@@ -18,6 +18,7 @@
 
 <img width="194" alt="image" src="https://github.com/user-attachments/assets/386a750f-5ffd-477a-b015-c4e338a4050c">
 
+
 <img width="194" alt="image" src="https://github.com/user-attachments/assets/01fc9011-de8b-449a-919e-94c9291c5257">
 
 Таблица должна быть заполнена данными, поступающими в функцию как аргумент
