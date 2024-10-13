@@ -1,2 +1,8 @@
-<img width="510" alt="image" src="https://github.com/user-attachments/assets/9de1a5b6-0734-4427-ae5e-f6b2c6c58836">
 
+Тема сайта – Нейронные сети
+
+Вариант для текущей работы:
+
+
+
+<img width="511" alt="image" src="https://github.com/user-attachments/assets/ab0f97c3-686e-4321-9d58-118302abc74c">
