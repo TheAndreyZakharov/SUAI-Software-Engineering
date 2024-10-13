@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <title>Автосалон Porsche</title>
+    <style>
+        .nav-item {
+            text-align: center;
+            flex-grow: 1;
+        }
+        .btn-white {
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+        }
+        .btn-white:hover, .btn-white:focus {
+            color: #212529;
+            background-color: #e2e6ea;
+            border-color: #dae0e5;
+        }
+        .btn-close-red {
+            float: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            background-color: #dc3545;
+            border-radius: .2rem;
+            border: none;
+        }
+        .btn-close-red:hover {
+            color: #fff;
+            background-color: #c82333;
+        }
+        .content-block, .footer-item {
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+        .main-content img {
+            width: 200px;
+            height: 120px;
+            float: left;
+            margin-right: 15px;
+        }
+        @media (max-width: 700px) {
+            .navbar-toggler + .navbar-collapse .nav-item {
+                flex-grow: 0;
+                flex-basis: 100%;
+                margin-bottom: 5px;
+            }
+            .navbar-toggler + .navbar-collapse .nav-item:last-child {
+                margin-bottom: 0;
+            }
+            .nav-item {
+                margin-bottom: 10px;
+            }
+            .content-block {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .main-content img {
+                float: none;
+                display: block;
+                margin: 10px auto;
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+            }
+            .footer-item {
+                width: 100%;
+                text-align: center;
+            }
+            .footer-item div {
+                flex-basis: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .footer-item div:last-child {
+                margin-bottom: 0;
+            }
+        }
+        .footer-item .phone, .footer-item .address {
+            flex-basis: 50%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .modal-button {
+            width: 200px; /* Fixed width for buttons */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Porsche</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <a href="#" class="nav-item nav-link btn-white">Главная</a>
+      <a href="#" class="nav-item nav-link btn-white">Модели</a>
+      <a href="#" class="nav-item nav-link btn-white">Сервис</a>
+      <a href="#" class="nav-item nav-link btn-white">Контакты</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Контент -->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12 col-md-3 content-block">
+            <p>
+За десятилетия своего существования, Porsche создала великолепный модельный ряд, который воплощает в себе идеалы производительности, роскоши и инноваций. Модель 911, несомненно, стоит в центре внимания благодаря своей непревзойденной динамике и классическому дизайну. Она стала иконой автомобильного мира и символом Porsche. 718 Boxster и Cayman, эти спортивные родстеры и купе, поражают своей маневренностью и резкостью. Они предлагают невероятные ощущения от вождения, делая каждую поездку незабываемой. Модели Panamera и Taycan - это комбинация комфорта седана и мощи спорткара. Они идеально подходят для тех, кто ценит одновременно роскошь и производительность. SUV-модели, такие как Macan и Cayenne, сочетают в себе величие и мощь, обеспечивая владельцам премиум-опыт. Электрический Taycan, в свою очередь, показывает амбиции компании в направлении экологически устойчивого будущего. Эта машина не только экологична, но и демонстрирует впечатляющую производительность, соответствующую стандартам Porsche. Технологические инновации, внедряемые компанией, не просто следуют трендам, но и часто устанавливают новые стандарты в автомобильной индустрии. В итоге, каждая модель Porsche — это не просто автомобиль, но произведение искусства, созданное для настоящих ценителей качества и стиля.
+</p>
+        </div>
+        <div class="col-12 col-md-6 content-block main-content">
+            <img src="/Users/andrey/Documents/3.1/Frontend-разработка/Zakharov_4133K_pr4/Porsche-Logo1.png" alt="Porsche">
+            <p>
+Основанная в 1931 году гениальным инженером Фердинандом Порше, компания не только стремилась внести свой вклад в автомобильную индустрию, но и революционизировать ее. Фердинанд Порше, уже имевший опыт в автомобильной индустрии, заложил основы для философии бренда, которая ставила инновации и качество на первое место. За первые несколько лет своего существования, Porsche преимущественно занималась консультационной деятельностью и разработками для других производителей. Однако, их амбиции вышли за рамки простого консультационного агентства. К 1948 году был создан автомобиль, который отразил все знания и опыт команды — Porsche 356. Он стал манифестом инженерного мастерства и дизайнерской мысли компании. Когда в 1964 году появилась модель 911, она не только подняла планку качества, но и установила новые стандарты в сегменте спортивных автомобилей. Ее уникальный дизайн, невероятная динамика и превосходная управляемость делали ее объектом вожделения не только среди любителей бренда, но и среди автолюбителей в целом. Участие в автоспорте было ключевой частью стратегии Porsche. Гонки предоставляли идеальную площадку для тестирования новых технологий и получения обратной связи от самых требовательных водителей. Этот опыт, безусловно, стал ценным для серийного производства, позволяя создавать автомобили, отточенные до мельчайших деталей. Компания также понимала важность адаптации к меняющемуся рынку. В начале 2000-х Porsche впервые представила внедорожник Cayenne, что стало смелым и успешным шагом в новый сегмент. Этот опыт продемонстрировал уникальную способность бренда сочетать спортивность с практичностью. В новом тысячелетии компания также акцентировала внимание на устойчивости, начав разработку гибридных и полностью электрических технологий. Проект Taycan стал воплощением этой философии, предлагая высокую производительность без выбросов CO2. Таким образом, история Porsche — это история непрекращающегося стремления к совершенству. Она является источником вдохновения для всех, кто ценит инновации, качество и страсть к автомобилям. Среди других достоинств бренда стоит выделить их преданность традициям. Даже среди ряда новаторских разработок Porsche всегда оставалась верна своим корням, уважая наследие, заложенное Фердинандом Порше. Каждое новое поколение автомобилей передавало дух первых моделей, сохраняя неповторимый характер марки. Так, взявший начало в маленькой гаражной мастерской, Porsche превратился в мирового гиганта автомобилестроения, но при этом сохранил свою искренность, душу и страсть к совершенству.
+</p>
+        </div>
+        <div class="col-12 col-md-3 content-block">
+            <p>
+Один из главных преимуществ Porsche - это непревзойденное качество. Каждый автомобиль проходит множество тестов и проверок перед тем, как покинуть завод. Компания постоянно инвестирует в исследования и разработки, чтобы удовлетворять потребности своих клиентов. Особенное внимание уделяется деталям. В каждой модели можно заметить роскошные материалы, высококачественную отделку и инновационные технологии. Этим Porsche выделяется среди других автомобильных брендов. Спортивное наследие также играет важную роль в философии компании. Опыт, полученный на гоночных трассах, используется для создания автомобилей, которые предоставляют невероятные ощущения от вождения. Помимо этого, Porsche активно работает над созданием экологически чистых автомобилей, не жертвуя при этом производительностью и динамикой. Электрические и гибридные модели являются ярким тому подтверждением. Владельцы Porsche подтвердят, что взаимодействие с этим брендом начинается задолго до момента покупки автомобиля — это привязанность к истории и духу компании. В заключение, Porsche - это не просто автомобиль. Это стиль жизни, символ статуса и отражение истинных ценностей своего владельца. Когда человек выбирает Porsche, он выбирает не только транспортное средство, но и образ жизни, полный страсти, инноваций и искренних эмоций.
+</p>
+        </div>
+    </div>
+</div>
+
+<!-- Кнопки для модальных окон -->
+<div class="container mt-4 text-center modal-button-group">
+    <!-- Кнопка для заказа тест-драйва -->
+    <button type="button" class="btn btn-white modal-button" data-toggle="modal" data-target="#testDriveModal">
+        Заказать тест-драйв
+    </button>
+    <!-- Кнопка для формы обратной связи -->
+    <button type="button" class="btn btn-white modal-button" data-toggle="modal" data-target="#feedbackModal">
+        Обратная связь
+    </button>
+</div>
+
+<!-- Модальное окно для тест-драйва -->
+<div class="modal fade" id="testDriveModal" tabindex="-1" aria-labelledby="testDriveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="testDriveModalLabel">Заказ тест-драйва</h5>
+                <button type="button" class="btn-close-red" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="testDriveName" class="form-label">Имя</label>
+                        <input type="text" class="form-control" id="testDriveName" placeholder="Введите ваше имя">
+                    </div>
+                    <div class="mb-3">
+                        <label for="testDriveEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="testDriveEmail" placeholder="Введите ваш email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="testDrivePhone" class="form-label">Телефон</label>
+                        <input type="tel" class="form-control" id="testDrivePhone" placeholder="Введите ваш телефон">
+                    </div>
+ 
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Закрыть</button>
+                <button type="submit" class="btn btn-white">Отправить заявку</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для обратной связи -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Форма обратной связи</h5>
+                <button type="button" class="btn-close-red" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="feedbackName" class="form-label">Имя</label>
+                        <input type="text" class="form-control" id="feedbackName" placeholder="Введите ваше имя">
+                    </div>
+                    <div class="mb-3">
+                        <label for="feedbackEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="feedbackEmail" placeholder="Введите ваш email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="feedbackPhone" class="form-label">Телефон</label>
+                        <input type="tel" class="form-control" id="feedbackPhone" placeholder="Введите ваш телефон">
+                    </div>
+                    <div class="mb-3">
+                        <label for="feedbackMessage" class="form-label">Сообщение</label>
+                        <textarea class="form-control" id="feedbackMessage" rows="3"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Закрыть</button>
+                <button type="submit" class="btn btn-white">Отправить сообщение</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Футер -->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-6 footer-item phone">
+            <div>Телефон: +7 (495) 414-24-86</div>
+        </div>
+        <div class="col-6 footer-item address">
+            <div>Адрес: г. Москва, Ленинградское ш., 71А, стр. 10</div>
+        </div>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
