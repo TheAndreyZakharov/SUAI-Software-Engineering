@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автосалон Porsche</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px; /* Устанавливаем размер шрифта для всего текста */
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            grid-template-rows: auto auto auto;
+            gap: 10px;
+            padding: 20px;
+            grid-template-areas: 
+                "header header"
+                "menu content"
+                "footer footer";
+        }
+
+        .header, .menu, .content, .footer {
+            background-color: #F5F5F5; /* Светло-серый цвет */
+            padding: 20px;
+            text-align: center;
+            border: 3px solid gray; /* Толстая рамка */
+        }
+
+        .header {
+            grid-area: header;
+        }
+
+        .menu {
+            grid-area: menu;
+        }
+
+        .content {
+            grid-area: content;
+        }
+	.content p {
+ 	   text-align: justify;
+	}
+
+
+        .footer {
+            grid-area: footer;
+        }
+
+        .header, .menu h2, .content h2 {
+            font-weight: bold; /* Жирное начертание для "Автосалон Porsche", "Меню" и "Статья" */
+            font-size: 16px; /* Размер шрифта такой же, как и у остального текста */
+        }
+
+        .footer {
+            font-weight: normal; /* Обычное начертание для контактных данных */
+        }
+
+        .footer strong {
+            font-weight: bold; /* Жирное начертание только для слова "Контакты" */
+ 	   display: block;
+ 	   margin-bottom: 5px; /* Пробел между "Контакты" и контактной информацией */
+        }
+
+	.menu a, .content a {
+    	    text-decoration: none;
+    	    color: black;
+   	    display: inline-block; /* Добавлено для установки ширины */
+   	    width: 200px; /* Установлена ширина кнопки */
+   	    text-align: center; /* Выравнивание текста по центру */
+   	    padding: 10px 20px;
+   	    margin-bottom: 10px; /* Отступ снизу для создания расстояния между кнопками */
+   	    border: 2px solid gray;
+   	    border-radius: 5px;
+    	    transition: background-color 0.2s;
+	}
+
+        .menu ul, .content p {
+            margin-top: 30px;  /* Отступ от слов "Меню" и "Статья" */
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            margin-bottom: 10px;
+        }
+
+        .menu a, .content a {
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px;
+            border: 2px solid gray;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .menu a:hover, .content a:hover {
+            background-color: gray;
+            color: white;
+        }
+
+        @media (max-width: 700px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "menu"
+                    "content"
+                    "footer";
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="grid-container">
+    <div class="header">Автосалон Porsche</div>
+    <div class="menu">
+        <h2>Меню</h2>
+        <ul>
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Каталог автомобилей</a></li>
+            <li><a href="#">Спецпредложения</a></li>
+            <li><a href="#">Финансовые услуги</a></li>
+            <li><a href="#">О нас</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h2>Статья</h2>
+        <p>Добро пожаловать в эксклюзивный мир автосалона Porsche! Здесь, среди блеска и глянца, вы найдете не только автомобили, которые завораживают своей красотой, но и технические шедевры инженерного искусства, призванные доставлять истинное удовольствие от вождения. Porsche — это не просто автомобиль, это символ статуса, иконическое произведение искусства и технологии.
+За каждой моделью этой легендарной марки стоит история десятилетий тщательной работы, инноваций и непрекращающегося стремления к совершенству. Это история людей, которые живут своим делом, инженеров, которые постоянно ставят себе новые задачи, и дизайнеров, мечтающих о создании идеальных форм.
+При первом взгляде на автомобили Porsche вы почувствуете их мощь и элегантность. Каждая деталь, каждый изгиб кузова говорит о том, что перед вами — исключительный автомобиль. Но чтобы по-настоящему понять их особенности, нужно сесть за руль и почувствовать уникальный характер и потенциал машины. Только тогда вы почувствуете, что такое истинное спортивное вождение в его лучшем проявлении.
+Погрузитесь в мир, где инновационные решения и традиции гармонично сочетаются, создавая нечто уникальное. Это мир, где каждый автомобиль — это не просто транспортное средство, но и вершина автомобильной мысли, воплощение скорости, стиля и комфорта. Здесь, в автосалоне Porsche, вы можете открыть для себя истинное значение слова "эксклюзив".
+Мы приглашаем вас на увлекательное путешествие в мир Porsche, где каждый автомобиль — это отражение страсти, таланта и любви к автомобильному искусству. Добро пожаловать в мир, где мечты становятся реальностью!</p>
+    </div>
+    <div class="footer">
+        <strong>Контакты</strong><br>
+        Телефон: +7 (495) 414-24-86 | Адрес: г. Москва, Ленинградское ш., 71А, стр. 10
+    </div>
+</div>
+
+</body>
+</html>
