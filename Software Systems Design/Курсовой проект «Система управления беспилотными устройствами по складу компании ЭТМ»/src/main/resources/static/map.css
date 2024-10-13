@@ -1,0 +1,98 @@
+/* Основной стиль для карты склада */
+#warehouse-map {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Вы можете настроить высоту по желанию */
+    background-color: #eaeaea; /* Светлый фон для карты */
+    border: 1px solid #ccc; /* Граница карты */
+    margin-top: 20px;
+}
+
+/* Стили для зон на карте */
+.zone {
+    position: absolute;
+    border: 2px dashed #000; /* Пунктирные границы для зон */
+}
+
+/* Стили для красной, зеленой и синей зоны */
+.red-zone { background-color: rgba(255, 0, 0, 0.3); }
+.green-zone { background-color: rgba(0, 255, 0, 0.3); }
+.blue-zone { background-color: rgba(0, 0, 255, 0.3); }
+
+
+/* Стиль для стеллажей */
+.shelf {
+    text-align: center;
+    line-height: 10px; /* Высота текста */
+    border: 1px solid #000; /* Чёрная рамка вокруг стеллажа */
+}
+
+
+
+/* Стиль для беспилотных погрузчиков (кружочков) */
+.drone {
+    position: absolute;
+    width: 20px; /* Диаметр кружочка */
+    height: 20px; /* Диаметр кружочка */
+    background-color: black; /* Цвет беспилотника */
+    border-radius: 50%; /* Сделать круглым */
+    text-align: center;
+    line-height: 20px; /* Центрирование текста по вертикали */
+    color: white;
+    cursor: pointer; /* Курсор в виде указателя для взаимодействия с беспилотником */
+    border: 2px solid transparent; /* Добавьте прозрачную границу для анимации мигания */
+    transition: left 5s ease, top 5s ease; /* Добавляем плавный переход для свойств left и top */
+
+}
+
+/* Стиль для подсвечивания активного беспилотника */
+.drone.active {
+    background-color: orange;
+}
+
+/* Стили для зоны зарядки беспилотников */
+.charging-zone {
+    background-color: rgba(255, 255, 0, 0.3); /* Желтый цвет */
+    border: none;
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0; /* Та же высота, что и у зоны разгрузки */
+    width: 30%; /* Ширина зоны */
+    height: 10%; /* Высота зоны */
+}
+
+/* Стили для зоны выгрузки */
+.unloading-zone {
+    background-color: rgba(128, 128, 128, 0.3); /* Серый цвет */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0; /* Вверху карты */
+    left: 0; /* Слева от карты */
+    width: 30%; /* Ширина зоны */
+    height: 10%; /* Высота зоны */
+}
+/* Стили для зоны офисов */
+.office-zone {
+    background-color: #f8f8f8; /* Светлый цвет для зоны офисов */
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px); /* Полоски по диагонали */
+    border: none;
+    position: absolute; /* Абсолютное позиционирование */
+}
+
+
+/* Дополнительные стили для меток зон */
+.zone-label {
+    font-size: 14px; /* Меньший размер текста */
+    color: rgba(0,0,0,0.5); /* Полупрозрачный чёрный цвет текста */
+    text-align: center; /* Центрирование текста */
+    margin-top: -1em; /* Поднять метку над зоной на высоту одной строки */
+    pointer-events: none; /* Убираем взаимодействие с меткой (чтобы не блокировать клики на зону) */
+    z-index: 10; /* Установка более высокого z-index для видимости */
+}
+
+@keyframes blinking {
+    0%, 100% { border-color: red; }
+    50% { border-color: transparent; }
+}
+
+.blinking {
+    animation: blinking 1s infinite;
+}
