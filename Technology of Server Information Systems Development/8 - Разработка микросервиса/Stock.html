@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="#{stock.title}">Акция</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body>
+<div class="container">
+  <h1 th:text="#{stock.info}">Информация об акции</h1>
+  <p><strong th:text="#{stock.name}">Название акции:</strong> <span th:text="${stock.stock_name}"></span></p>
+  <p><strong th:text="#{stock.id}">ID акции:</strong> <span th:text="${stock.stockID}"></span></p>
+  <p><strong th:text="#{stock.date}">Дата покупки:</strong> <span th:text="${stock.purchase_date}"></span></p>
+  <a th:href="@{/stocks}" th:text="#{stock.return}">Вернуться к списку акций</a>
+</div>
+</body>
+</html>
+
+
