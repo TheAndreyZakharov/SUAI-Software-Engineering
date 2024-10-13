@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+  <script>
+    window.jsPDF = window.jspdf.jsPDF;
+  </script>
+  <title>ЭТМ - Система Управления беспилотными устройствами</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="map.css" /> <!-- Подключение map.css -->
+  <script src="map.js" defer></script> <!-- Подключение map.js -->
+</head>
+<body>
+<div class="container">
+  <header>
+    <img src="etm_logo.jpg" alt="ЭТМ Логотип" class="header-logo"> <!-- Логотип -->
+    <h1>Система Управления беспилотными устройствами</h1>
+    <div class="user-info">
+      <p>Роль:
+        <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Администратор</span>
+        <span th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Работник</span>
+      </p>
+      <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <input type="submit" class="submit-button" value="Выход"/>
+      </form>
+    </div>
+  </header>
+
+  <section class="map-section">
+    <h2>Карта склада</h2>
+    <div id="warehouse-map">
+      <!-- Интерактивная карта склада будет здесь -->
+    </div>
+  </section>
+
+  <div class="drone-control">
+    <input type="text" id="shelf-number" placeholder="Введите номер стеллажа">
+    <button onclick="sendDroneToShelf()">Отправить беспилотник</button>
+    <button onclick="document.getElementById('file-input').click()">Импортировать файл</button>
+    <input type="file" id="file-input" style="display:none" onchange="handleFileSelect(event)">
+  </div>
+
+
+
+  <div class="log-section toggle-section">
+    <h2 onclick="toggleSection(this)">Лог событий ▼</h2>
+    <div class="toggle-content">
+      <button onclick="createReport()" class="report-button">Создать отчет</button>
+      <ul id="event-log">
+        <!-- Список событий будет динамически заполняться -->
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="drones-list toggle-section">
+    <h2 onclick="toggleSection(this)">Список беспилотников ▼</h2>
+    <div class="toggle-content">
+      <button onclick="deselectAllDrones()" class="deselect-button">Снять выбор</button>
+      <ul id="drone-list">
+        <!-- Список беспилотников будет динамически заполняться -->
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="error-section">
+    <div class="emergency-controls">
+      <button class="emergency-button" onclick="stopAllDrones()">Аварийная остановка</button>
+      <button class="resume-button" onclick="resumeAllDrones()">Возобновить работу</button>
+    </div>
+  </div>
+
+
+
+</div>
+</body>
+</html>
