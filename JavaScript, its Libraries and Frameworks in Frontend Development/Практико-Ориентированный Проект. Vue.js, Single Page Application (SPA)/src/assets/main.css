@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #333;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+
+
+  /* Адаптивность */
+@media (max-width: 1200px) {
+    body {
+      font-size: 16px; /* Немного уменьшаем размер шрифта */
+    }
+  
+    .app-navbar li a {
+      padding: 10px 14px; /* Уменьшаем отступы в навигационной панели */
+    }
+  }
+  
+  @media (max-width: 800px) {
+    .app-navbar ul {
+      flex-direction: column; /* Ставим элементы навигации вертикально */
+      align-items: center;
+    }
+    .app-navbar {
+        height: auto; /* или задайте фиксированную высоту, если она известна */
+      }
+    .app-navbar li {
+      margin: 20px 0; /* Уменьшаем отступы между элементами навигации */
+    }
+  
+    .content-section {
+      padding: 15px; /* Уменьшаем отступы в основных секциях */
+      padding-top: 120px; /* Увеличенный отступ, когда меню вертикальное */
+
+    }
+  }
+
+  @media (max-width: 550px) {
+    h1, h2, h3 {
+      font-size: 1.2em; /* Уменьшаем размеры заголовков */
+    }
+    .app-navbar {
+        height: auto; /* или задайте фиксированную высоту, если она известна */
+      }
+    .app-navbar li a {
+      font-size: 0.9em; /* Уменьшаем размер текста в навигации */
+    }
+  
+    .content-section {
+        padding-top: 120px; /* Увеличенный отступ, когда меню вертикальное */
+      }
+
+      
+  }
+  img {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Создание тени вокруг изображений */
+}
+    
