@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Редактор JavaScript</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    Введите скрипт:<br/>
+    <textarea id="mycode" rows=10 cols=40></textarea>
+    <br/>Результат:<br/>
+    <div  id="myresult" style="white-space: pre;"></div > 
+    <!--<textarea  id="myresult" style="white-space: pre;"></textarea > -->
+    <br/>
+    <button onclick="document.getElementById('myresult').innerHTML =
+    eval(document.getElementById('mycode').value)">
+        Выполнить
+    </button>
+    <button onclick="document.getElementById('mycode').value='';
+    document.getElementById('myresult').innerHTML=''"> Очистить
+    </button>
+</body>
+</html>

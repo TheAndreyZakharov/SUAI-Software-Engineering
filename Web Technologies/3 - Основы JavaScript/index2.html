@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактор JavaScript</title>
+    <meta charset="UTF-8">
+    <style>
+        canvas { border: 1px dashed black; }
+    </style>
+    <script>
+        function clear_holst() {
+            var canvas = document.getElementById("drawingCanvas");
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 600, 200);
+        }
+    </script>
+</head>
+<body>
+    <table border="0"> 
+        <tr> 
+            <td>Введите текст программы на javascript:</td>
+            <td>Отображение рисунка: </td>
+        </tr>
+        <tr>
+            <td><textarea id="mycode" rows="20" cols="100"></textarea></td> 
+            <td><canvas id="drawingCanvas" width="800" height="800">Ваш браузер не поддерживает canvas</canvas></td>
+        </tr>
+    </table>
+    <br><br>
+    <button onclick="eval(document.getElementById('mycode').value)">
+        Отобразить рисунок
+    </button>
+</body>
+</html>
