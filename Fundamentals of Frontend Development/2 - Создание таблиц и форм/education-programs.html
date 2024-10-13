@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Захаров А.С. 4133К</title>
+    <style>
+        table {
+            width: 33%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th {
+            background-color: lightblue;
+            text-align: center;
+            padding: 10px;
+        }
+        td {
+            padding: 10px;
+            vertical-align: middle;
+        }
+        td.centered {
+            text-align: center;
+            vertical-align: middle;
+        }
+        td[colspan="1"] {
+            text-align: left;
+        }
+        th:nth-child(0), td:nth-child(2) {
+            width: 120px;
+        }
+        td:nth-child(2) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        th, td {
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Образовательные программы кафедры № 42</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Направление</th>
+                <th>Направленность</th>
+                <th>Форма обучения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="3" class="centered">
+                    09.03.02<br>
+                    Информационные<br>
+                    системы и технологии<br>
+                    (бакалавриат)
+                </td>
+                <td>Информационные технологии в дизайне*</td>
+                <td rowspan="2" class="centered">очная</td>
+            </tr>
+            <tr>
+                <td>Информационные технологии в медиаиндустрии</td>
+            </tr>
+            <tr>
+                <td>Информационные системы и технологии в бизнесе</td>
+                <td class="centered">очная,<br> заочная </td>
+            </tr>
+            <tr>
+                <td class="centered">
+                    09.04.02<br>
+                    Информационные<br>
+                    системы и технологии<br>
+                    (магистратура)
+                </td>
+                <td>Мультимедиа технологии</td>
+                <td class="centered">очная</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">*В 2021 году образовательная программа 09.03.02 Информационные системы и технологи - «Информационные технологии в дизайне» успешно прошла процедуру международной аккредитации в немецком агентстве по аккредитации образовательных программ в области инженерии, информатики, естественных наук и математики ASIIN. Результатом явилось получение Сертификата ASIIN и дополнительно сертификата аккредитационной системы Euro-Inf, включающей в себя набор стандартов, определяющих высококачественные образовательные программы по информатике и компьютерным наукам.</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

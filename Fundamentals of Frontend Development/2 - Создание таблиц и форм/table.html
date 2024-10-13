@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Захаров А.С. 4133К</title>
+    <style>
+        table {
+    width: 33%; /* Уменьшаем ширину таблицы до 33% от ширины экрана */
+    border-collapse: collapse;
+    margin: 20px auto; /* Добавляем автоматические отступы слева и справа, */
+}
+/* Задаем черный цвет границ для таблицы */
+table {
+    border-collapse: collapse; /* Это свойство объединяет двойные границы в одну */
+    border: 1px solid black; /* Граница вокруг всей таблицы */
+}
+
+/* Задаем черный цвет границ для ячеек */
+th, td {
+    border: 1px solid black;
+}
+
+th {
+    background-color: lightblue;
+    text-align: center;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+}
+td.centered {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td[colspan="1"] {
+    text-align: left;
+}
+th:nth-child(0), td:nth-child(2) {
+        width: 120px; /* Вы можете изменить это значение в зависимости от ваших потребностей */
+    }
+
+    /* Чтобы убедиться, что содержимое ячеек не будет выходить за пределы заданной ширины */
+    td:nth-child(2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+th, td {
+    height: 40px; /* Задаем фиксированную высоту для ячеек */
+}
+
+
+
+
+
+
+
+
+
+
+/* Стили для прайс-листа */
+.price-list {
+    width: 30%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid black;
+}
+
+.price-list th, .price-list td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.price-list th {
+    font-size: larger;
+    background-color: green;
+    color: white;
+}
+
+.price-list td:nth-child(1) {
+    text-align: center;
+}
+
+.price-list td:nth-child(2) {
+    text-align: left;
+}
+
+.price-list td:nth-child(3) {
+    text-align: right;
+}
+
+.price-list tr:nth-child(even) {
+    background-color: white;
+}
+
+.price-list tr:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+
+
+
+h2 {
+    text-align: center;
+}
+
+ .order-form {
+    width: 18%; /* Уменьшаем ширину таблицы */
+    margin: 0 auto; /* Выравниваем таблицу по центру */
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+}
+
+.order-form, .order-form th, .order-form td {
+    border: 1px solid white; /* Делаем цвет линий белым */
+}
+
+.order-form td {
+    padding: 10px; /* Добавляем отступы внутри ячеек */
+}
+
+input[type="submit"], input[type="reset"] {
+    display: block; /* Делаем кнопки блочными элементами */
+    margin: 10px auto; /* Выравниваем кнопки по центру */
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">Образовательные программы кафедры № 42</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Направление</th>
+            <th>Направленность</th>
+            <th>Форма обучения</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="3" class="centered">
+    09.03.02<br>
+    Информационные<br>
+    системы и технологии<br>
+    (бакалавриат)
+</td>
+            <td>Информационные технологии в дизайне*</td>
+            <td rowspan="2" class="centered">очная</td>
+        </tr>
+        <tr>
+            <td>Информационные технологии в медиаиндустрии</td>
+        </tr>
+        <tr>
+            <td>Информационные системы и технологии в бизнесе</td>
+            <td class="centered">очная,<br> заочная </td>
+        </tr>
+        <tr>
+            <td class="centered">
+    09.04.02<br>
+    Информационные<br>
+    системы и технологии<br>
+    (магистратура)
+</td>
+
+            <td>Мультимедиа технологии</td>
+            <td class="centered">очная</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">*В 2021 году образовательная программа 09.03.02 Информационные системы и технологи - «Информационные технологии в дизайне» успешно прошла процедуру международной аккредитации в немецком агентстве по аккредитации образовательных программ в области инженерии, информатики, естественных наук и математики ASIIN. Результатом явилось получение Сертификата ASIIN и дополнительно сертификата аккредитационной системы Euro-Inf, включающей в себя набор стандартов, определяющих высококачественные образовательные программы по информатике и компьютерным наукам.</td>
+        </tr>
+    </tfoot>
+</table>
+
+<br>
+<br>
+<br>
+
+
+
+
+<h2 style="text-align: center;">Прайс-лист на флеш-память</h2>
+
+<table class="price-list">
+    <thead>
+        <tr>
+            <th>№ п/п</th>
+            <th>Наименование продукции</th>
+            <th>Цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Примерные данные для таблицы -->
+        <tr><td>1</td><td>Флеш-память Kingston 32GB</td><td>1500 ₽</td></tr>
+        <tr><td>2</td><td>Флеш-память SanDisk 64GB</td><td>2500 ₽</td></tr>
+        <tr><td>3</td><td>Флеш-память AData 128GB</td><td>4500 ₽</td></tr>
+        <tr><td>4</td><td>Флеш-память Transcend 32GB</td><td>1600 ₽</td></tr>
+        <tr><td>5</td><td>Флеш-память Samsung 64GB</td><td>2600 ₽</td></tr>
+        <tr><td>6</td><td>Флеш-память Toshiba 128GB</td><td>4600 ₽</td></tr>
+        <tr><td>7</td><td>Флеш-память HP 32GB</td><td>1700 ₽</td></tr>
+        <tr><td>8</td><td>Флеш-память Sony 64GB</td><td>2700 ₽</td></tr>
+        <tr><td>9</td><td>Флеш-память PNY 128GB</td><td>4700 ₽</td></tr>
+        <tr><td>10</td><td>Флеш-память Lexar 32GB</td><td>1800 ₽</td></tr>
+        <tr><td>11</td><td>Флеш-память Verbatim 64GB</td><td>2800 ₽</td></tr>
+        <tr><td>12</td><td>Флеш-память Patriot 128GB</td><td>4800 ₽</td></tr>
+        <tr><td>13</td><td>Флеш-память Integral 32GB</td><td>1900 ₽</td></tr>
+        <tr><td>14</td><td>Флеш-память Team Group 64GB</td><td>2900 ₽</td></tr>
+        <tr><td>15</td><td>Флеш-память Silicon Power 128GB</td><td>4900 ₽</td></tr>
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+
+<h2>Форма заказа в электронном магазине компьютерной техники</h2>
+
+<form action="#" method="post">
+    <table class="order-form">
+        <tr>
+            <td><label for="name">Имя:</label></td>
+            <td><input type="text" id="name" name="name" placeholder="Введите ваше имя" required></td>
+        </tr>
+        <tr>
+            <td><label for="address">Адрес доставки:</label></td>
+            <td><textarea id="address" name="address" placeholder="Введите ваш адрес" required></textarea></td>
+        </tr>
+        <tr>
+            <td><label for="password">Пароль:</label></td>
+            <td><input type="password" id="password" name="password" placeholder="Введите пароль" required></td>
+        </tr>
+        <tr>
+            <td>Способ оплаты:</td>
+            <td>
+                <input type="radio" id="creditCard" name="payment" value="creditCard" required>
+                <label for="creditCard">Кредитная карта</label><br>
+                <input type="radio" id="cash" name="payment" value="cash" required>
+                <label for="cash">Наличными при доставке</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Тип доставки:</td>
+            <td>
+                <input type="radio" id="standard" name="delivery" value="standard" required>
+                <label for="standard">Стандартная</label><br>
+                <input type="radio" id="express" name="delivery" value="express" required>
+                <label for="express">Экспресс</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Дополнительные услуги:</td>
+            <td>
+                <input type="checkbox" id="warranty" name="warranty" value="yes">
+                <label for="warranty">Дополнительная гарантия</label><br>
+                <input type="checkbox" id="giftWrap" name="giftWrap" value="yes">
+                <label for="giftWrap">Подарочная упаковка</label>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="product">Выберите товар:</label></td>
+            <td>
+                <select id="product" name="product">
+                    <option value="laptop">Ноутбук</option>
+                    <option value="mouse">Компьютерная мышь</option>
+                    <option value="keyboard">Клавиатура</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="deliveryDate">Дата доставки:</label></td>
+            <td><input type="date" id="deliveryDate" name="deliveryDate"></td>
+        </tr>
+    </table>
+    <input type="submit" value="Отправить заказ">
+    <input type="reset" value="Очистить форму">
+</form>
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

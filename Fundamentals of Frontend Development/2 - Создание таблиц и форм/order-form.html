@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Захаров А.С. 4133К</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+        .order-form {
+            width: 22%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .order-form, .order-form th, .order-form td {
+            border: 1px solid white;
+        }
+        .order-form td {
+            padding: 10px;
+        }
+        input[type="submit"], input[type="reset"] {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>Форма заказа в электронном магазине компьютерной техники</h2>
+    <form action="#" method="post">
+        <table class="order-form">
+            <tr>
+                <td><label for="name">Имя:</label></td>
+                <td><input type="text" id="name" name="name" placeholder="Введите ваше имя" required></td>
+            </tr>
+            <tr>
+                <td><label for="address">Адрес доставки:</label></td>
+                <td><textarea id="address" name="address" placeholder="Введите ваш адрес" required></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="password">Пароль:</label></td>
+                <td><input type="password" id="password" name="password" placeholder="Введите пароль" required></td>
+            </tr>
+            <tr>
+                <td>Способ оплаты:</td>
+                <td>
+                    <input type="radio" id="creditCard" name="payment" value="creditCard" required>
+                    <label for="creditCard">Кредитная карта</label><br>
+                    <input type="radio" id="cash" name="payment" value="cash" required>
+                    <label for="cash">Наличными при доставке</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Тип доставки:</td>
+                <td>
+                    <input type="radio" id="standard" name="delivery" value="standard" required>
+                    <label for="standard">Стандартная</label><br>
+                    <input type="radio" id="express" name="delivery" value="express" required>
+                    <label for="express">Экспресс</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Дополнительные услуги:</td>
+                <td>
+                    <input type="checkbox" id="warranty" name="warranty" value="yes">
+                    <label for="warranty">Дополнительная гарантия</label><br>
+                    <input type="checkbox" id="giftWrap" name="giftWrap" value="yes">
+                    <label for="giftWrap">Подарочная упаковка</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="product">Выберите товар:</label></td>
+                <td>
+                    <select id="product" name="product">
+                        <option value="laptop">Ноутбук</option>
+                        <option value="mouse">Компьютерная мышь</option>
+                        <option value="keyboard">Клавиатура</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="deliveryDate">Дата доставки:</label></td>
+                <td><input type="date" id="deliveryDate" name="deliveryDate"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Отправить заказ">
+        <input type="reset" value="Очистить форму">
+    </form>
+</body>
+</html>
