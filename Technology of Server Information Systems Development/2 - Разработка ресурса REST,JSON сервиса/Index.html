@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Торговля акциями</title>
+</head>
+<body>
+
+<h2>Покупка акции</h2>
+<form action="/buyStock" method="post">
+  Название акции: <input type="text" name="stock_name"><br>
+  ID акции: <input type="number" name="stockID"><br>
+  Дата покупки: <input type="date" name="purchase_date"><br>
+  <input type="submit" value="Купить">
+</form>
+
+<h2>Продажа акции</h2>
+<form action="/sellStock" method="post">
+  Название акции: <input type="text" name="stock_name"><br>
+  ID акции: <input type="number" name="stockID"><br>
+  <input type="submit" value="Продать">
+</form>
+
+<h2>Список акций</h2>
+<table border="1">
+  <tr>
+    <th>Название акции</th>
+    <th>ID акции</th>
+    <th>Дата покупки</th>
+  </tr>
+  <!-- Данные для таблицы будут добавляться динамически с сервера -->
+</table>
+
+</body>
+</html>
