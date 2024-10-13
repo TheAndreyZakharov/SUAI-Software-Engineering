@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уведомления</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Уведомления</h1>
+        <div class="centered-image">
+            <a href="/Users/andrey/Documents/SUAI/3.2/Web/6/index.html">
+                <img src="/Users/andrey/Documents/SUAI/3.2/Web/6/logo.png" alt="Logo" style="width: 200px; height: 150px;">
+            </a>
+        </div> 
+    </div>
+
+
+
+    <script>
+        let shownEntries = new Set(); // Множество для хранения уже показанных записей
+    
+        // Функция для проверки наличия новых записей
+        function checkForNewEntries() {
+            var xhr = new XMLHttpRequest();
+            var browserInfo = navigator.userAgent; // Получаем информацию о браузере пользователя
+            var ajaxObject = "XMLHttpRequest"; // Объект, выполняющий асинхронный обмен
+    
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === "success") {
+                        response.data.forEach(function(entry) {
+                            if (!shownEntries.has(entry.id)) {
+                                // Добавляем ID новой записи в множество показанных записей
+                                shownEntries.add(entry.id);
+    
+                                var message = "Новая запись: " + entry.name + "\n" +
+                                              "Тип: " + entry.type + "\n" +
+                                              "Описание: " + entry.description.substring(0, 30) + "\n" +
+                                              "Время запроса: " + response.timestamp + "\n" +
+                                              "Браузер: " + browserInfo + "\n" +
+                                              "AJAX объект: " + ajaxObject;
+                                alert(message);
+                            }
+                        });
+                    }
+                }
+            };
+            xhr.open("POST", "http://localhost/check_new_entries.php", true);
+            xhr.send();
+        }
+    
+        // Периодическая проверка новых записей каждые 5 секунд
+        setInterval(checkForNewEntries, 5000);
+    </script>
+    
+    
+
+
+
+
+
+<!-- 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script>
+        let shownEntries = new Set(); // Множество для хранения уже показанных записей
+
+        // Функция для проверки наличия новых записей, используя jQuery для AJAX-запроса
+        function checkForNewEntries() {
+            $.ajax({
+                url: "http://localhost/check_new_entries.php",
+                type: "POST",
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (data.status === "success") {
+                        data.data.forEach(function(entry) {
+                            if (!shownEntries.has(entry.id)) {
+                                // Добавляем ID новой записи в множество показанных записей
+                                shownEntries.add(entry.id);
+
+                                var message = "Новая запись: " + entry.name + "\n" +
+                                            "Тип: " + entry.type + "\n" +
+                                            "Описание: " + entry.description.substring(0, 30) + "\n" +
+                                            "Время запроса: " + data.timestamp + "\n" +
+                                            "Браузер: " + navigator.userAgent + "\n" +
+                                            "AJAX объект: jQuery.ajax";
+                                alert(message);
+                            }
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Ошибка AJAX-запроса: ", status, error);
+                }
+            });
+        }
+
+        // Периодическая проверка новых записей каждые 5 секунд
+        setInterval(checkForNewEntries, 5000);
+    </script>
+-->
+</body>
+</html>

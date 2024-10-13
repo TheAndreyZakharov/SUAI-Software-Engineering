@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета - Работа с нейронными сетями</title>
+    <style>
+        .error-message {
+            color: red;
+            margin: 10px 0;
+        }
+
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container { 
+            width: 60%; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background: white; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #4CAF50;
+            text-align: center;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td { 
+            text-align: left; 
+            padding: 12px; 
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover { 
+            background-color: #f5f5f5;
+        }
+        input[type="text"],
+        input[type="email"],
+        select, 
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        label {
+            margin-right: 10px;
+        }
+        .centered-image {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="centered-image">
+            <a href="/Users/andrey/Documents/SUAI/3.2/Web/8/index.html">
+                <img src="/Users/andrey/Documents/SUAI/3.2/Web/8/logo.png" alt="Logo" style="width: 200px; height: 150px;">
+            </a>
+        </div> 
+        <h1>Анкета для специалистов в области нейронных сетей</h1>
+        <hr>
+        <div id="errorMessages" class="error-message"></div>        
+        <form method="POST" action="http://localhost:8099/cgi-bin/tutor5.py" onsubmit="return validateForm()" novalidate>
+            <table>
+                <tr>
+                    <th>Фамилия:</th>
+                    <td><input type="text" name="surname" required></td>
+                </tr>
+                <tr>
+                    <th>Имя:</th>
+                    <td><input type="text" name="name" required></td>
+                </tr>
+                <tr>
+                    <th>Отчество:</th>
+                    <td><input type="text" name="patronymic"></td>
+                </tr>
+                <tr>
+                    <th>Электронная почта:</th>
+                    <td><input type="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <th>Опыт работы с нейросетями:</th>
+                    <td>
+                        <select name="experience">
+                            <option value="beginner">Новичок</option>
+                            <option value="intermediate">Средний</option>
+                            <option value="advanced">Продвинутый</option>
+                            <option value="expert">Эксперт</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Области интересов в нейросетях:</th>
+                    <td>
+                        <input type="checkbox" name="interests" value="computer_vision" id="cv">
+                        <label for="cv">Компьютерное зрение</label>
+                        <input type="checkbox" name="interests" value="nlp" id="nlp">
+                        <label for="nlp">Обработка естественного языка</label>
+                        <input type="checkbox" name="interests" value="data_analysis" id="da">
+                        <label for="da">Анализ данных</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Предпочтительная роль в проекте:</th>
+                    <td>
+                        <input type="radio" name="role" value="developer" id="developer">
+                        <label for="developer">Разработчик</label>
+                        <input type="radio" name="role" value="researcher" id="researcher">
+                        <label for="researcher">Исследователь</label>
+                        <input type="radio" name="role" value="manager" id="manager">
+                        <label for="manager">Менеджер проекта</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ваш комментарий или вопрос:</th>
+                    <td><textarea name="comment" cols="30" rows="2"></textarea></td>
+                </tr>
+                <input type="hidden" name="hiddenField" value="neural_networks">
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" value="ОТПРАВИТЬ">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <hr>
+    </div>
+    <script>
+        function validateForm() {
+            var errors = [];
+            var surname = document.forms[0]["surname"].value;
+            var name = document.forms[0]["name"].value;
+            var email = document.forms[0]["email"].value;
+            var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            if (surname == "") {
+                errors.push("Фамилия должна быть заполнена.");
+            }
+            if (name == "") {
+                errors.push("Имя должно быть заполнено.");
+            }
+            if (!emailRegex.test(email)) {
+                errors.push("Введите корректный адрес электронной почты.");
+            }
+
+            if (errors.length > 0) {
+                document.getElementById('errorMessages').innerHTML = errors.join('<br>');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

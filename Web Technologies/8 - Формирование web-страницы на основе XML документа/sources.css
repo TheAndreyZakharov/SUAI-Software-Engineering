@@ -1,0 +1,149 @@
+body {
+        /* Общие стили для всего документа */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+header,
+footer {
+            /* Стили для заголовка и подвала*/
+    text-align: center;
+    background-image: linear-gradient(to bottom, #333, #666);
+    background-color: #333;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0; /* Убрать внешний отступ у h1 */
+}
+
+footer p {
+    margin: 0;
+}
+
+.menu {
+    /* Стили для меню */
+    position: relative;
+    background-color: #666;
+    padding: 10px;
+}
+
+.menu ul {
+    /* Стили для списка в меню */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu li {
+     /* Стили для элементов списка в меню */
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu li:last-child {
+    margin-right: 0;  /* У последнего элемента списка нет отступа справа */
+}
+
+.menu a {
+    /* Стили для ссылок в меню */
+    color: #fff; 
+    text-decoration: none; /* Убрать подчеркивание у ссылок */
+}
+
+.content {
+    /* Стили для основного содержимого */
+    padding: 20px;
+    display: flex; /* Использование flexbox для расположения содержимого */
+    flex-direction: column; /* Чтобы список ссылок располагался вертикально */
+    align-items: center; /* Чтобы список ссылок был выровнен по центру */
+
+}
+
+footer {
+    /* Стили для футера */
+    position: absolute;
+    bottom: 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.content img {
+    /* Стили для изображений в основном содержимом */
+    display: block;
+    margin: 20px auto; /* Центрируем изображения */
+}
+    /* Стили для контейнера меню */
+.menu {
+    position: relative;
+    text-align: center;
+}
+    /* Стили для кнопки меню */
+.menu-btn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block;
+    border: none; /* Убрать границу */
+    border-radius: 5px; /* Добавить скругление углов */
+    margin-bottom: 10px; /* Увеличить отступ снизу */
+}
+
+/* Изменяем стиль кнопки при наведении */
+.menu-btn:hover {
+    background-color: #444; /* Светлее цвет при наведении */
+}
+
+/* Стили для списка элементов меню */
+.menu-items {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    padding: 10px;
+    list-style-type: none;
+    margin: 0;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.menu-items a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Изменяем стиль кнопок в списке при наведении */
+.menu-items a:hover {
+    background-color: #444; /* Светлее цвет при наведении */
+}
+
+/* Показываем список при наведении на кнопку */
+.menu:hover .menu-items {
+    display: block;
+}
+
+
+/*   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   */
+
+
+
+.menu a:hover {
+    text-decoration: underline;
+}
+    
+    
+    
+img[alt="Логотип NeuroTech"] {
+    transform: rotate(10deg);
+}
