@@ -1,0 +1,167 @@
+/* Основные стили */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+h1, h2 {
+    color: #5cb85c; /* Зеленый цвет */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стили таблиц */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #5cb85c; /* Зеленый цвет */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e2e2e2;
+}
+
+/* Стили форм и элементов ввода */
+form {
+    margin-top: 20px;
+    text-align: left;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    margin-top: 10px;
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Стили кнопок */
+.delete-button, .details-button, button, input[type="submit"] {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.details-button { /* Зеленая кнопка для Details */
+    background-color: #5cb85c;
+    color: white;
+}
+
+.details-button:hover {
+    background-color: #4cae4c;
+}
+
+.delete-button { /* Красная кнопка для Delete */
+    background-color: #d9534f;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+.submit-button { /* Зеленая кнопка для Submit */
+    background-color: #5cb85c;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #4cae4c;
+}
+
+/* Стили для страницы входа и информации об акции */
+.login-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    margin-bottom: 15px;
+}
+
+.login-form label {
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+.stock-info {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили ссылок */
+a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Медиа-запросы для адаптивного дизайна */
+@media (max-width: 768px) {
+    .container, .login-form, .stock-info {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
