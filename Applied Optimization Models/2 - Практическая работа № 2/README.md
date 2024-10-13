@@ -1,5 +1,5 @@
 Задание
 Графическим методом решить стандартную задачу линейного программирования.
 
-<img width="653" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/c79b71d6-4156-4347-8dbf-4aea2ab4be1b">
+<img width="264" alt="image" src="https://github.com/user-attachments/assets/2b334fbf-37ec-4a9d-a671-abba0e402ce1">
 
