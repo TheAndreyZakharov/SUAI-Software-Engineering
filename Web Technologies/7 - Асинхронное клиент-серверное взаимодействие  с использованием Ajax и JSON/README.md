@@ -2,7 +2,7 @@
 
 изучение и применение на практике технологии AJAX 
 
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/6bf2a2c3-56c0-4156-8014-8c241948f088">
+<img width="188" alt="image" src="https://github.com/user-attachments/assets/c82778f9-822b-4027-a3f3-cd0f5bb7909f">
 
 
 Базовое задание:
