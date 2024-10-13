@@ -1,0 +1,79 @@
+version: "3.9"
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    ports:
+      - "22181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: "stocks"
+      MYSQL_ROOT_PASSWORD: "12qwaszx"
+    ports:
+      - "3306:3306"
+
+  mykafkaproducer:
+    build:
+      context: /Users/andrey/Documents/IntelliJ/ProjectKafka111
+    ports:
+      - 8088:8088
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/stocks
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 12qwaszx
+      SPRING_DATASOURCE_DRIVERCLASSNAME: com.mysql.cj.jdbc.Driver
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    depends_on:
+      - mysql
+      - kafka
+
+  consumer1:
+    build:
+      context: /Users/andrey/Documents/IntelliJ/ProjectKafka111
+    ports:
+      - 9090:9090
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/stocks
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 12qwaszx
+      SPRING_DATASOURCE_DRIVERCLASSNAME: com.mysql.cj.jdbc.Driver
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_KAFKA_CONSUMER_GROUP_ID: myGroup
+    depends_on:
+      - mysql
+      - kafka
+
+  consumer2:
+    build:
+      context: /Users/andrey/Documents/IntelliJ/ProjectKafka111
+    ports:
+      - 9091:9091
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/stocks
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 12qwaszx
+      SPRING_DATASOURCE_DRIVERCLASSNAME: com.mysql.cj.jdbc.Driver
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_KAFKA_CONSUMER_GROUP_ID: myGroup2
+    depends_on:	
+      - mysql
+      - kafka
+
