@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="stockManager">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Manager</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+  <script src="app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+      color: #333;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form, .stocks-list {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #5cb85c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4cae4c;
+    }
+
+    .sell-button {
+      background-color: #d9534f; /* Красный цвет кнопки */
+    }
+
+    .sell-button:hover {
+      background-color: #c9302c; /* Темно-красный цвет при наведении */
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+<body ng-controller="StockController as ctrl">
+<div class="container">
+  <h1>Stock Management System</h1>
+
+  <!-- Section to display stocks -->
+  <div class="stocks-list">
+    <h2>Available Stocks</h2>
+    <ul>
+      <li ng-repeat="stock in ctrl.stocks">
+        ID: {{ stock.stockID }}, Name: {{ stock.stock_name }}, Date: {{ stock.purchase_date | date:'yyyy-MM-dd' }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Form to buy a stock -->
+  <div>
+    <h2>Buy Stock</h2>
+    <form novalidate>
+      <label for="buyStockName">Stock Name:</label>
+      <input type="text" id="buyStockName" ng-model="ctrl.newStock.stock_name" placeholder="Enter stock name">
+      <label for="buyStockID">Stock ID:</label>
+      <input type="number" id="buyStockID" ng-model="ctrl.newStock.stockID" placeholder="Enter stock ID">
+      <label for="buyDate">Purchase Date:</label>
+      <input type="date" id="buyDate" ng-model="ctrl.newStock.purchase_date" placeholder="Enter purchase date">
+      <button ng-click="ctrl.buyStock()">Buy Stock</button>
+    </form>
+  </div>
+
+  <!-- Form to sell a stock -->
+  <div>
+    <h2>Sell Stock</h2>
+    <form novalidate>
+      <label for="sellStockName">Stock Name:</label>
+      <input type="text" id="sellStockName" ng-model="ctrl.stockToSell.stock_name" placeholder="Enter stock name">
+      <label for="sellStockID">Stock ID:</label>
+      <input type="number" id="sellStockID" ng-model="ctrl.stockToSell.stockID" placeholder="Enter stock ID">
+      <button ng-click="ctrl.sellStock()" class="sell-button">Sell Stock</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
+
