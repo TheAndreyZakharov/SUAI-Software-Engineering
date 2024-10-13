@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Data</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container { 
+            width: 80%; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background: white; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td { 
+            text-align: left; 
+            padding: 12px; 
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) { 
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data from XML</h1>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Данные из XML будут добавлены здесь -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function loadXMLData() {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        displayData(xhr.responseXML);
+                    } else {
+                        console.error('Error loading XML file: Status - ', xhr.status);
+                    }
+                }
+            };
+            xhr.open('GET', 'generate_xml.php', true);
+            xhr.send();
+        }
+
+        function displayData(xml) {
+            const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+
+            const algorithms = xml.getElementsByTagName('Algorithm');
+            Array.from(algorithms).forEach(algorithm => {
+                displayElement(algorithm, tableBody, 'Algorithm');
+            });
+
+            const projects = xml.getElementsByTagName('Project');
+            Array.from(projects).forEach(project => {
+                displayElement(project, tableBody, 'Project');
+            });
+        }
+
+        function displayElement(element, tableBody, type) {
+            const row = document.createElement('tr');
+
+            const id = element.getAttribute('id');
+            const name = element.getElementsByTagName('Name')[0]?.textContent || element.getElementsByTagName('ProjectName')[0]?.textContent;
+            const description = element.getElementsByTagName('Description')[0]?.textContent || element.getElementsByTagName('ProjectDescription')[0]?.textContent;
+
+            row.innerHTML = `<td>${id}</td><td>${name}</td><td>${description}</td><td>${type}</td>`;
+            tableBody.appendChild(row);
+        }
+
+        window.onload = loadXMLData;
+
+    </script>
+</body>
+</html>
