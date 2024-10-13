@@ -1,0 +1,248 @@
+/* Основные стили */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #007bff; /* Синий цвет */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стили шапки */
+
+.header-logo {
+    height: 80px; /* Высота логотипа */
+    margin-right: 10px; /* Отступ справа от логотипа */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e7f1ff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center; /* Центрирование элементов по вертикали */
+    text-align: right;
+}
+
+.user-info form {
+    margin-left: 10px; /* Отступ от текста до формы */
+}
+
+/* Стили для карты и основного контента */
+.map-section, .main-content, .error-section, .statistics {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для секций лога событий и списка беспилотников */
+.log-section, .drones-list {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Стили формы входа */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили элементов формы */
+label, input, button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0069d9;
+}
+
+.emergency-button {
+    background-color: #dc3545; /* Красная кнопка */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.emergency-button:hover {
+    background-color: #c82333;
+}
+
+/* Медиа-запросы для адаптивного дизайна */
+@media (max-width: 768px) {
+    .container, .login-form {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .log-section, .drones-list {
+        width: 100%;
+    }
+}
+
+
+
+
+.drones-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.drones-list li {
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.drones-list li:hover {
+    background-color: lightgray;
+}
+
+.drones-list .selected {
+    background-color: #add8e6; /* Голубой цвет для выбранного беспилотника */
+}
+
+
+
+
+.drone-control {
+     text-align: center;
+     margin: 20px 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+.drone-control input[type="text"] {
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: auto; /* Убрать ширину в процентах для более гибкого оформления */
+}
+
+.drone-control button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em; /* Меньший размер шрифта */
+}
+
+.drone-control button:hover {
+    background-color: #218838;
+}
+
+/* Стили для секции управления аварийными ситуациями */
+.emergency-controls {
+    text-align: center;
+}
+
+.emergency-controls button {
+    padding: 10px 15px;
+    margin: 0 10px; /* Добавить отступы между кнопками */
+}
+
+/* Стили для скрываемых секций */
+.toggle-section {
+    cursor: pointer;
+}
+
+.toggle-section .toggle-content {
+    display: none;
+    padding: 10px;
+}
+
+.toggle-section.open .toggle-content {
+    display: block;
+}
+
+
+
+.resume-button {
+    background-color: #ffc107; /* Желтая кнопка */
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.resume-button:hover {
+    background-color: #e0a800;
+}
+
+.emergency-controls {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto; /* Центрирование и убедиться, что они находятся внутри контейнера */
+    width: fit-content; /* Адаптировать ширину к содержимому */
+}
+
+.error-section {
+    text-align: center; /* Центрирование текста для секции ошибок */
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Предотвратить выход содержимого за рамки */
+}
+
+
+.emergency-controls button {
+    padding: 10px 15px;
+    margin: 0 10px; /* Отступы между кнопками */
+    /* ... Остальные стили кнопок остаются прежними ... */
+}
