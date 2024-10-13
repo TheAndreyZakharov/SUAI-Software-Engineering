@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Секция head, содержащая мета-данные -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="нейронные сети, искусственный интеллект, машинное обучение, распознавание образов, обработка естественного языка">
+    <meta name="description" content="На странице рассматривается тема нейронных сетей, их применение в современном мире, а также основные типы и структура.">
+    <meta name="author" content="Захаров Андрей 4133К">
+    <meta name="language" content="ru">
+    <title>Нейронные сети - Использованные источники</title>
+    <link rel="stylesheet" href="sources.css">
+    <!-- -->
+
+
+
+    <style>
+
+        header,
+        footer {
+             /* Стили для заголовка и подвала*/
+            text-align: center;
+            background-image: linear-gradient(to bottom, #333, #666);
+            background-color: #333;
+            padding: 20px 0;
+            color: #fff;
+    
+        }
+    
+        body {
+        transition: background-color 0.5s; /* Плавное изменение цвета фона */
+        }
+
+
+        .logo {
+        display: block;
+        margin: 0 auto;
+        width: 150px; /* Начальный размер логотипа */
+        }   
+    
+    
+    </style>
+    
+        
+</head>
+<body>
+    <!-- Шапка сайта -->
+<header name="page-header">
+    <h1 >NeuroTech</h1>
+    <h2 >Нейронные сети - Использованные источники</h2>
+    <h2 id="time"></h2>
+    <img src="logo.png" alt="Логотип NeuroTech" name="logo-image" class="logo">
+    <div id="windowSizeInfo">
+        Размер окна: <span id="windowWidth"></span> x <span id="windowHeight"></span>
+    </div>
+</header>
+    <!-- Блок меню -->
+<div class="menu">
+    <button class="menu-btn">≡ Меню</button>
+    <div class="menu-items">
+        <a href="index.html">Главная страница</a>
+        <a href="page2.html">Вторая страница</a>
+        <a href="sources.html">Использованные источники</a>
+        <a href="forma.html">Анкета</a> <!-- Новый пункт меню -->
+        <a href="http://localhost/neural_networks.php">Neural Networks</a> <!-- Новый пункт меню -->
+        <a href="notifications.html">Уведомления</a> <!-- Новый пункт меню -->
+    </div>
+</div>
+<br>
+<br>
+<br>
+    <!-- Основное содержимое страницы -->
+<main>
+    <section class="content">
+        <!-- Заголовок раздела -->
+        <h2>Использованные источники:</h2>
+        <ul class="sources">
+            <!-- Ссылки открываются в новой вкладке благодаря атрибуту target="_blank" -->
+            <li><a href="https://ru.wikipedia.org/wiki/%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B5%D1%82%D0%B8" target="_blank">Википедия - Нейронные сети</a> - История и основы нейронных сетей.</li>
+            <li><a href="https://habr.com/ru/hub/neuro/" target="_blank">Хабр - Раздел про нейронные сети</a> - Статьи о современных тенденциях в развитии нейронных сетей.</li>
+            <li><a href="https://www.tensorflow.org/" target="_blank">Официальный сайт TensorFlow</a> - Информация о популярной библиотеке машинного обучения и нейронных сетей.</li>
+            <li><a href="https://www.deeplearningbook.org/" target="_blank">Deep Learning Book</a> - Основы глубокого обучения и нейронных сетей.</li>
+            <li><a href="https://arxiv.org/archive/cs" target="_blank">arXiv.org - раздел по компьютерным наукам</a> - Научные статьи и публикации о нейронных сетях.</li>
+            <li><a href="https://towardsdatascience.com/" target="_blank">Towards Data Science</a> - Статьи и туториалы по применению нейронных сетей в различных областях.</li>
+            <li><a href="https://machinelearningmastery.com/" target="_blank">Machine Learning Mastery</a> - Обзоры и руководства по машинному обучению, включая нейронные сети.</li>
+            <li><a href="https://paperswithcode.com/" target="_blank">Papers With Code</a> - Научные статьи и реализации алгоритмов, в том числе нейронных сетей.</li>
+            <li><a href="https://www.youtube.com/user/GoogleDevelopers" target="_blank">YouTube: Google Developers</a> - Видеоуроки и презентации от Google о нейронных сетях и машинном обучении.</li>
+            <li><a href="https://www.coursera.org/" target="_blank">Coursera</a> - Онлайн-курсы по нейронным сетям и машинному обучению от ведущих университетов.</li>
+        </ul>
+    </section>
+</main>
+    <!-- Подвал сайта с контактной информацией и копирайтом -->
+<footer>
+    <p>© 2024 NeuroTech. Все права защищены.</p>
+    <address>
+        <p>Адрес: ул. Нейронная, д. 1, г. Сетевск</p>
+        <p>Телефон: +7 (123) 456-78-90</p>
+    </address>
+</footer>
+
+</body>
+
+
+
+
+
+
+
+
+<!-- Базовая часть ЛР 4 -->
+
+<!-- 1)	Вызов всплывающего окна с ФИО и группой автора сайта  -->
+<script>
+    document.body.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            alert("Автор сайта: Захаров Андрей, группа 4133К");
+        }
+    });
+</script>
+
+<!-- 2)	Добавить сценарий по варианту из Таблицы 1 (столбец «сценарий») -->
+<script>
+    // Функция для добавления ведущего нуля к числу, если оно меньше 10
+    function addLeadingZero(num) {
+        return (num < 10 ? "0" : "") + num;
+    }
+    // Функция для получения окончания слова в зависимости от числа
+    function getWordEnding(number, wordForms) {
+        var remainder10 = number % 10;
+        var remainder100 = number % 100;
+        if (remainder10 === 1 && remainder100 !== 11) {
+            return wordForms[0];
+        } else if ([2, 3, 4].includes(remainder10) && ![12, 13, 14].includes(remainder100)) {
+            return wordForms[1];
+        } else {
+            return wordForms[2];
+        }
+    }
+    // Функция для обновления времени на странице
+    function updateTime() {
+        var now = new Date();
+        var hours = addLeadingZero(now.getHours());
+        var minutes = addLeadingZero(now.getMinutes());
+
+        // Определяем окончания для слов "час" и "минута"
+        var hoursEnding = getWordEnding(hours, ['час', 'часа', 'часов']);
+        var minutesEnding = getWordEnding(minutes, ['минута', 'минуты', 'минут']);
+
+        // Формируем строку с учетом окончаний
+        document.getElementById("time").innerText = "Сейчас " + hours + " " + hoursEnding + " " + minutes + " " + minutesEnding;
+    }
+        // Функция инициализации, вызываемая при загрузке окна
+        function init() {
+            updateTime();
+            window.dispatchEvent(new Event('resize'));
+        }
+        // Устанавливаем общий обработчик события загрузки
+        window.onload = init;
+    // Обновляем время каждую минуту
+    setInterval(updateTime, 60000);
+</script>
+
+<!-- 4)	Изменить цвет элемента -->
+<script>
+    document.body.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            var header = document.getElementsByName('page-header')[0];
+            header.style.color = 'rgb(' + Math.floor(Math.random()*256) + ',' + Math.floor(Math.random()*256) + ',' + Math.floor(Math.random()*256) + ')';
+        }
+    });
+</script>
+
+<!-- 5)	Изменить размер элемента -->
+<script>
+    var logoSize = 150; // Начальный размер логотипа в пикселях
+
+    document.body.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            var logo = document.getElementsByName('logo-image')[0];
+            logoSize += 10; // Увеличиваем размер на 10 пикселей
+            logo.style.width = logoSize + 'px';
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Расширенная часть ЛР 4 -->
+
+<!-- Использование addEventListener для Скроллинга -->
+<script>
+    window.addEventListener('scroll', () => {
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrolled = scrollTop / height; // Процент прокрутки страницы
+
+        // Определяем диапазон, в котором будет белый цвет
+        const startTransition = 0.05; // Начало перехода в белый цвет (5% прокрутки)
+        const endTransition = 0.99; // Конец перехода в белый цвет (90% прокрутки)
+
+        let colorValue;
+
+        if (scrolled < startTransition) {
+            // Внешний диапазон: цвет серый
+            colorValue = 150;
+        } else if (scrolled > endTransition) {
+            // Внешний диапазон: цвет серый
+            colorValue = 150;
+        } else {
+            // Внутри диапазона перехода: меняем оттенок от серого к белому
+            const range = endTransition - startTransition;
+            const positionInRange = (scrolled - startTransition) / range;
+            colorValue = Math.max(150, 255 - (Math.abs(positionInRange - 0.5) * 2 * 105)); // Быстрый переход от серого к белому и обратно
+        }
+
+        document.body.style.backgroundColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+    });
+</script>
+
+<!-- Использовать события окна браузера (загрузка, перемещение, скроллинг) -->
+<script>
+    window.addEventListener('resize', () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        document.getElementById('windowWidth').textContent = width;
+        document.getElementById('windowHeight').textContent = height;
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</html>

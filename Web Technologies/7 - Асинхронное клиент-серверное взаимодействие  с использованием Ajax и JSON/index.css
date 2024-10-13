@@ -1,0 +1,191 @@
+body {
+    /* Общие стили для всего документа */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+.header h1 {
+    margin: 0; /* Убрать внешний отступ у h1 */
+}
+
+.menu {
+    /* Стили для меню */
+    position: relative;
+    background-color: #666;
+    padding: 10px;
+}
+
+.menu ul {
+    /* Стили для списка в меню */
+    list-style-type: none; /* Убрать маркеры списка */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu li {
+    /* Стили для элементов списка в меню */
+    display: inline; /* Элементы списка в одну линию */
+    margin-right: 20px; /* Отступ справа */
+}
+
+.menu li:last-child {
+    margin-right: 0; /* У последнего элемента списка нет отступа справа */
+}
+
+.menu a {
+    /* Стили для ссылок в меню */
+    color: #fff;
+    text-decoration: none;/* Убрать подчеркивание у ссылок */
+}
+
+.content {
+    /* Стили для основного содержимого */
+    padding: 20px;
+    display: flex; /* Использование flexbox для расположения содержимого */
+}
+
+
+    /* Стили для левой и правой колонок */
+.left-column {
+    flex: 1; /* Колонки занимают одинаковое пространство */
+    margin-right: 20px; /* Отступ справа */
+}
+
+.right-column {
+    flex: 1; /* Колонки занимают одинаковое пространство */
+}
+
+@media screen and (max-width: 1200px) {
+        /* Адаптивные стили для экранов шириной до 1900px */
+    .content {
+        flex-direction: column; /* Содержимое располагается в один столбец */
+    }
+
+    .left-column,
+    .right-column {
+        width: 100%; /* Ширина столбцов 100% */
+        margin-right: 0; /* Убрать отступ справа */
+    }
+}
+
+    .footer {
+            /* Стили для футера */
+        position: relative;
+        background-image: linear-gradient(to bottom, #333, #666);
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .content img {
+            /* Стили для изображений в основном содержимом */
+        display: block;
+        margin: 20px auto; /* Центрируем изображения */
+    }
+
+
+    /* Стили для контейнера меню */
+    .menu {
+            position: relative;
+            text-align: center;
+            }
+
+    /* Стили для кнопки меню */
+        .menu-btn {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+        display: inline-block;
+        border: none; /* Убрать границу */
+    border-radius: 5px; /* Добавить скругление углов */
+    margin-bottom: 10px; /* Увеличить отступ снизу */
+    }
+        /* Изменяем стиль кнопки при наведении */
+    .menu-btn:hover {
+    background-color: #444; /* Светлее цвет при наведении */
+    }
+
+    /* Стили для списка элементов меню */
+    .menu-items {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        padding: 10px;
+        list-style-type: none;
+        margin: 0;
+        text-align: center;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .menu-items a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    /* Изменяем стиль кнопок в списке при наведении */
+    .menu-items a:hover {
+        background-color: #444; /* Светлее цвет при наведении */
+    }
+
+    /* Показываем список при наведении на кнопку */
+    .menu:hover .menu-items {
+        display: block;
+    }
+
+
+
+
+/*   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   */
+
+    table {
+        border-collapse: collapse; /* Убирает двойные границы между ячейками */
+    }
+    
+    th, td {
+        border: 2px solid black; /* Задает толщину и цвет границы для заголовков и ячеек таблицы */
+        padding: 5px; /* Добавляет отступы внутри ячеек */
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Цвет для четных строк */
+    }
+    
+    tr:nth-child(odd) {
+        background-color: #ffffff; /* Цвет для нечетных строк */
+    }
+    
+
+
+    /*   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   */
+
+
+    .header {
+        background-image: linear-gradient(to bottom, #333, #666);
+    }
+
+
+    .menu a:hover {
+        text-decoration: underline;
+    }
+    
+    
+    p:first-letter {
+        font-size: 150%;
+        font-weight: bold;
+    }
+    
+    img[alt="Логотип NeuroTech"] {
+        transform: rotate(10deg);
+    }
+    

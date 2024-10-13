@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Секция, содержащая метаданные и ссылки на внешние ресурсы -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="нейронные сети, искусственный интеллект, машинное обучение, распознавание образов, обработка естественного языка">
+    <meta name="description" content="На странице рассматривается тема нейронных сетей, их применение в современном мире, а также основные типы и структура.">
+    <meta name="author" content="Захаров Андрей 4133К">
+    <meta name="language" content="ru">
+    <title>Нейронные сети - Главная страница</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- -->
+
+
+
+    <style>
+    .header {
+        /* Стили для заголовка */
+        position: relative;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+
+    body {
+        transition: background-color 0.5s; /* Плавное изменение цвета фона */
+    }
+
+    .logo {
+    display: block;
+    margin: 0 auto;
+    width: 150px; /* Начальный размер логотипа */
+    }   
+
+    </style>
+
+</head>
+<body>
+<!-- Тело документа, содержит видимое содержание страницы -->
+
+<!-- Блок с заголовком страницы -->
+<div class="header" name="page-header">
+    <h1>NeuroTech</h1>
+    <h2>Нейронные сети - Главная страница</h2>
+    <h2 id="time"></h2>
+    <img src="logo.png" alt="Логотип NeuroTech" name="logo-image" class="logo">
+    <div id="windowSizeInfo">
+        Размер окна: <span id="windowWidth"></span> x <span id="windowHeight"></span>
+    </div>
+    
+</div>
+
+<!-- Блок с меню -->
+<div class="menu">
+    <button class="menu-btn" onclick="toggleMenu()" style="background-color: #333; color: white;">≡ Меню</button>
+    <div id="menu-items" class="menu-items">
+        <a href="index.html">Главная страница</a>
+        <a href="page2.html">Вторая страница</a>
+        <a href="sources.html">Использованные источники</a>
+        <a href="forma.html">Анкета</a> <!-- Новый пункт меню -->
+        <a href="notifications.html">Уведомления</a> <!-- Новый пункт меню -->
+        <a href="http://localhost/neural_networks.php">Neural Networks</a> <!-- Новый пункт меню -->
+    </div>
+</div>
+
+
+
+
+<!-- Главный контент страницы -->
+<div class="content">
+    <div class="left-column">  <!-- Левая колонка контента -->
+        <!-- Таблица с информацией о нейронных сетях -->
+        <table name="neural-network-table" border="1">
+            <caption><strong>Информация о нейронных сетях</strong></caption>
+            <thead>
+                <tr>
+                    <th>Компонент</th>
+                    <th>Описание</th>
+                    <th>Примеры</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3"><em><abbr title="Организация нейронов и их связей">Структура</abbr></em></td>
+                    <td>Нейрон</td>
+                    <td>Основная единица, обрабатывающая входные данные и передающая результаты другим нейронам</td>
+                </tr>
+                <tr>
+                    <td>Синапс</td>
+                    <td>Соединение между нейронами, определяющее силу связи между ними</td>
+                </tr>
+                <tr>
+                    <td>Слой</td>
+                    <td>Группа нейронов, обычно организованных по уровням, которые выполняют определенные функции</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><em><abbr title="Разновидности архитектур и функциональных характеристик">Типы</abbr></em></td>
+                    <td>Однонаправленные</td>
+                    <td>Нейронные сети, в которых данные передаются только в одном направлении, от входных к выходным</td>
+                </tr>
+                <tr>
+                    <td>Рекуррентные</td>
+                    <td>Сети с циклическими связями, позволяющими сохранять информацию о предыдущих состояниях</td>
+                </tr>
+                <tr>
+                    <td>Свёрточные</td>
+                    <td>Специализированные для обработки данных с пространственной структурой, такими как изображения</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><em><abbr title="Области использования в технологии и науке">Применение</abbr></em></td>
+                    <td>Распознавание образов</td>
+                    <td>Используется для автоматического распознавания и классификации объектов и образов</td>
+                </tr>
+                <tr>
+                    <td>Обработка естественного языка</td>
+                    <td>Применяется для анализа, понимания и генерации текста естественного языка</td>
+                </tr>
+                <tr>
+                    <td>Прогнозирование временных рядов</td>
+                    <td>Используется для прогнозирования будущих значений на основе последовательности данных</td>
+                </tr>
+                <tr>
+                    <td><img src="5AI.png" alt="Нейронная сеть распознает автомобиль" style="width: 100%; height: auto;"></td>
+                    <td>Распознавание объектов с использованием нейронных сетей</td>
+                    <td>Нейронная сеть анализирует изображение и определяет на нем автомобиль</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Таблица о нейронных сетях с дополнительной информацией о структуре, типах и применении</td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+
+
+        <br>
+        <div>
+            <input type="text" id="componentInput" placeholder="Компонент">
+            <input type="text" id="descriptionInput" placeholder="Описание">
+            <input type="text" id="exampleInput" placeholder="Примеры">
+            <button onclick="addTableRow()">Добавить строку</button>
+        </div>
+        <br>
+        <hr>
+        <div>
+            <input type="text" id="listItemInput" placeholder="Текст элемента списка">
+            <button onclick="addItemToList()">Добавить элемент</button>
+            <button onclick="removeLastItem()">Удалить последний элемент</button>
+        </div>
+        <ul id="dynamicList">
+            <!-- Список, в который будут добавляться элементы -->
+        </ul>
+    
+
+
+
+
+
+        <hr>
+
+        <!-- Начало упорядоченного списка с тремя основными разделами -->
+        <ol type="1" start="1">
+            <li>Структура нейронной сети
+                <!-- Вложенный упорядоченный список-->
+                <ol type="o">
+                    <li>Нейрон</li>
+                    <li>Синапс</li>
+                    <li>Слой</li>
+                </ol>
+            </li>
+            <li>Типы нейронных сетей
+                <!-- Вложенный упорядоченный список-->
+                <ol type="A">
+                    <li>Однонаправленные</li>
+                    <li>Рекуррентные</li>
+                    <li>Свёрточные</li>
+                </ol>
+            </li>
+            <li>Применение нейронных сетей
+                <!-- Вложенный упорядоченный список-->
+                <ol type="I">
+                    <li>Распознавание образов</li>
+                    <li>Обработка естественного языка</li>
+                    <li>Прогнозирование временных рядов</li>
+                </ol>
+            </li>
+        </ol>
+        <hr>
+
+
+
+        <p><strong>Идея и ранние этапы развития нейронных сетей</strong></p>
+        <p>Идея создания <dfn>нейронных сетей</dfn> возникла ещё в середине 20 века, вдохновленная работами ученых по изучению мозга и его функций. Первые концепции нейронных сетей были основаны на <abbr title="биологических принципах работы нейронов и сетей нервных клеток в мозге живых существ">биологических принципах</abbr> работы нейронов и сетей нервных клеток в мозге живых существ.</p>
+        <p>Одним из первых важных этапов в развитии нейронных сетей было создание модели <cite>искусственного нейрона</cite>, предложенной Уорреном Маккаллохом и Уолтером Питтсом в 1943 году. Их модель, названная "моделью Маккаллоха-Питтса", была первым шагом к созданию искусственных нейронных сетей. Этот искусственный нейрон был представлен как <var>математическая модель</var> биологического нейрона, способного принимать входные сигналы, обрабатывать их и выдавать выходной сигнал.</p>
+        <p>Дальнейшие исследования привели к разработке более сложных моделей и алгоритмов обучения, включая <mark>перцептрон Розенблатта</mark> в 1957 году, который стал первым примером обучаемой нейронной сети. Перцептрон имел возможность обучаться на примерах и корректировать свои веса, чтобы правильно классифицировать входные данные.</p>
+        <p>В конце 1960-х и начале 1970-х годов нейронные сети столкнулись с некоторыми ограничениями, такими как <q>невозможность обучения сложных функций</q> и проблемы, связанные с "затуханием градиента" при обучении глубоких сетей. Это привело к затишью в развитии нейронных сетей, из-за чего многие исследователи обратили своё внимание на другие методы машинного обучения.</p>
+        <br>
+        <p><strong>Развитие нейронных сетей в современную эпоху</strong></p>
+        <p>После затишия в развитии нейронных сетей в конце 20 века интерес к ним возрос снова благодаря нескольким ключевым факторам. Одним из них был рост доступности данных и вычислительной мощности. С появлением интернета и цифровых технологий объем данных, доступных для обучения нейронных сетей, резко увеличился. Это позволило использовать более сложные модели и алгоритмы для решения различных задач, таких как <em>распознавание образов</em>, <em>обработка естественного языка</em>, <em>медицинская диагностика</em> и многое другое.</p>
+        <p>Вторым ключевым фактором был прорыв в области алгоритмов глубокого обучения, который произошел в начале 2010-х годов. Алгоритм глубокого обучения, известный как <dfn>глубокое обучение на основе нейронных сетей</dfn> или <dfn>глубокое обучение с обратным распространением ошибки</dfn>, смог решить проблему <abbr title="затухания градиента">затухания градиента</abbr>, что позволило эффективно обучать нейронные сети с большим количеством слоев (<abbr title="глубокие нейронные сети">глубокие нейронные сети</abbr>). Этот прорыв привел к бурному развитию области и применению нейронных сетей в самых разных областях.</p>
+        <p>С появлением графических процессоров (<abbr title="GPU">GPU</abbr>), которые обладают параллельными вычислительными возможностями, обучение глубоких нейронных сетей стало более эффективным и быстрым. <abbr title="GPU">GPU</abbr> позволяют выполнять параллельные вычисления на больших объемах данных, что идеально подходит для обработки и обучения нейронных сетей.</p>
+        <p>Важным моментом в развитии нейронных сетей было также улучшение архитектур и методов оптимизации. Сети с различными архитектурами, такими как <abbr title="сверточные нейронные сети">сверточные нейронные сети</abbr> (<abbr title="CNN">CNN</abbr>) для обработки изображений и <abbr title="рекуррентные нейронные сети">рекуррентные нейронные сети</abbr> (<abbr title="RNN">RNN</abbr>) для работы с последовательными данными, стали стандартом в обработке различных типов данных.</p>
+        <p>Кроме того, появились новые методы оптимизации, такие как <abbr title="стохастический градиентный спуск с моментом">стохастический градиентный спуск с моментом</abbr> (<abbr title="SGD with momentum">SGD with momentum</abbr>), <abbr title="адам">адам</abbr> (<abbr title="Adam">Adam</abbr>) и другие, которые помогли ускорить и улучшить процесс обучения нейронных сетей, сделав его более стабильным и эффективным.</p>
+        <p>Таким образом, современное развитие нейронных сетей отличается от их ранних этапов значительными прорывами в области алгоритмов, архитектур и вычислительных ресурсов, что привело к широкому применению этой технологии в самых разных областях науки и промышленности.</p>
+        <br>
+        <p><strong>Перспективы и вызовы в эволюции нейронных сетей</strong></p>
+        <p>Сегодня нейронные сети играют ключевую роль в современной технологической революции, привнося новые возможности в области искусственного интеллекта, анализа данных и автоматизации процессов. Однако перед этой технологией стоят и вызовы и перспективы.</p>
+        <p>Одним из вызовов является обеспечение безопасности и надежности нейронных сетей. С увеличением их сложности и применения в критических областях, таких как медицина и автономные транспортные средства, важно обеспечить защиту от атак, ошибок и сбоев.</p>
+        <p>Другим вызовом является интерпретируемость нейронных сетей. Понимание того, как и почему нейронные сети принимают определенные решения, особенно в случае сложных моделей глубокого обучения, остается активной областью исследований.</p>
+        <p>С развитием технологий и исследований, мы можем ожидать дальнейшего развития нейронных сетей в будущем. Это включает в себя создание более эффективных алгоритмов обучения, разработку новых архитектур сетей, а также интеграцию нейронных сетей с другими технологиями, такими как квантовые вычисления и бионика.</p>
+        <p>В целом, эволюция нейронных сетей продолжает вести нас к новым горизонтам в области искусственного интеллекта и обработки информации. Сохранение баланса между инновациями и этическими вопросами, а также продолжение исследований в области безопасности и интерпретируемости, будет важным фактором в обеспечении устойчивого и продуктивного развития этой захватывающей области технологии.</p>
+        
+       
+       
+        <hr>
+
+    </div>
+    <div class="right-column">
+        <div style="text-align: center;">
+
+                <source srcset="1AI.png" type="image/webp">
+                <img src="1AI.png" alt="Изображение 1" style="width: 480px; height: 400px; margin-bottom: 20px;">
+
+                <source srcset="2AI.png" type="image/webp">
+                <img src="2AI.png" alt="Изображение 2" style="width: 480px; height: 400px; margin-bottom: 20px;">
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<hr>
+
+
+
+
+
+<hr>
+<!-- Нижний колонтитул с авторскими правами и контактной информацией -->
+<div class="footer">
+    <p>© 2024 NeuroTech. Все права защищены.</p>
+    <!-- Добавление тега address -->
+    <address>
+        <p>Адрес: ул. Нейронная, д. 1, г. Сетевск</p>
+        <p>Телефон: +7 (123) 456-78-90</p>
+    </address>
+</div>
+
+</body>
+
+
+
+
+
+<!-- Базовая часть ЛР 4 -->
+
+<!-- 1)	Вызов всплывающего окна с ФИО и группой автора сайта  -->
+<script>
+    document.body.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            alert("Автор сайта: Захаров Андрей, группа 4133К");
+        }
+    });
+</script>
+
+<!-- 2)	Добавить сценарий по варианту из Таблицы 1 (столбец «сценарий») -->
+<script>
+    // Функция для добавления ведущего нуля к числу, если оно меньше 10
+    function addLeadingZero(num) {
+        return (num < 10 ? "0" : "") + num;
+    }
+    // Функция для получения окончания слова в зависимости от числа
+    function getWordEnding(number, wordForms) {
+        var remainder10 = number % 10;
+        var remainder100 = number % 100;
+        if (remainder10 === 1 && remainder100 !== 11) {
+            return wordForms[0];
+        } else if ([2, 3, 4].includes(remainder10) && ![12, 13, 14].includes(remainder100)) {
+            return wordForms[1];
+        } else {
+            return wordForms[2];
+        }
+    }
+    // Функция для обновления времени на странице
+    function updateTime() {
+        var now = new Date();
+        var hours = addLeadingZero(now.getHours());
+        var minutes = addLeadingZero(now.getMinutes());
+
+        // Определяем окончания для слов "час" и "минута"
+        var hoursEnding = getWordEnding(hours, ['час', 'часа', 'часов']);
+        var minutesEnding = getWordEnding(minutes, ['минута', 'минуты', 'минут']);
+
+        // Формируем строку с учетом окончаний
+        document.getElementById("time").innerText = "Сейчас " + hours + " " + hoursEnding + " " + minutes + " " + minutesEnding;
+    }
+        // Функция инициализации, вызываемая при загрузке окна
+        function init() {
+            updateTime();
+            window.dispatchEvent(new Event('resize'));
+        }
+        // Устанавливаем общий обработчик события загрузки
+        window.onload = init;
+    // Обновляем время каждую минуту
+    setInterval(updateTime, 60000);
+</script>
+
+<!-- 3)	Добавить пустую строку в таблицу, подготовленную в работе 1 -->
+<script>
+    document.body.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            var table = document.getElementsByName('neural-network-table')[0];
+            var newRow = table.insertRow(-1); // Вставляем строку в конец таблицы
+
+            // Добавляем пустые ячейки
+            for(var i = 0; i < table.rows[0].cells.length; i++) {
+                newRow.insertCell(i);
+            }
+        }
+    });
+</script>
+
+<!-- 4)	Изменить цвет элемента -->
+<script>
+    document.body.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            var header = document.getElementsByName('page-header')[0];
+            header.style.color = 'rgb(' + Math.floor(Math.random()*256) + ',' + Math.floor(Math.random()*256) + ',' + Math.floor(Math.random()*256) + ')';
+        }
+    });
+</script>
+
+<!-- 5)	Изменить размер элемента -->
+<script>
+    var logoSize = 150; // Начальный размер логотипа в пикселях
+
+    document.body.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            var logo = document.getElementsByName('logo-image')[0];
+            logoSize += 10; // Увеличиваем размер на 10 пикселей
+            logo.style.width = logoSize + 'px';
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Расширенная часть ЛР 4 -->
+
+<!-- Использование addEventListener для Скроллинга -->
+<script>
+    window.addEventListener('scroll', () => {
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrolled = scrollTop / height; // Процент прокрутки страницы
+
+        // Определяем диапазон, в котором будет белый цвет
+        const startTransition = 0.05; // Начало перехода в белый цвет (5% прокрутки)
+        const endTransition = 0.99; // Конец перехода в белый цвет (90% прокрутки)
+
+        let colorValue;
+
+        if (scrolled < startTransition) {
+            // Внешний диапазон: цвет серый
+            colorValue = 150;
+        } else if (scrolled > endTransition) {
+            // Внешний диапазон: цвет серый
+            colorValue = 150;
+        } else {
+            // Внутри диапазона перехода: меняем оттенок от серого к белому
+            const range = endTransition - startTransition;
+            const positionInRange = (scrolled - startTransition) / range;
+            colorValue = Math.max(150, 255 - (Math.abs(positionInRange - 0.5) * 2 * 105)); // Быстрый переход от серого к белому и обратно
+        }
+
+        document.body.style.backgroundColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+    });
+</script>
+
+
+<!-- При добавлении строки в таблицу для заполнения ячеек брать данные, введенные пользователем в элементы интерфейса (input) -->
+<script>
+    function addTableRow() {
+        var table = document.getElementsByName('neural-network-table')[0];
+        var newRow = table.insertRow(-1); // Вставляем строку в конец таблицы
+
+        // Получаем данные из текстовых полей
+        var component = document.getElementById('componentInput').value;
+        var description = document.getElementById('descriptionInput').value;
+        var example = document.getElementById('exampleInput').value;
+
+        // Создаем ячейки и добавляем в них текст
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        var cell3 = newRow.insertCell(2);
+        cell1.textContent = component;
+        cell2.textContent = description;
+        cell3.textContent = example;
+
+        // Очищаем текстовые поля
+        document.getElementById('componentInput').value = '';
+        document.getElementById('descriptionInput').value = '';
+        document.getElementById('exampleInput').value = '';
+    }
+</script>
+
+<!-- Добавить и удалить элемент списка -->
+<script>
+    // Функция для добавления элемента в список
+    function addItemToList() {
+        var itemText = document.getElementById('listItemInput').value;
+        if (itemText.trim() === '') {
+            alert('Пожалуйста, введите текст для элемента списка.');
+            return;
+        }
+
+        var list = document.getElementById('dynamicList');
+        var listItem = document.createElement('li');
+        listItem.textContent = itemText;
+        list.appendChild(listItem);
+
+        // Очищаем поле ввода после добавления элемента
+        document.getElementById('listItemInput').value = '';
+    }
+
+    // Функция для удаления последнего элемента из списка
+    function removeLastItem() {
+        var list = document.getElementById('dynamicList');
+        if (list.children.length > 0) {
+            list.removeChild(list.lastChild);
+        } else {
+            alert('Список уже пуст.');
+        }
+    }
+</script>
+
+<!-- Использовать события окна браузера (загрузка, перемещение, скроллинг) -->
+<script>
+    window.addEventListener('resize', () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        document.getElementById('windowWidth').textContent = width;
+        document.getElementById('windowHeight').textContent = height;
+    });
+</script>
+
+
+
+
+
+
+
+</html>
