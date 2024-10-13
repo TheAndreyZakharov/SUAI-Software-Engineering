@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 3-4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .block {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #5D5C61;
+        }
+        p {
+            color: #379683;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="block">
+            <h2>Прямоугольник</h2>
+            <label for="rectangle-width">Ширина:</label>
+            <input type="number" id="rectangle-width" value="10">
+            <label for="rectangle-height">Высота:</label>
+            <input type="number" id="rectangle-height" value="5">
+            <button onclick="calculateRectangle()">Рассчитать</button>
+            <p id="rectangle-result"></p>
+            <h2>Круг</h2>
+            <label for="circle-radius">Радиус:</label>
+            <input type="number" id="circle-radius" value="4">
+            <button onclick="calculateCircle()">Рассчитать</button>
+            <p id="circle-result"></p>
+        </div>
+    </div>
+    <div class="block">
+      <h2>Студент</h2>
+      <label for="student-name">Имя:</label>
+      <input type="text" id="student-name" placeholder="Имя">
+      <label for="student-age">Возраст:</label>
+      <input type="number" id="student-age" placeholder="Возраст">
+      <label for="student-grade">Средний балл:</label>
+      <input type="number" id="student-grade" placeholder="Средний балл" step="0.1">
+      <button onclick="updateStudentInfo()">Обновить информацию</button>
+      <button onclick="showStudentInfo()">Показать информацию</button>
+      <p id="student-info"></p>
+  </div>
+  </div>
+      <div class="block">
+        <h2>Калькулятор</h2>
+        <input type="number" id="calc-num1">
+        <input type="number" id="calc-num2">
+        <button onclick="calculate('add')">Сложить</button>
+        <button onclick="calculate('subtract')">Вычесть</button>
+        <button onclick="calculate('multiply')">Умножить</button>
+        <button onclick="calculate('divide')">Разделить</button>
+        <p id="calculator-result"></p>
+    </div>
+</div>
+
+    <script src="figures.js"></script>
+    <script src="student.js"></script>
+    <script src="calculator.js"></script>
+    <script>
+        function calculateRectangle() {
+            var width = parseFloat(document.getElementById("rectangle-width").value);
+            var height = parseFloat(document.getElementById("rectangle-height").value);
+            var rect = new Rectangle(width, height);
+            document.getElementById("rectangle-result").innerHTML = 
+                `Площадь: ${rect.area()}, Периметр: ${rect.perimeter()}`;
+        }
+        function calculateCircle() {
+            var radius = document.getElementById("circle-radius").value;
+            var circle = new Circle(radius);
+            document.getElementById("circle-result").innerHTML = 
+                `Площадь: ${circle.area().toFixed(2)}, Периметр: ${circle.perimeter().toFixed(2)}`;
+        }
+
+
+
+
+
+        var student;
+
+        function updateStudentInfo() {
+            var name = document.getElementById("student-name").value;
+            var age = document.getElementById("student-age").value;
+            var grade = document.getElementById("student-grade").value;
+            student = new Student(name, age, grade);
+            document.getElementById("student-info").innerHTML = "Информация обновлена!";
+        }
+
+        function showStudentInfo() {
+            if(student) {
+                document.getElementById("student-info").innerHTML = 
+                    `Имя: ${student.getName()}, Возраст: ${student.getAge()}, Средний балл: ${student.getGrade()}`;
+            } else {
+                document.getElementById("student-info").innerHTML = "Информация о студенте отсутствует.";
+            }
+        }
+
+
+
+
+        function calculate(operation) {
+            var num1 = parseFloat(document.getElementById("calc-num1").value);
+            var num2 = parseFloat(document.getElementById("calc-num2").value);
+            var calculator = new Calculator();
+            var result;
+
+            try {
+                switch(operation) {
+                    case 'add':
+                        result = calculator.add(num1, num2);
+                        break;
+                    case 'subtract':
+                        result = calculator.subtract(num1, num2);
+                        break;
+                    case 'multiply':
+                        result = calculator.multiply(num1, num2);
+                        break;
+                    case 'divide':
+                        result = calculator.divide(num1, num2);
+                        break;
+                }
+                document.getElementById("calculator-result").innerHTML = `Результат: ${result}`;
+            } catch (e) {
+                document.getElementById("calculator-result").innerHTML = `Ошибка: ${e.message}`;
+            }
+        }
+
+    </script>
+</body>
+</html>
