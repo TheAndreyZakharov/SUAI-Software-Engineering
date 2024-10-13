@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Практическое задание №5</title>
+</head>
+<body>
+    <h1>Основы Frontend-разработки</h1>
+    <p>Цель работы – приобретение навыков создания для HTML-документа внешних и внутренних скриптов на JavaScript, формирование практических навыков использования операторов и создания функций.</p>
+    
+
+
+
+
+
+    <!-- Подключение внешнего скрипта -->
+    <script src="script.js"></script>
+
+    <!-- Внутренний скрипт -->
+    <script>
+        // Вывод сообщения о навыках HTML и CSS
+        alert('У меня появились навыки создания веб-страниц с использованием HTML и CSS.');
+
+        // Демонстрация приведения типов
+        var text = 'Номер моей группы: ';
+        var groupNumber = 4133; // Здесь должно быть число
+        alert(text + groupNumber); // Приведение числа к строке и вывод
+
+        // Скрипт с преднамеренной ошибкой и обработкой ошибки
+        try {
+            // Исполнение кода с синтаксической ошибкой
+            eval("alert('Ошибка в следующем сообщении: ' + text + groupNumber;");
+        } catch(e) {
+            // Вывод сообщения об ошибке
+            alert('Обнаружена ошибка: ' + e.message);
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Скрипт с условным оператором -->
+    <script>
+        var weight = 58; // ваш вес в килограммах
+        var height = 1.75; // ваш рост в метрах
+        var bmi = weight / (height * height); // расчет индекса массы тела
+
+        if (bmi < 18.5) {
+            alert("Ваш ИМТ: " + bmi + ". Это меньше нормы. Рекомендуется набор массы.");
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            alert("Ваш ИМТ: " + bmi + ". Это нормальный вес. Продолжайте в том же духе!");
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            alert("Ваш ИМТ: " + bmi + ". Избыточный вес. Рекомендуется сбалансированное питание и упражнения.");
+        } else {
+            alert("Ваш ИМТ: " + bmi + ". Ожирение. Рекомендуется обратиться к врачу.");
+        }
+    </script>
+
+
+
+
+
+
+
+
+<!-- Скрипт, иллюстрирующий применение унарного плюса -->
+<script>
+    // Преобразование строки, содержащей числовое значение
+    var inputString = "123";
+    alert("Оригинальное значение: " + inputString + " (тип " + typeof inputString + ")");
+    inputString = +inputString; // применяем унарный плюс для преобразования строки в число
+    alert("После применения унарного плюса: " + inputString + " (тип " + typeof inputString + ")");
+
+    // Преобразование булевых значений
+    var inputTrue = true;
+    alert("Оригинальное значение: " + inputTrue + " (тип " + typeof inputTrue + ")");
+    inputTrue = +inputTrue; // применяем унарный плюс для преобразования true в число
+    alert("После применения унарного плюса: " + inputTrue + " (тип " + typeof inputTrue + ")");
+
+    var inputFalse = false;
+    alert("Оригинальное значение: " + inputFalse + " (тип " + typeof inputFalse + ")");
+    inputFalse = +inputFalse; // применяем унарный плюс для преобразования false в число
+    alert("После применения унарного плюса: " + inputFalse + " (тип " + typeof inputFalse + ")");
+</script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Скрипты объявления функций для третьей части задания -->
+    <script>
+        // Function Declaration
+        function calculateWalkingTimeDecl(length, speed) {
+            var time = (length / speed) * 60; // Преобразуем часы в минуты
+            return 'Пройдя весь Невский проспект (Function Declaration), вы потратите ' + time.toFixed(2) + ' минут.';
+        }
+
+        // Function Expression
+        var calculateWalkingTimeExpr = function(length, speed) {
+            var time = (length / speed) * 60; // Преобразуем часы в минуты
+            return 'Пройдя весь Невский проспект (Function Expression), вы потратите ' + time.toFixed(2) + ' минут.';
+        };
+
+        // Arrow Function
+        var calculateWalkingTimeArrow = (length, speed) => {
+            var time = (length / speed) * 60; // Преобразуем часы в минуты
+            return 'Пройдя весь Невский проспект (Arrow Function), вы потратите ' + time.toFixed(2) + ' минут.';
+        };
+
+        // Параметры для функций: длина Невского проспекта и средняя скорость ходьбы
+        var lengthOfNevsky = 4.5; // Допустим, длина Невского проспекта 4.5 км
+        var averageWalkingSpeed = 5; // Средняя скорость ходьбы в км/ч
+
+        // Вызов функций
+        alert(calculateWalkingTimeDecl(lengthOfNevsky, averageWalkingSpeed));
+        alert(calculateWalkingTimeExpr(lengthOfNevsky, averageWalkingSpeed));
+        alert(calculateWalkingTimeArrow(lengthOfNevsky, averageWalkingSpeed));
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
