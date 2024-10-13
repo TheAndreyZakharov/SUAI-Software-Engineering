@@ -1,0 +1,31 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Определение корневого элемента -->
+  <xs:element name="successStories">
+    <xs:complexType>
+      <xs:sequence>
+
+        <!-- Определение повторяющегося элемента story -->
+        <xs:element name="story" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+
+              <!-- Описание подэлементов для story -->
+              <xs:element type="xs:string" name="industry"/>
+              <xs:element type="xs:string" name="example"/>
+              <xs:element type="xs:string" name="description"/>
+              <xs:element type="xs:string" name="image"/>
+
+            </xs:sequence>
+
+            <!-- Определение атрибута id для story -->
+            <xs:attribute type="xs:integer" name="id" use="required"/>
+
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
