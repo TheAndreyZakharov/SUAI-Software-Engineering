@@ -1,0 +1,5 @@
+1,1,(не указано),test@gmail.com,beginner,computer_vision,developer,(не указано),neural_networks
+2,2,(не указано),test@gmail.com,beginner,nlp,researcher,(не указано),neural_networks
+3,3,(не указано),test@gmail.com,expert,computer_vision, nlp, data_analysis,manager,(не указано),neural_networks
+3,3,(не указано),test@gmail.com,expert,computer_vision, nlp, data_analysis,manager,(не указано),neural_networks
+1,1,(не указано),test@gmail.com,beginner,computer_vision,developer,(не указано),neural_networks
