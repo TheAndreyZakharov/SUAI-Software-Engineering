@@ -1,0 +1,7 @@
+{
+  "name": "ThymeleafProject",
+  "version": "1.0.0",
+  "dependencies": {
+    "pathfinding": "^0.4.18"
+  }
+}
