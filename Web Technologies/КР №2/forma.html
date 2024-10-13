@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета - Работа с нейронными сетями</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea,
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Анкета для специалистов в области нейронных сетей</h1>
+        <hr>
+        <form method="POST" action="http://localhost:8099/tutor5.php" onsubmit="return validateForm()" novalidate>
+            <table>
+                <!-- Форма ввода данных -->
+                <tr><th>Фамилия:</th><td><input type="text" name="surname" required></td></tr>
+                <tr><th>Имя:</th><td><input type="text" name="name" required></td></tr>
+                <tr><th>Отчество:</th><td><input type="text" name="patronymic"></td></tr>
+                <tr><th>Электронная почта:</th><td><input type="email" name="email" required></td></tr>
+                <tr><th>Опыт работы с нейросетями:</th><td><select name="experience">
+                    <option value="beginner">Новичок</option>
+                    <option value="intermediate">Средний</option>
+                    <option value="advanced">Продвинутый</option>
+                    <option value="expert">Эксперт</option>
+                </select></td></tr>
+                <tr><th>Области интересов в нейросетях:</th><td>
+                    <input type="checkbox" name="interests[]" value="computer_vision" id="cv"><label for="cv">Компьютерное зрение</label>
+                    <input type="checkbox" name="interests[]" value="nlp" id="nlp"><label for="nlp">Обработка естественного языка</label>
+                    <input type="checkbox" name="interests[]" value="data_analysis" id="da"><label for="da">Анализ данных</label>
+                </td></tr>
+                <tr><th>Предпочтительная роль в проекте:</th><td>
+                    <input type="radio" name="role" value="developer" id="developer"><label for="developer">Разработчик</label>
+                    <input type="radio" name="role" value="researcher" id="researcher"><label for="researcher">Исследователь</label>
+                    <input type="radio" name="role" value="manager" id="manager"><label for="manager">Менеджер проекта</label>
+                </td></tr>
+                <tr><th>Ваш комментарий или вопрос:</th><td><textarea name="comment"></textarea></td></tr>
+                <tr><td colspan="2" style="text-align:center;"><input type="submit" value="ОТПРАВИТЬ"></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
