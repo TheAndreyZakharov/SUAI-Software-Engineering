@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="#{stocks.title}">Акции</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body>
+<div class="container">
+  <h1 th:text="#{stocks.header}">Акции</h1>
+  <table>
+    <tr>
+      <th th:text="#{stocks.name}">Название акции</th>
+      <th th:text="#{stocks.id}">ID акции</th>
+      <th th:text="#{stocks.date}">Дата покупки</th>
+      <th></th>
+    </tr>
+    <tr th:each="stock : ${stocks}">
+      <td th:text="${stock.stock_name}"></td>
+      <td th:text="${stock.stockID}"></td>
+      <td th:text="${stock.purchase_date}"></td>
+      <td>
+        <a th:href="@{/stocks/{id}(id=${stock.stockID})}" class="submit-button" th:text="#{stocks.details}">Подробнее</a>
+        <form th:action="@{/stocks/delete/{id}(id=${stock.stockID})}" method="post">
+          <input type="submit" class="delete-button" th:value="#{stocks.delete}" value="Удалить">
+        </form>
+      </td>
+    </tr>
+  </table>
+  <h2 th:text="#{stocks.add}">Добавить акцию</h2>
+  <form th:action="@{/stocks}" method="post">
+    <input type="text" name="stock_name" th:placeholder="#{stocks.stockName}" required>
+    <input type="text" name="stockID" th:placeholder="#{stocks.stockId}" required>
+    <input type="date" name="purchase_date" th:placeholder="#{stocks.purchaseDate}" required>
+    <input type="submit" class="submit-button" th:value="#{stocks.submit}" value="Добавить">
+  </form>
+</div>
+</body>
+</html>
+
