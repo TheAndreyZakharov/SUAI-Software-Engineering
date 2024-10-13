@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Вход в систему управления беспилотными устройствами</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px; /* Уменьшить максимальную ширину */
+            margin: 50px auto; /* Центрировать форму */
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label, input, button {
+            width: calc(100% - 20px); /* Вычитаем padding */
+            margin-top: 10px;
+        }
+
+        label {
+            margin-left: 10px; /* Добавляем отступ слева для метки */
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-left: 10px; /* Добавляем отступ слева для поля ввода */
+        }
+
+        .submit-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px; /* Добавляем отступ слева для кнопки */
+        }
+
+        .submit-button:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div style="text-align: center;">
+        <img src="etm_login.jpg" alt="ETM" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+    </div>
+    <h2>Вход в систему управления беспилотными устройствами</h2>
+    <form action="/login" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div>
+            <input type="submit" class="submit-button" value="Войти">
+        </div>
+    </form>
+</div>
+</body>
+</html>
