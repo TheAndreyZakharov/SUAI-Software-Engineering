@@ -24,6 +24,7 @@
 
 Пример структуры репозитория:
 
+```
 SUAI-Software-Engineering/
 │
 ├── Предмет_1/
@@ -43,7 +44,7 @@ SUAI-Software-Engineering/
 │       └── README.md
 │
 ...
-
+```
 
 
 
