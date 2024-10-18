@@ -1,10 +1,17 @@
 <div align="center">
-  <img src="https://src.guap.ru/logos/guap/s_guap-desc.svg" alt="SUAI Logo" width="300"/>
+  <br>
+  
+  [![Created Badge](https://badges.pufler.dev/created/TheAndreyZakharov/SUAI-Software-Engineering)](https://badges.pufler.dev)
+  <br>
+  [![Updated Badge](https://badges.pufler.dev/updated/TheAndreyZakharov/SUAI-Software-Engineering)](https://badges.pufler.dev)
+  <br>
+  
+  <img src="https://src.guap.ru/logos/suai/s_suai-desc.svg" alt="SUAI Logo" width="300"/>
 
   # SUAI Software Engineering
 
-  [![Русский](https://img.shields.io/badge/README-Русский-green)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README_RU.md)
-  [![English](https://img.shields.io/badge/README-English-blue)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README.md)
+  [![Русский](https://img.shields.io/badge/README-Русский-brightgreen)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README_RU.md)
+  [![English](https://img.shields.io/badge/README-English-blue)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README.md) 
 </div>
 
 ## Описание  
