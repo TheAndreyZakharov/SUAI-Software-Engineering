@@ -1,50 +1,61 @@
-# SUAI Software Engineering
+<div align="center">
+  <img src="https://www.guap.ru/common/img/logo.svg" alt="SUAI Logo" width="200"/>
 
-## Описание  
-Этот репозиторий создан для хранения учебных проектов и отчетов по курсам направления **Программная инженерия** в **Государственном Университете Аэрокосмического Приборостроения**. Здесь собраны выполненные задания и лабораторные работы, направленные на изучение программирования и разработки программных продуктов.  
+  # SUAI Software Engineering
 
-Для каждого предмета в репозитории выделена отдельная папка. В каждой из них можно найти подкаталоги с конкретными заданиями. Внутри этих подкаталогов находятся:  
-- **Исходные файлы программы** — содержат код, созданный в рамках выполнения задания.  
-- **Отчёт по работе** (`report`) — документ с описанием хода выполнения задания, полученными результатами и пояснениями.  
-- **README для задания** — краткое описание и цель конкретного задания.
+  [![Русский](https://img.shields.io/badge/README-Русский-blue)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README_RU.md)
+  [![English](https://img.shields.io/badge/README-English-green)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README.md)
+</div>
 
-Важно отметить, что в репозитории размещены только те работы, которые непосредственно связаны с программированием и разработкой программного обеспечения. Если работа не затрагивает данные темы, она не выгружается, поэтому некоторые задания могут отсутствовать.
+## Description  
+This repository contains academic projects and reports for courses in the **Software Engineering** program at the **Saint Petersburg State University of Aerospace Instrumentation (SUAI)**. It collects assignments and lab work aimed at developing programming skills and software product design.  
 
-## Как использовать репозиторий  
-1. **Навигация по курсам**:  
-   - В корне репозитория вы найдете папки с названиями предметов.  
-   - Откройте папку с нужным предметом, чтобы увидеть список заданий.  
+Each subject has a dedicated folder, with subdirectories for specific assignments. These subdirectories contain:  
+- **Source code files** — the code written as part of the assignment.  
+- **Project report** (`report`) — a document with a description of the task, results, and explanations.  
+- **Assignment README** — a brief overview and the goal of the specific task.
 
-2. **Навигация по заданиям**:  
-   - Внутри папок с предметами расположены подкаталоги для конкретных заданий.  
-   - Каждый подкаталог содержит программные файлы, отчет (`report`), а также `README`-файл, в котором кратко описаны цели и требования задания.
+Only assignments directly related to programming and software development are included in the repository. If a task does not focus on these areas, it may not be present here.
 
-3. **Отчеты**:  
-   - Для детального понимания задачи и хода выполнения смотрите **отчеты** в папке с каждым заданием. Именно в отчетах содержатся основные пояснения, описание методов и выводы по проделанной работе.  
+## Featured Projects  
+//editing...
 
-Пример структуры репозитория:
+## How to Use the Repository  
+1. **Navigating Courses**:  
+   - The root of the repository contains folders named after each subject.  
+   - Open the relevant subject folder to see the list of assignments.  
+
+2. **Navigating Assignments**:  
+   - Inside each subject folder, there are subdirectories for individual tasks.  
+   - Each subdirectory includes the program files, a report (`report`), and a `README` with the assignment's objectives and requirements.
+
+3. **Reports**:  
+   - For a detailed explanation of each task, check the **reports** in each assignment folder. Reports provide the main insights, methods used, and conclusions drawn from the work.  
+
+### Example Repository Structure:
 
 ```
 SUAI-Software-Engineering/
 │
-├── Предмет_1/
-│   ├── Задание_1/
+├── Subject_1/
+│   ├── Assignment_1/
 │   │   ├── main.cpp
 │   │   ├── report1.pdf
 │   │   └── README.md
-│   └── Задание_2/
+│   └── Assignment_2/
 │       ├── solution.m
 │       ├── report2.pdf
 │       └── README.md
 │
-├── Предмет_2/
-│   ├── Задание_3/
+├── Subject_2/
+│   └── Assignment_3/
 │       ├── main.py
 │       ├── report.pdf
 │       └── README.md
 │
 ...
 ```
+
 
 
 
