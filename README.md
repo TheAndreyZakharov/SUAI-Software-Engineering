@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://www.guap.ru/common/img/logo.svg" alt="SUAI Logo" width="200"/>
+  <img src="https://src.guap.ru/logos/suai/s_suai-desc.svg" alt="SUAI Logo" width="200"/>
 
   # SUAI Software Engineering
 
