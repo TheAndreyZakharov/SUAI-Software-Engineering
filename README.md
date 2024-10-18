@@ -1,9 +1,10 @@
 <div align="center">
   <br>
-  
-  [![Created Badge](https://badges.pufler.dev/created/TheAndreyZakharov/SUAI-Software-Engineering)](https://badges.pufler.dev)
+
+
+  ![Created Badge](https://badges.pufler.dev/created/TheAndreyZakharov/SUAI-Software-Engineering)
   <br>
-  [![Updated Badge](https://badges.pufler.dev/updated/TheAndreyZakharov/SUAI-Software-Engineering)](https://badges.pufler.dev)
+  ![Updated Badge](https://badges.pufler.dev/updated/TheAndreyZakharov/SUAI-Software-Engineering)
   <br>
   
   <img src="https://src.guap.ru/logos/suai/s_suai-desc.svg" alt="SUAI Logo" width="300"/>
@@ -13,7 +14,6 @@
   [![Русский](https://img.shields.io/badge/README-Русский-blue)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README_RU.md)
   [![English](https://img.shields.io/badge/README-English-brightgreen)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README.md) 
 </div>
-
 
 ## Description  
 This repository contains academic projects and reports for courses in the **Software Engineering** program at the **Saint Petersburg State University of Aerospace Instrumentation (SUAI)**. It collects assignments and lab work aimed at developing programming skills and software product design.  
