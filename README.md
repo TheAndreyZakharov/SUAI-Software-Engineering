@@ -1,12 +1,5 @@
 <div align="center">
-  <br>
 
-
-  ![Created Badge](https://badges.pufler.dev/created/TheAndreyZakharov/SUAI-Software-Engineering)
-  <br>
-  ![Updated Badge](https://badges.pufler.dev/updated/TheAndreyZakharov/SUAI-Software-Engineering)
-  <br>
-  
   <img src="https://src.guap.ru/logos/suai/s_suai-desc.svg" alt="SUAI Logo" width="300"/>
 
   # SUAI Software Engineering
