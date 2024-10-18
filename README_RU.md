@@ -45,7 +45,7 @@ SUAI-Software-Engineering/
 │       └── README.md
 │
 ├── Предмет_2/
-│   ├── Задание_3/
+│   └── Задание_3/
 │       ├── main.py
 │       ├── report.pdf
 │       └── README.md
