@@ -4,6 +4,7 @@
 
 
 Вид функции, Кол-во пер-ых N, Промежуток исследования
+
 <img width="417" alt="image" src="https://github.com/user-attachments/assets/254c8bf9-ed6f-410b-b47e-bcd45f137d56">
 
 
