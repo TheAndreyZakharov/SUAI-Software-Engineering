@@ -1,0 +1,8 @@
+zone "zakharov.g4133.guap.local" {
+  type master;
+  file "/etc/bind/zones/db.zakharov.g4133.guap.local";
+};
+zone "14.19.172.in-addr.arpa" {
+  type master;
+  file "/etc/bind/zones/db.14.19.172";
+};
