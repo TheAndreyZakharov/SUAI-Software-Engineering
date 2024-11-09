@@ -1,0 +1,11 @@
+$TTL 604800
+@ IN SOA sergey.zakharov.g4133.guap.local. root.zakharov.g4133.guap.local. (
+  2 ; Serial
+  604800 ; Refresh
+  86400 ; Retry
+  2419200 ; Expire
+  604800 ) ; Negative Cache TTL
+;
+@ IN NS sergey.zakharov.g4133.guap.local.
+7 IN PTR sergey.zakharov.g4133.guap.local.
+107 IN PTR andrey.zakharov.g4133.guap.local.
