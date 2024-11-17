@@ -1,0 +1,15 @@
+1 клиент
+sudo ip route add 172.19.14.0/24 via 10.33.14.254
+sudo ip route add 192.168.14.0/24 via 10.33.14.254
+2 клиент
+sudo ip route add 10.33.14.0/24 via 172.19.14.254
+sudo ip route add 192.168.14.0/24 via 172.19.14.253
+3 клиент
+sudo ip route add 10.33.14.0/24 via 192.168.14.254
+sudo ip route add 172.19.14.0/24 via 192.168.14.254
+маршрутизатор 1
+sudo ip route add 192.168.14.0/24 via 172.19.14.253
+sudo sysctl -w net.ipv4.ip_forward=1
+маршрутизатор 2
+sudo ip route add 10.33.14.0/24 via 172.19.14.254
+sudo sysctl -w net.ipv4.ip_forward=1
