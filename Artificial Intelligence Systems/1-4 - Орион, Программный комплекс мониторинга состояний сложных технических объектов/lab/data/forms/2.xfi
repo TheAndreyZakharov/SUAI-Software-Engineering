@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FormInfo version="3.0" X="0" Y="0" isComposable="0" template="form_2" name="form_2">
+    <AccordingMap/>
+    <Object type="6" objID="0" name="form_2">
+        <Event code="64"/>
+    </Object>
+</FormInfo>

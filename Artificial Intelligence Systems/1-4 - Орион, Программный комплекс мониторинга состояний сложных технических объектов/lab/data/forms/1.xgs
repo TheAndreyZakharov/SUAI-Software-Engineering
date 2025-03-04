@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GuiStates version="2.0">
+     <object type="2" objID="56236014" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС1.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС1.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС1.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС1.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС1.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС1.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="56240592" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС2.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС2.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС2.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС2.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС2.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС2.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="56981795" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС3.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС3.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС3.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС3.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС3.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС3.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57000592" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС4.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС4.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС4.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС4.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС4.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС4.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57001920" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС5.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС5.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС5.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС5.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС5.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС5.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57003014" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС6.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС6.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС6.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС6.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС6.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС6.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57003842" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС7.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС7.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС7.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС7.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС7.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС7.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57004952" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС8.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС8.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС8.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС8.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС8.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС8.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57006030" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС9.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС9.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС9.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС9.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС9.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС9.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57006936" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС10.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС10.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС10.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС10.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС10.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС10.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57007827" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС11.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС11.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС11.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС11.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС11.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС11.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57134358" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС12.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС12.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС12.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС12.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС12.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС12.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57142389" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС13.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС13.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС13.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС13.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС13.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС13.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57146749" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС14.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС14.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС14.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС14.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС14.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС14.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57159389" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС15.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС15.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС15.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС15.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС15.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС15.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57161655" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС16.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС16.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС16.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС16.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС16.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС16.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57297686" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКГ2.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ТКГ2.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКГ2.НижеНормы" knb_states="БЗ~ДУСОЗ.23ТКГ2.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКГ2.Норма" knb_states="БЗ~ДУСОЗ.23ТКГ2.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57318827" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКО3.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ТКО3.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКО3.НижеНормы" knb_states="БЗ~ДУСОЗ.23ТКО3.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКО3.Норма" knb_states="БЗ~ДУСОЗ.23ТКО3.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57393827" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ4.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ТШБ4.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ4.НижеНормы" knb_states="БЗ~ДУСОЗ.23ТШБ4.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ4.Норма" knb_states="БЗ~ДУСОЗ.23ТШБ4.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57415811" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ5.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ТШБ5.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ5.НижеНормы" knb_states="БЗ~ДУСОЗ.23ТШБ5.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ5.Норма" knb_states="БЗ~ДУСОЗ.23ТШБ5.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57435342" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДШБ1.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДШБ1.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДШБ1.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДШБ1.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДШБ1.Норма" knb_states="БЗ~ДУСОЗ.23ДШБ1.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57452764" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ8.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДГВ8.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ8.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДГВ8.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ8.Норма" knb_states="БЗ~ДУСОЗ.23ДГВ8.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57509702" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ9.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДГВ9.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ9.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДГВ9.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ9.Норма" knb_states="БЗ~ДУСОЗ.23ДГВ9.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57522545" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ11.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДОВ11.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ11.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДОВ11.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ11.Норма" knb_states="БЗ~ДУСОЗ.23ДОВ11.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="2" objID="57536249" name="Кнопка">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ12.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДОВ12.ВышеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4294901760" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ12.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДОВ12.НижеНормы">
+               <property templateName="" type_att="3" value="4294967295" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278190335" code="1" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ12.Норма" knb_states="БЗ~ДУСОЗ.23ДОВ12.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+               <property templateName="" type_att="3" value="4278255360" code="1" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="57754249" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС1.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС1.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС1.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС1.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС1.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС1.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="58147795" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС2.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС2.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС2.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС2.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС2.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС2.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="58333374" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС3.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС3.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС3.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС3.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС3.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС3.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="58490061" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС4.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС4.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС4.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС4.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС4.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС4.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="58569092" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС5.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС5.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС5.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС5.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС5.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС5.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="58643655" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС6.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС6.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС6.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС6.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС6.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС6.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="58711170" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС7.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС7.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС7.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС7.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС7.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС7.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="58775561" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС8.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС8.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС8.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС8.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС8.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС8.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="58900811" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС9.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС9.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС9.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС9.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС9.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС9.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59027639" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС10.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС10.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС10.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС10.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС10.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС10.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59079639" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС11.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС11.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС11.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС11.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС11.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС11.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59121670" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС12.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС12.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС12.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС12.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС12.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС12.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59195280" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС13.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС13.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС13.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС13.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС13.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС13.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59275452" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС14.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС14.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС14.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС14.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС14.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС14.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59314124" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС15.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС15.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС15.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС15.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС15.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС15.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59363483" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС16.ВышеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС16.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС16.НижеНормы" knb_states="БЗ~ДУСОЗ.22ТГКС16.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.22ТГКС16.Норма" knb_states="БЗ~ДУСОЗ.22ТГКС16.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59422749" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКГ2.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ТКГ2.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКГ2.НижеНормы" knb_states="БЗ~ДУСОЗ.23ТКГ2.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКГ2.Норма" knb_states="БЗ~ДУСОЗ.23ТКГ2.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59503889" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКО3.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ТКО3.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКО3.НижеНормы" knb_states="БЗ~ДУСОЗ.23ТКО3.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТКО3.Норма" knb_states="БЗ~ДУСОЗ.23ТКО3.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59571217" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ4.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ТШБ4.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ4.НижеНормы" knb_states="БЗ~ДУСОЗ.23ТШБ4.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ4.Норма" knb_states="БЗ~ДУСОЗ.23ТШБ4.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59644467" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ5.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ТШБ5.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ5.НижеНормы" knb_states="БЗ~ДУСОЗ.23ТШБ5.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ТШБ5.Норма" knb_states="БЗ~ДУСОЗ.23ТШБ5.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59689030" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДШБ1.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДШБ1.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДШБ1.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДШБ1.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДШБ1.Норма" knb_states="БЗ~ДУСОЗ.23ДШБ1.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59748499" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ8.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДГВ8.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ8.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДГВ8.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ8.Норма" knb_states="БЗ~ДУСОЗ.23ДГВ8.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59821545" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ9.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДГВ9.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ9.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДГВ9.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДГВ9.Норма" knb_states="БЗ~ДУСОЗ.23ДГВ9.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59860420" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ11.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДОВ11.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ11.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДОВ11.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ11.Норма" knb_states="БЗ~ДУСОЗ.23ДОВ11.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+     <object type="4" objID="59897920" name="Поле_вывода">
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ12.ВышеНормы" knb_states="БЗ~ДУСОЗ.23ДОВ12.ВышеНормы">
+               <property templateName="" type_att="3" value="4294901760" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ12.НижеНормы" knb_states="БЗ~ДУСОЗ.23ДОВ12.НижеНормы">
+               <property templateName="" type_att="3" value="4278190335" code="2" isParVar="no"/>
+          </state>
+          <state fAllVal="0" name="БЗ~ДУСОЗ.23ДОВ12.Норма" knb_states="БЗ~ДУСОЗ.23ДОВ12.Норма">
+               <property templateName="" type_att="3" value="4278190080" code="2" isParVar="no"/>
+          </state>
+     </object>
+</GuiStates>

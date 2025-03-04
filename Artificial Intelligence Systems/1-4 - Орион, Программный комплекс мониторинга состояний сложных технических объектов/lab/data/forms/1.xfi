@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FormInfo version="3.0" X="0" Y="0" isComposable="0" template="form_1" name="form_1">
+    <AccordingMap/>
+    <Object type="6" objID="0" name="form_1">
+        <Event code="1024">
+            <oneEvent action="2"/>
+        </Event>
+    </Object>
+    <Object type="4" objID="57754249" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС1" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС1" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="58147795" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС2" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС2" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="58333374" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС3" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС3" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="58490061" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС4" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС4" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="58569092" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС5" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС5" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="58643655" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС6" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС6" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="58711170" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС7" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС7" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="58775561" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС8" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС8" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="58900811" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС9" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС9" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59027639" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС10" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС10" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59079639" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС11" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС11" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59121670" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС12" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС12" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59195280" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС13" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС13" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59275452" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС14" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС14" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59314124" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС15" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС15" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59363483" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="22ТГКС16" beginIndx="0" fTime="0">
+                <ParToValue parName="22ТГКС16" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59422749" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ТКГ2" beginIndx="0" fTime="0">
+                <ParToValue parName="23ТКГ2" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59503889" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ТКО3" beginIndx="0" fTime="0">
+                <ParToValue parName="23ТКО3" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59571217" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ТШБ4" beginIndx="0" fTime="0">
+                <ParToValue parName="23ТШБ4" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59644467" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ТШБ5" beginIndx="0" fTime="0">
+                <ParToValue parName="23ТШБ5" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59689030" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ДШБ1" beginIndx="0" fTime="0">
+                <ParToValue parName="23ДШБ1" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59748499" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ДГВ8" beginIndx="0" fTime="0">
+                <ParToValue parName="23ДГВ8" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59821545" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ДГВ9" beginIndx="0" fTime="0">
+                <ParToValue parName="23ДГВ9" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59860420" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ДОВ11" beginIndx="0" fTime="0">
+                <ParToValue parName="23ДОВ11" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+    <Object type="4" objID="59897920" name="Поле_вывода">
+        <Attribute codeType="2" code="8" checkAttVal="1">
+            <oneAttribute fLastValue="1" fStatus="0" fPastObj="0" format="%.3f" formatTime="6" ctrlParName="23ДОВ12" beginIndx="0" fTime="0">
+                <ParToValue parName="23ДОВ12" fInclude="4" vLeft="0" vRight="0" type="1"/>
+            </oneAttribute>
+        </Attribute>
+    </Object>
+</FormInfo>
