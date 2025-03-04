@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project version="1.0" expand="1" name="proj">
+    <Forms expand="1">
+        <Element startup="2" name="form_1"/>
+    </Forms>
+    <Schems expand="1">
+        <Element startup="1" name="СА"/>
+    </Schems>
+    <SubProjects expand="0"/>
+</Project>
