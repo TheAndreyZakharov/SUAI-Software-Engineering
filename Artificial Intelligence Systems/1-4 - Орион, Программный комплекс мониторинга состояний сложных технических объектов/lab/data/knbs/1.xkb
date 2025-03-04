@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XKnBase version="5" name="БЗ">
+    <element folded="1" fNoUse="0" type="0" comment="" name="ДУСОЗ" fInherits="0">
+        <element folded="1" fNoUse="0" type="0" comment="" name="22ТГКС1" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС1 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС1 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС1 >= -4.1) &amp; (22ТГКС1 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС2" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС2 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС2 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС2 >= -4.1) &amp; (22ТГКС2 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС3" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС3 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС3 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС3 >= -4.1) &amp; (22ТГКС3 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС4" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС4 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС4 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС4 >= -4.1) &amp; (22ТГКС4 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС5" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС5 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС5 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС5 >= -4.1) &amp; (22ТГКС5 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС6" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС6 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС6 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС6 >= -4.1) &amp; (22ТГКС6 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС7" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС7 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС7 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС7 >= -4.1) &amp; (22ТГКС7 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС8" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС8 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС8 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС8 >= -4.1) &amp; (22ТГКС8 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС9" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС9 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС9 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС9 >= -4.1) &amp; (22ТГКС9 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС10" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС10 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС10 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС10 >= -4.1) &amp; (22ТГКС10 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС11" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС11 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС11 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС11 >= -4.1) &amp; (22ТГКС11 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС12" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС12 > 60" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС12 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС12 >= -4.1) &amp; (22ТГКС12 &lt;= 60)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС13" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС13 > 54.1" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС13 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС13 >= -4.1) &amp; (22ТГКС13 &lt;= 54.1)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС14" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС13 > 54.1" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС14 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС14 >= -4.1) &amp; (22ТГКС14 &lt;= 54.1)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС15" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС15 > 54.1" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС15 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС15 >= -4.1) &amp; (22ТГКС15 &lt;= 54.1)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="22ТГКС16" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="22ТГКС16 > 54.1" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="22ТГКС16 &lt; -4.1" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(22ТГКС16 >= -4.1) &amp; (22ТГКС16 &lt;= 54.1)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ТКГ2" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ТКГ2 > 30" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ТКГ2 &lt; 0" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ТКГ2 >= 0) &amp; ( 23ТКГ2 &lt;= 30)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ТКО3" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ТКО3 > 30" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ТКО3 &lt; 0" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ТКО3 >= 0) &amp; ( 23ТКО3 &lt;= 30)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ТШБ4" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ТШБ4 > 50" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ТШБ4 &lt; -50" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ТШБ4 >= -50) &amp; (23ТШБ4 &lt;= 50)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ТШБ5" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ТШБ5 > 50" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ТШБ5 &lt; -50" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ТШБ5 >= -50) &amp; (23ТШБ5 &lt;= 50)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ДШБ1" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ДШБ1 > 320" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ДШБ1 &lt; 160" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ДШБ1 >= 160) &amp; (23ДШБ1 &lt;= 320)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ДГВ8" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ДГВ8 > 19" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ДГВ8 &lt; 0" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ДГВ8 >= 0) &amp; (23ДГВ8 &lt;= 19)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ДГВ9" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ДГВ9 > 19" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ДГВ9 &lt; 0" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ДГВ9 >= 0) &amp; (23ДГВ9 &lt;= 19)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ДОВ11" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ДОВ11 > 19" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ДОВ11 &lt; 0" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ДОВ11 >= 0) &amp; (23ДОВ11 &lt;= 19)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+        <element folded="0" fNoUse="0" type="0" comment="" name="23ДОВ12" fInherits="0">
+            <States>
+                <node valq="1" typeMem="1" log_expr="23ДОВ12 > 19" name="ВышеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="23ДОВ12 &lt; 0" name="НижеНормы" typeVar="0"/>
+                <node valq="1" typeMem="1" log_expr="(23ДОВ12 >= 0) &amp; (23ДОВ12 &lt;= 19)" name="Норма" typeVar="0"/>
+            </States>
+        </element>
+    </element>
+</XKnBase>
