@@ -1,0 +1,13 @@
+$TTL    604800 
+@       IN      SOA      andrey.zakharov.g4133.guap.local. root.zakharov.g4133.guap.local. ( 
+                        2        ; Serial 
+                        604800   ; Refresh 
+                        86400    ; Retry 
+                        2419200  ; Expire 
+                        604800 ) ; Minimum TTL 
+; 
+@       IN      NS      andrey.zakharov.g4133.guap.local. 
+1       IN      PTR     andrey.zakharov.g4133.guap.local. 
+2       IN      PTR     sergey.zakharov.g4133.guap.local. 
+100     IN      PTR     client1.zakharov.g4133.guap.local. 
+
