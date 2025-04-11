@@ -1,0 +1,14 @@
+$ORIGIN . 
+$TTL 604800     ; 1 week 
+13.168.192.in-addr.arpa IN SOA  andrey.zakharov.g4133.guap.local. root.zakharov.g4133.guap.local. ( 
+                               2024030202 ; serial 
+                               604800     ; refresh (1 week) 
+                               86400      ; retry (1 day) 
+                               2419200    ; expire (4 weeks) 
+                               604800     ; minimum (1 week) 
+                               ) 
+                       NS      andrey.zakharov.g4133.guap.local. 
+$ORIGIN 13.168.192.in-addr.arpa. 
+1                     PTR     sergey.zakharov.g4133.guap.local. 
+$TTL 3600       ; 1 hour 
+100                     PTR     client2.zakharov.g4133.guap.local.
