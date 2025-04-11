@@ -1,0 +1,22 @@
+key DHCP_UPDATER {
+    algorithm HMAC-SHA256;
+    secret "eTPgbLjR8JmUm3XyNQgTDAgQ4f7i0PpHKmNdiNa42Qk=";
+};
+
+zone " zakharov.g4133.guap.local " {
+    type master;
+    file "/etc/bind/db. zakharov.g4133.guap.local ";
+    allow-update { key DHCP_UPDATER; };
+};
+
+zone "13.33.10.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.10.33.13";
+    allow-update { key DHCP_UPDATER; };
+};
+
+zone "13.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.192.168.13";
+    allow-update { key DHCP_UPDATER; };
+};
