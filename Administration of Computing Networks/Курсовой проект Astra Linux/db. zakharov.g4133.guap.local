@@ -1,0 +1,18 @@
+$ORIGIN .
+$TTL 604800     ; 1 week
+zakharov.g4133.guap.local   IN SOA  andrey. zakharov.g4133.guap.local. root. zakharov.g4133.guap.local. (
+                                3          ; serial
+                                604800     ; refresh (1 week)
+                                86400      ; retry (1 day)
+                                2419200    ; expire (4 weeks)
+                                604800     ; minimum (1 week)
+                                )
+                        NS      andrey.zakharov.g4133.guap.local.
+$ORIGIN zakharov.g4133.guap.local.
+andrey               A       10.33.13.1
+client1                A       10.33.13.100
+sergey              A       10.33.13.2
+sergey              A       192.168.13.1
+$TTL 3600       ; 1 hour
+client2               A       192.168.13.100
+                        TXT     "310da4a58f64c6d2192b427606e2174e18"
