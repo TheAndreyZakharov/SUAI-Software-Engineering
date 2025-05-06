@@ -18,9 +18,6 @@ Each subject has a dedicated folder, with subdirectories for specific assignment
 
 Only assignments directly related to programming and software development are included in the repository. If a task does not focus on these areas, it may not be present here.
 
-## Featured Projects  
-//editing...
-
 ## How to Use the Repository  
 1. **Navigating Courses**:  
    - The root of the repository contains folders named after each subject.  
