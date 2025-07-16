@@ -1,22 +1,31 @@
 <div align="center">
 
-  <img src="https://src.guap.ru/logos/suai/s_suai-desc.svg" alt="SUAI Logo" width="300"/>
+  <img src="Изображения/s_suai-desc-line.png" alt="SUAI Logo" width="800"/>  
+  
+  <br>
+
+  <img src="Изображения/i04-sing.png" alt="SUAI Image" width="150"/>
 
   # SUAI Software Engineering
 
-  [![Русский](https://img.shields.io/badge/README-Русский-blue)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README_RU.md)
-  [![English](https://img.shields.io/badge/README-English-brightgreen)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README.md) 
+  [![Русский](https://img.shields.io/badge/ReadmeLanguage-Русский-blue)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README_RU.md)
+  [![English](https://img.shields.io/badge/ReadmeLanguage-English-brightgreen)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README.md) 
+
 </div>
 
+
 ## Description  
-This repository contains academic projects and reports for courses in the **Software Engineering** program at the **Saint Petersburg State University of Aerospace Instrumentation (SUAI)**. It collects assignments and lab work aimed at developing programming skills and software product design.  
+This repository is intended for storing student projects and reports for the program **09.03.04 — Software Engineering** (Bachelor's program, specialization: *Software Systems Design*) at the **State University of Aerospace Instrumentation**.  
+It contains completed assignments and laboratory works focused on programming and software development.
 
-Each subject has a dedicated folder, with subdirectories for specific assignments. These subdirectories contain:  
-- **Source code files** — the code written as part of the assignment.  
-- **Project report** (`report`) — a document with a description of the task, results, and explanations.  
-- **Assignment README** — a brief overview and the goal of the specific task.
+Each subject in the repository has its own folder. Inside, you will find subfolders for specific assignments. These subfolders contain:  
+- **Source code files** — contain the code developed as part of the assignment.  
+- **Report** (`report`) — a document describing the steps taken to complete the assignment, the obtained results, and explanations.  
+- **Assignment README** — a brief description and the purpose of the specific assignment.
 
-Only assignments directly related to programming and software development are included in the repository. If a task does not focus on these areas, it may not be present here.
+It is important to note that only works directly related to programming and software development are included in this repository. If an assignment relates to other disciplines (for example, physics, history, philosophy, etc.), it is not uploaded, so some assignments may be missing.
+
+Similarly, if the completion of an assignment did not require programming, development, software design, etc., such work is also not included in the repository.
 
 ## How to Use the Repository  
 1. **Navigating Courses**:  
