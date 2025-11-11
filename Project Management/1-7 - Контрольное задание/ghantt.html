@@ -1,0 +1,1304 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>Диаграмма Ганта — ЭТМ (п.7)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#121821; --ink:#e8eef7; --muted:#9bb0c9;
+      --critical:#ff4d4f; --noncrit:#5aa7ff; --milestone:#ffd166; --edge:#8fb3e0;
+      --grid:#253042; --grid-mid:#1b2432; --accent:#50e3c2; --table:#0e1520; --table-alt:#0c121b;
+      --sum:#7e8aa4; --sum-fill:rgba(126,138,164,.15);
+      --hover-in:#35d2ff; --hover-out:#a78bfa;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji"}
+    .wrap{display:grid;grid-template-rows:auto 1fr;height:100%}
+    header{padding:12px 16px;background:var(--panel);display:grid;gap:8px;
+      grid-template-columns:1fr auto;align-items:center;border-bottom:1px solid #202a36}
+    h1{font-size:16px;font-weight:600;margin:0;letter-spacing:.2px}
+    .legend{display:flex;gap:14px;align-items:center;color:var(--muted);font-size:12px}
+    .pill{display:inline-flex;gap:6px;align-items:center;padding:2px 8px;border-radius:999px;border:1px solid #2a3a52;background:#0f141c}
+    .sw{width:14px;height:3px;border-radius:2px}
+    .sw.crit{background:var(--critical)} .sw.norm{background:var(--noncrit)} .sw.milestone{background:var(--milestone)}
+    .controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    .control{background:#0f141c;border:1px solid #223146;border-radius:10px;padding:8px 10px;display:flex;gap:8px;align-items:center}
+    .control label{color:var(--muted);font-size:12px}
+    .control input[type="number"]{width:64px;background:transparent;border:1px solid #26364d;color:var(--ink);border-radius:8px;padding:4px 6px}
+    .control input[type="date"]{background:transparent;border:1px solid #26364d;color:var(--ink);border-radius:8px;padding:4px 6px}
+    .control input[type="checkbox"]{accent-color:var(--accent);width:18px;height:18px}
+    .buttons{display:flex;gap:8px}
+    button{background:#1b2839;color:var(--ink);border:1px solid #314765;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:600}
+    button:hover{background:#24364f}
+
+    /* холст стал скроллируемым по горизонтали */
+    .board{position:relative; overflow:auto}
+    svg{display:block;background:var(--bg)} /* ширину/высоту задаём в коде, не 100% */
+
+    .tooltip{position:absolute;pointer-events:none;background:#0f141c;color:#d7e6ff;border:1px solid #2d3e57;border-radius:10px;padding:8px 10px;font-size:12px;line-height:1.25;white-space:nowrap;z-index:10;box-shadow:0 8px 20px rgba(0,0,0,.35);opacity:0;transition:opacity .12s ease}
+    .footer{
+    position: static;              /* ключевая правка */
+    display: inline-block;         /* чтобы занимал только свой контент */
+    margin: 12px 16px 20px 16px;   /* отступы вокруг блока */
+    color: var(--muted);
+    font-size: 12px;
+    background: rgba(16,22,31,.75);
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 1px solid #25354d;
+    }    
+    .footer b{color:var(--ink)}
+    .kpi{display:inline-flex;gap:10px;align-items:center}
+    .kpi .value{font-weight:800;color:var(--accent)}
+    .kpi small{color:var(--muted)}
+
+    /* сетка и ряды */
+    .grid-week{stroke:var(--grid);stroke-width:1;opacity:.35;shape-rendering:crispEdges}
+    .grid-5w{stroke:var(--grid-mid);stroke-width:1;opacity:.5}
+    .row-band{fill:var(--table)}
+    .row-band.alt{fill:var(--table-alt)}
+    .axis{font-size:11px;fill:var(--muted)}
+
+    /* левая таблица */
+    .th{fill:#101826}
+    .th-title{fill:#b6c5db; font-weight:700}
+    .cell-text{fill:#cfe0f7}
+    .cell-muted{fill:#8ea6c7}
+    .col-sep{stroke:#1e2a39;stroke-width:1}
+
+    .label-id{font-weight:800;fill:#e9f0fb}
+    .label-name{fill:#a6bddc}
+    .label-resp{fill:#7ea6d1}
+
+    /* бары и связи */
+    .bar{rx:5;ry:5;stroke-width:1.5}
+    .bar.noncrit{fill:#173757;stroke:#2a5b92}
+    .bar.crit{fill:#3a0d11;stroke:var(--critical);filter:drop-shadow(0 0 4px rgba(255,77,79,.35))}
+    .bar.dim{opacity:.22}
+    .bar.hover{stroke-width:2.5;filter:drop-shadow(0 0 8px rgba(80,227,194,.25))}
+
+    /* яркая подсветка баров, связанных с выбранной фазой */
+    .bar.group-hl{
+    opacity:1 !important;
+    fill: rgba(80,227,194,.22);         /* заливка акцентным цветом */
+    stroke: var(--accent);              /* контур акцентным цветом */
+    stroke-width: 3;                    /* потолще контур */
+    filter: drop-shadow(0 0 12px rgba(80,227,194,.65));
+    transition: fill .12s ease, stroke .12s ease, filter .12s ease, opacity .12s ease;
+    }
+
+    /* вехи */
+    .ms{fill:#2b2410;stroke:var(--milestone);stroke-width:2}
+    .ms.dim{opacity:.35}
+    .ms-label{fill:#ffd166;font-weight:800}
+
+    .ms-leader{stroke:#5b6f8a;stroke-width:1;opacity:.65}
+    .ms-leader:hover{opacity:1;stroke-width:1.25}
+
+    /* зависимости */
+    .edge{fill:none;stroke:var(--edge);stroke-width:2;opacity:.95;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+    .edge.dim{opacity:.18}
+    .edge.crit{stroke:var(--critical);stroke-width:3.5;filter:drop-shadow(0 0 4px rgba(255,77,79,.45))}
+    .edge-hit{fill:none;stroke:#000;stroke-opacity:0;stroke-width:16;cursor:pointer;pointer-events:stroke;stroke-linecap:round;stroke-linejoin:round}
+    .edge-group.incoming .edge{stroke:var(--hover-in);stroke-width:3.5;opacity:1;filter:drop-shadow(0 0 5px rgba(53,210,255,.55))}
+    .edge-group.outgoing .edge{stroke:var(--hover-out);stroke-width:3.5;opacity:1;filter:drop-shadow(0 0 5px rgba(167,139,250,.55))}
+
+    /* суммарные фазы (серые «стрелки») */
+    .sum-group .sum-band{fill:var(--sum-fill)}
+    .sum-group .sum-bar{stroke:var(--sum);stroke-width:6;opacity:.95}
+    .sum-cap{fill:var(--sum)}
+    .sum-label{fill:#c7d0e1;font-weight:700}
+    .sum-hit{fill:none;stroke:#000;stroke-opacity:0;stroke-width:20;cursor:pointer}
+    .sum-group.hover .sum-bar{stroke:var(--accent);stroke-width:8}
+    .sum-group.hover .sum-cap{fill:var(--accent)}
+    .sum-group.hover .sum-band{fill:rgba(80,227,194,.18)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Диаграмма Ганта — подпроект «Автоматизация внутрискладской логистики»</h1>
+      <div class="legend" style="margin-top:6px">
+        <span class="pill"><span class="sw crit"></span> критический путь</span>
+        <span class="pill"><span class="sw norm"></span> остальные работы</span>
+        <span class="pill"><span class="sw milestone"></span> вехи (M1…M12)</span>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="control">
+        <label>Старт проекта:</label>
+        <input id="startDate" type="date" value="2025-01-06" />
+      </div>
+      <div class="control">
+        <label>4.4 Поставки (недель):</label>
+        <input id="logWeeks" type="number" min="8" max="12" step="1" value="9" />
+      </div>
+      <div class="control">
+        <label><input id="cpToProgram" type="checkbox" checked /> КП до M12</label>
+        <label><input id="dimNonCrit" type="checkbox" checked /> приглушать некрит.</label>
+        <label><input id="onlyCrit" type="checkbox" /> только критический путь</label>
+      </div>
+      <div class="buttons">
+        <button id="downloadBtn">Скачать PNG</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="board">
+    <svg id="gantt" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrowEdge" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--edge)"></path>
+        </marker>
+        <marker id="arrowCrit" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--critical)"></path>
+        </marker>
+        <marker id="arrowIn" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--hover-in)"></path>
+        </marker>
+        <marker id="arrowOut" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--hover-out)"></path>
+        </marker>
+      </defs>
+      <g id="grid"></g>
+      <g id="bands"></g>
+      <g id="labels"></g>
+      <g id="bars"></g>
+      <g id="edges"></g>
+      <g id="milestones"></g>
+      <g id="axis"></g>
+      <g id="groups"></g>
+    </svg>
+    <div id="tooltip" class="tooltip"></div>
+    <div id="footer" class="footer"></div>
+  </div>
+</div>
+
+<script>
+/* ---------------------- ДАННЫЕ (родительские) ---------------------- */
+const BASE_TASKS = {
+  "1.1": { name:"Подготовить бизнес-кейс и ТЭО", dur:2, deps:[], resp:"Инициатор, финансовый блок" },
+  "1.2": { name:"Сформировать и утвердить устав проекта", dur:1, deps:["1.1"], resp:"РП" },
+
+  "2.1": { name:"Провести обследование складских процессов", dur:2, deps:["1.2"], resp:"Логистика, консультант" },
+  "2.2": { name:"Разработать концепцию робототехники и зон", dur:2, deps:["2.1"], resp:"Инженер по автоматизации" },
+  "2.3": { name:"Разработать концепцию ИТ и интеграций", dur:2, deps:["2.1"], resp:"ИТ-архитектор" },
+  "2.4": { name:"Разработать концепцию безопасности и ОТ", dur:1, deps:["2.2"], resp:"ОТ и ПБ" },
+
+  "3.1": { name:"Разработать ТЗ на поставку и интеграцию", dur:2, deps:["2.2","2.3"], resp:"РП, профильные специалисты" },
+  "3.2": { name:"Инженерное проектирование ИТ и электроснабжения", dur:4, deps:["3.1"], resp:"Главные инженеры ИТ и энергетики" },
+  "3.3": { name:"Спроектировать складскую инфраструктуру и маркировку", dur:3, deps:["3.1"], resp:"Инженер по автоматизации" },
+  "3.4": { name:"Спроектировать меры безопасности зоны", dur:2, deps:["3.2","3.3"], resp:"ОТ и ПБ" },
+
+  "4.1": { name:"Выбор поставщика роботов и СУ флотом, контракт", dur:4, deps:["3.1"], resp:"Закупки, комиссия" },
+  "4.2": { name:"Договоры на ИТ-оборудование и сеть", dur:3, deps:["3.2"], resp:"ИТ, закупки" },
+  "4.3": { name:"Договоры на электрооборудование и ограждения", dur:3, deps:["3.2","3.4"], resp:"Энергетики, ОТ, закупки" },
+  /* 4.4 создадим в computeSchedule с учётом числа недель */
+
+  "5.1": { name:"Подготовить пол и провести тесты", dur:2, deps:["3.3"], resp:"Генподрядчик, эксплуатация" },
+  "5.2": { name:"Выполнить разметку и маркировку", dur:2, deps:["5.1"], resp:"Логистика" },
+  "5.3": { name:"Смонтировать ограждения и сигнальные системы", dur:2, deps:["3.4"], resp:"Подрядчик по безопасности" },
+
+  "6.1": { name:"Развернуть серверную и системы хранения", dur:2, deps:["4.2"], resp:"ИТ" },
+  "6.2": { name:"Развернуть СКС и промышленную Wi-Fi сеть", dur:3, deps:["6.1"], resp:"ИТ" },
+  "6.3": { name:"Электроснабжение и установка зарядных станций", dur:3, deps:["4.3"], resp:"Энергетики" },
+
+  "7.1": { name:"Приемка поставки", dur:1, deps:["4.4"], resp:"Склад, РП, поставщик" },
+  "7.2": { name:"Сборка роботов и базовая калибровка", dur:2, deps:["6.2","6.3"], resp:"Поставщик, инженер по автоматизации" },
+  "7.3": { name:"Обучение навигации и карта помещения", dur:2, deps:["7.2"], resp:"Поставщик, ИТ" },
+
+  "8.1": { name:"Доработать WMS под «товар к человеку»", dur:4, deps:["3.1","6.1"], resp:"ИТ и вендор WMS" },
+  "8.2": { name:"Интегрировать WMS и систему управления роботами", dur:3, deps:["8.1","7.3"], resp:"ИТ, поставщик роботов" },
+  "8.3": { name:"Нагрузочные и приемочные испытания ИТ", dur:2, deps:["8.2"], resp:"ИТ, служба качества" },
+
+  "9.1": { name:"Обучить операторов и техподдержку", dur:2, deps:["8.3"], resp:"HR, поставщик, ИТ" },
+  "9.2": { name:"Обновить регламенты и инструкции", dur:1, deps:["8.3","9.1"], resp:"ОТ и ПБ, логистика" },
+
+  "10.1":{ name:"ПНР", dur:2, deps:["8.3","9.1"], resp:"Поставщик, инженер по автоматизации" },
+  "10.2":{ name:"Опытно-промышленная эксплуатация", dur:6, deps:["10.1"], resp:"Логистика, ИТ, РП" },
+
+  "11.1":{ name:"Приемо-сдаточные испытания", dur:1, deps:["10.2"], resp:"Заказчик, РП" },
+  "11.2":{ name:"Закрыть проект и передать в эксплуатацию", dur:1, deps:["11.1"], resp:"РП" },
+
+  "12.1":{ name:"Hypercare: дежурства L1/L2 и мониторинг", dur:8, deps:["11.2"], resp:"Рук. эксплуатации ИТ, техлид по роботам" },
+  "12.2":{ name:"Исправлять дефекты класса B/C", dur:8, deps:["11.1","11.2"], resp:"Лид WMS, техлид по роботам, ИТ-эксплуатация" },
+  "12.3":{ name:"Итоговый отчёт hypercare и передача в поддержку", dur:1, deps:["12.1","12.2"], resp:"Рук. эксплуатации ИТ, РП" },
+};
+
+/* ---------------------- Вехи ---------------------- */
+const MILESTONES = [
+  { id:"M1",  label:"Утверждены устав и бюджет", after:"1.2", targetWeek:3 },
+  { id:"M2",  label:"Утверждены концепция и ТЗ", after:["2.2","2.3"], targetWeek:7 },
+  { id:"M3",  label:"Завершено проектирование", after:"3.4", targetWeek:13 },
+  { id:"M4",  label:"Подписаны основные договоры", after:["4.1","4.2","4.3"], targetWeek:17 },
+  { id:"M5",  label:"Готовы сети, СКС/Wi-Fi и зарядные зоны", after:["6.2","6.3"], targetWeek:27 },
+  { id:"M6",  label:"Парк AMR поставлен, собран и передан в монтаж", after:["7.1","7.2"], targetWeek:34 },
+  { id:"M7",  label:"Пройдены ИТ-приёмочные испытания", after:"8.3", targetWeek:36 },
+  { id:"M8",  label:"Завершены ПНР; старт ОПЭ", after:"10.1", targetWeek:38 },
+  { id:"M9",  label:"Достигнуты целевые KPI в опыте", after:"10.2", targetWeek:44 },
+  { id:"M10", label:"Go-Live / предварительная приёмка", after:"11.1", targetWeek:46 },
+  { id:"M11", label:"Завершён Hypercare (8 недель)", after:"12.1", targetWeek:54 },
+  { id:"M12", label:"Окончательная приёмка и закрытие проекта", after:"12.3", targetWeek:55 },
+];
+
+/* ---------------------- Сводные фазы (для серых стрелок) ---------------------- */
+const GROUPS = [
+  { id:"G1", name:"ИНИЦИАЦИЯ И КОНЦЕПЦИЯ", items:["1.1","1.2","2.1","2.2","2.3","2.4"] },
+  { id:"G2", name:"ПРОЕКТИРОВАНИЕ",         items:["3.1","3.2","3.3","3.4"] },
+  { id:"G3", name:"ЗАКУПКИ И ПОСТАВКИ",     items:["4.1","4.2","4.3","4.4"] },
+  { id:"G4", name:"ПОДГОТОВКА И ИНЖЕНЕРИЯ", items:["5.1","5.2","5.3","6.1","6.2","6.3"] },
+  { id:"G5", name:"ПОСТАВКА/ИНТЕГРАЦИЯ/ИТ-ИСПЫТАНИЯ", items:["7.1","7.2","7.3","8.1","8.2","8.3"] },
+  { id:"G6", name:"ПНР/ОБУЧЕНИЕ/ЗАПУСК/ПРИЁМКА", items:["9.1","9.2","10.1","10.2","11.1","11.2"] },
+  { id:"G7", name:"HYPERCARE", items:["12.1","12.2","12.3"] },
+];
+
+/* ---------------------- ДЕТАЛИЗАЦИЯ: подзадачи ---------------------- */
+/* формат:
+  SUBTASKS["X.Y"] = [
+    { id:"X.Y.1", name:"...", dur:1, deps:["X.Y.1'.."], resp:"..." },
+    ...
+  ]
+  Для 4.4 можно задавать durPct (сумма 1.0), чтобы длительность делилась пропорционально ползунку.
+*/
+const SUBTASKS = {
+  /* 1.1 Бизнес-кейс */
+  "1.1": [
+    { id:"1.1.1", name:"Сбор исходных данных (объёмы, SKU, смены)", dur:1, deps:[], resp:"Инициатор, логистика" },
+    { id:"1.1.2", name:"Расчёт CAPEX/OPEX и ROI", dur:1, deps:["1.1.1"], resp:"Финблок" },
+  ],
+  "1.2": [
+    { id:"1.2.1", name:"Подготовка проекта устава", dur:1, deps:["1.1.2"], resp:"РП" },
+  ],
+
+  /* 2.x Обследование и концепции */
+  "2.1": [
+    { id:"2.1.1", name:"Интервью ключевых ролей", dur:1, deps:["1.2.1"], resp:"Консультант" },
+    { id:"2.1.2", name:"Картирование AS-IS и узких мест", dur:1, deps:["2.1.1"], resp:"Логистика" },
+  ],
+  "2.2": [
+    { id:"2.2.1", name:"Схема зон и потоков (TO-BE)", dur:1, deps:["2.1.2"], resp:"Инженер по автоматизации" },
+    { id:"2.2.2", name:"Подбор типов AMR и парковок", dur:1, deps:["2.2.1"], resp:"Инженер по автоматизации" },
+  ],
+  "2.3": [
+    { id:"2.3.1", name:"High-level интеграционная схема", dur:1, deps:["2.1.2"], resp:"ИТ-архитектор" },
+    { id:"2.3.2", name:"Реестр интерфейсов и событий", dur:1, deps:["2.3.1"], resp:"ИТ-архитектор" },
+  ],
+  "2.4": [
+    { id:"2.4.1", name:"Анализ рисков и HARA", dur:1, deps:["2.2.2"], resp:"ОТ и ПБ" },
+  ],
+
+  /* 3.x Проектирование/ТЗ */
+  "3.1": [
+    { id:"3.1.1", name:"ТЗ на робототехнику и СУ флотом", dur:1, deps:["2.2.2","2.3.2"], resp:"РП, автоматизация" },
+    { id:"3.1.2", name:"ТЗ на интеграции WMS↔AMR", dur:1, deps:["3.1.1"], resp:"ИТ" },
+  ],
+  "3.2": [
+    { id:"3.2.1", name:"ИТ-архитектура: серверная и СХД", dur:1, deps:["3.1.2"], resp:"ИТ" },
+    { id:"3.2.2", name:"Электроснабжение: расчёт мощностей", dur:1, deps:["3.2.1"], resp:"Энергетики" },
+    { id:"3.2.3", name:"Рабочая документация", dur:2, deps:["3.2.2"], resp:"ИТ, энергетики" },
+  ],
+  "3.3": [
+    { id:"3.3.1", name:"Схема инфраструктуры пола и маркировки", dur:1, deps:["3.1.1"], resp:"Автоматизация" },
+    { id:"3.3.2", name:"План разметки адресов и стеллажей", dur:2, deps:["3.3.1"], resp:"Логистика" },
+  ],
+  "3.4": [
+    { id:"3.4.1", name:"План ограждений и зон безопасности", dur:1, deps:["3.2.3","3.3.2"], resp:"ОТ и ПБ" },
+    { id:"3.4.2", name:"Согласование с ОТ/ПБ", dur:1, deps:["3.4.1"], resp:"ОТ и ПБ" },
+  ],
+
+  /* 4.x Закупки */
+  "4.1": [
+    { id:"4.1.1", name:"Тендер и оценка предложений", dur:2, deps:["3.1.2"], resp:"Закупки" },
+    { id:"4.1.2", name:"Технико-экономическая защита", dur:1, deps:["4.1.1"], resp:"Комиссия" },
+    { id:"4.1.3", name:"Контрактование", dur:1, deps:["4.1.2"], resp:"Закупки" },
+  ],
+  "4.2": [
+    { id:"4.2.1", name:"Спецификации ИТ-оборудования", dur:1, deps:["3.2.3"], resp:"ИТ" },
+    { id:"4.2.2", name:"Закупка серверов/СХД/ПО", dur:2, deps:["4.2.1"], resp:"ИТ, закупки" },
+  ],
+  "4.3": [
+    { id:"4.3.1", name:"Спецификации электрооборудования", dur:1, deps:["3.2.2","3.4.2"], resp:"Энергетики" },
+    { id:"4.3.2", name:"Закупка ограждений и щитов", dur:2, deps:["4.3.1"], resp:"Закупки" },
+  ],
+  /* 4.4 будет генерироваться динамически (durPct) — см. computeSchedule */
+
+  /* 5.x Подготовка площадки */
+  "5.1": [
+    { id:"5.1.1", name:"Обследование покрытия пола", dur:1, deps:["3.3.2"], resp:"Генподрядчик" },
+    { id:"5.1.2", name:"Шлифовка/ремонт дефектов", dur:1, deps:["5.1.1"], resp:"Генподрядчик" },
+    { id:"5.1.3", name:"Испытания ровности/прочности", dur:1, deps:["5.1.2"], resp:"Эксплуатация" },
+  ],
+  "5.2": [
+    { id:"5.2.1", name:"Согласование схемы разметки", dur:1, deps:["5.1.3"], resp:"Логистика" },
+    { id:"5.2.2", name:"Печать стикеров/табличек", dur:1, deps:["5.2.1"], resp:"Логистика" },
+    { id:"5.2.3", name:"Нанесение разметки и маркировки", dur:1, deps:["5.2.2"], resp:"Логистика" },
+    { id:"5.2.4", name:"Проверка и фиксация в WMS", dur:1, deps:["5.2.3"], resp:"ИТ, логистика" },
+  ],
+  "5.3": [
+    { id:"5.3.1", name:"Монтаж ограждений", dur:1, deps:["3.4.2"], resp:"Подрядчик по безопасности" },
+    { id:"5.3.2", name:"Сигнальные системы и световая индикация", dur:1, deps:["5.3.1"], resp:"Подрядчик по безопасности" },
+  ],
+
+  /* 6.x ИТ/Энергетика */
+  "6.1": [
+    { id:"6.1.1", name:"Монтаж серверной, стойки, СХД", dur:1, deps:["4.2.2"], resp:"ИТ" },
+    { id:"6.1.2", name:"Настройка виртуализации/БД/резервов", dur:1, deps:["6.1.1"], resp:"ИТ" },
+  ],
+  "6.2": [
+    { id:"6.2.1", name:"Проект СКС и RF-план", dur:1, deps:["6.1.2"], resp:"ИТ" },
+    { id:"6.2.2", name:"Монтаж СКС", dur:1, deps:["6.2.1"], resp:"ИТ" },
+    { id:"6.2.3", name:"Установка Wi-Fi AP и настройка", dur:1, deps:["6.2.2"], resp:"ИТ" },
+    { id:"6.2.4", name:"RF-обход (site survey)", dur:1, deps:["6.2.3"], resp:"ИТ" },
+  ],
+  "6.3": [
+    { id:"6.3.1", name:"Кабельные линии и щиты", dur:1, deps:["4.3.2"], resp:"Энергетики" },
+    { id:"6.3.2", name:"Зарядные станции AMR", dur:1, deps:["6.3.1"], resp:"Энергетики" },
+    { id:"6.3.3", name:"ПНР электросистем", dur:1, deps:["6.3.2"], resp:"Энергетики" },
+  ],
+
+  /* 7.x Поставка/сборка AMR */
+  "7.1": [
+    { id:"7.1.1", name:"Разгрузка и входной контроль", dur:1, deps:["4.4"], resp:"Склад, поставщик" },
+  ],
+  "7.2": [
+    { id:"7.2.1", name:"Сборка AMR", dur:1, deps:["7.1.1","6.3.3","6.2.4"], resp:"Поставщик" },
+    { id:"7.2.2", name:"Базовая калибровка", dur:1, deps:["7.2.1"], resp:"Поставщик" },
+  ],
+  "7.3": [
+    { id:"7.3.1", name:"Построение карты помещения", dur:1, deps:["7.2.2"], resp:"Поставщик, ИТ" },
+    { id:"7.3.2", name:"Обучение навигации и тест-маршруты", dur:1, deps:["7.3.1"], resp:"Поставщик" },
+  ],
+
+  /* 8.x ИТ работы */
+  "8.1": [
+    { id:"8.1.1", name:"Доработка WMS (размещения/отбор AMR)", dur:2, deps:["6.1.2","3.1.2"], resp:"ИТ, вендор WMS" },
+    { id:"8.1.2", name:"Конфигурация процессов и ролей", dur:1, deps:["8.1.1"], resp:"ИТ" },
+    { id:"8.1.3", name:"Юнит-тесты WMS", dur:1, deps:["8.1.2"], resp:"ИТ" },
+  ],
+  "8.2": [
+    { id:"8.2.1", name:"Шины/адаптеры интеграции", dur:1, deps:["8.1.3","7.3.2"], resp:"ИТ" },
+    { id:"8.2.2", name:"Тесты обмена (диалоги/события)", dur:1, deps:["8.2.1"], resp:"ИТ, поставщик роботов" },
+    { id:"8.2.3", name:"E2E-прогоны на стенде", dur:1, deps:["8.2.2"], resp:"ИТ" },
+  ],
+  "8.3": [
+    { id:"8.3.1", name:"Нагрузочные тесты", dur:1, deps:["8.2.3"], resp:"ИТ, QA" },
+    { id:"8.3.2", name:"Приёмочные тесты ИТ", dur:1, deps:["8.3.1"], resp:"ИТ, заказчик" },
+  ],
+
+  /* 9.x Обучение и регламенты */
+  "9.1": [
+    { id:"9.1.1", name:"Учебные материалы и расписание", dur:1, deps:["8.3.2"], resp:"HR, ИТ, поставщик" },
+    { id:"9.1.2", name:"Практика на полигоне", dur:1, deps:["9.1.1"], resp:"HR, поставщик" },
+  ],
+  "9.2": [
+    { id:"9.2.1", name:"Регламенты эксплуатации/ОТ", dur:1, deps:["8.3.2","9.1.2"], resp:"ОТ и ПБ" },
+  ],
+
+  /* 10.x ПНР и ОПЭ */
+  "10.1": [
+    { id:"10.1.1", name:"ПНР оборудования и ПО AMR", dur:1, deps:["9.1.2","8.3.2"], resp:"Поставщик, автоматизация" },
+    { id:"10.1.2", name:"Приёмка ПНР комиссией", dur:1, deps:["10.1.1"], resp:"РП, заказчик" },
+  ],
+  "10.2": [
+    { id:"10.2.1", name:"Пилотные смены (неделя 1–2)", dur:2, deps:["10.1.2"], resp:"Логистика, ИТ" },
+    { id:"10.2.2", name:"Расширение сценариев (неделя 3–4)", dur:2, deps:["10.2.1"], resp:"Логистика" },
+    { id:"10.2.3", name:"Вывод на целевые KPI (неделя 5–6)", dur:2, deps:["10.2.2"], resp:"Логистика, РП" },
+  ],
+
+  /* 11.x Приёмка/закрытие */
+  "11.1": [
+    { id:"11.1.1", name:"Комиссионные испытания", dur:1, deps:["10.2.3"], resp:"Заказчик, РП" },
+  ],
+  "11.2": [
+    { id:"11.2.1", name:"Акты, фин.закрытие, передача", dur:1, deps:["11.1.1"], resp:"РП" },
+  ],
+
+  /* 12.x Hypercare */
+  "12.1": [
+    { id:"12.1.1", name:"Дежурства L1/L2 (план/смены)", dur:2, deps:["11.2.1"], resp:"Эксплуатация ИТ" },
+    { id:"12.1.2", name:"Мониторинг и отчётность SLO", dur:3, deps:["12.1.1"], resp:"Эксплуатация ИТ" },
+    { id:"12.1.3", name:"Устранение инцидентов P1/P2", dur:3, deps:["12.1.1"], resp:"Эксплуатация ИТ, поставщик" },
+  ],
+  "12.2": [
+    { id:"12.2.1", name:"Релизы фиксов класса B/C", dur:4, deps:["11.1.1","11.2.1"], resp:"Лид WMS, техлид AMR" },
+    { id:"12.2.2", name:"Ретесты и стабилизация", dur:4, deps:["12.2.1"], resp:"ИТ, QA" },
+  ],
+  "12.3": [
+    { id:"12.3.1", name:"Итоговый отчёт и передача в поддержку", dur:1, deps:["12.1.2","12.1.3","12.2.2"], resp:"РП, эксплуатация ИТ" },
+  ],
+};
+
+/* 4.4 — шаблон распределения длительности по «долгой логистике» */
+const SUB_44_TEMPLATE = [
+  { id:"4.4.1", name:"План поставок и график FAT/SAT", pct:0.10, deps:["4.1.3"], resp:"РП, поставщик" },
+  { id:"4.4.2", name:"Изготовление (длинный цикл) + FAT", pct:0.55, deps:["4.4.1"], resp:"Поставщик" },
+  { id:"4.4.3", name:"Логистика/таможня",                pct:0.20, deps:["4.4.2"], resp:"Поставщик, логистика" },
+  { id:"4.4.4", name:"Поставка на склад и SAT",           pct:0.15, deps:["4.4.3"], resp:"Склад, РП, поставщик" },
+];
+
+/* ---------------------- CPM + развертывание подзадач ---------------------- */
+function computeSchedule(logWeeks){
+  // 1) Старт — копия базовых задач
+  const tasks = JSON.parse(JSON.stringify(BASE_TASKS));
+
+  // 2) Добавим родителя 4.4 (пока как "пустышку", длит. заменим роллапом)
+  tasks["4.4"] = { name:"Организовать поставки длинного цикла", dur:logWeeks, deps:["4.1"], resp:"РП, поставщик" };
+
+  // 3) Разворачиваем подзадачи (создаём карту summary->children)
+  const summaryChildren = {};  // { "X.Y": ["X.Y.1", ...] }
+
+  // Хелперы
+  const addChild = (pId, child) => {
+    tasks[child.id] = { name:child.name, dur:child.dur, deps:[...child.deps], resp:child.resp };
+    (summaryChildren[pId] ||= []).push(child.id);
+  };
+
+  // 3a) Обычные SUBTASKS, где dur фиксирована
+  for (const pId of Object.keys(SUBTASKS)){
+    const parent = tasks[pId];
+    if (!parent) continue;
+    const baseDeps = [...(parent.deps||[])];
+    SUBTASKS[pId].forEach(ch=>{
+      const deps = [...(ch.deps||[])];
+      // каждую детальку «гейтим» теми же базовыми зависимостями, что и у родителя
+      const merged = Array.from(new Set([...deps, ...baseDeps]));
+      addChild(pId, { ...ch, deps: merged });
+    });
+    // делаем родителя "сводным": длительность 0, зависеть от всех детей
+    parent._summary = true;
+    parent.dur = 0;
+    parent.deps = Array.from(new Set([...(parent.deps||[]), ...(summaryChildren[pId]||[])]));
+  }
+
+  // 3b) Спец-случай 4.4: распределяем недели по pct так, чтобы сумма = logWeeks (минимум 1 нед на этап)
+  {
+    const pId = "4.4";
+    const parent = tasks[pId];
+    const baseDeps = [...(parent.deps||[])];
+    // первичный округлённый план
+    let remain = Math.max(1, Math.round(logWeeks));
+    const chunks = SUB_44_TEMPLATE.map((t, i) => {
+      let d = Math.max(1, Math.round((logWeeks * t.pct)));
+      if (i === SUB_44_TEMPLATE.length - 1) d = Math.max(1, remain); // добиваем остаток
+      remain -= d;
+      return { ...t, dur: d };
+    });
+    // если перекос после округления — пересчёт хвостом
+    let sumDur = chunks.reduce((s,c)=>s+c.dur,0);
+    while (sumDur !== Math.max(1, Math.round(logWeeks))) {
+      if (sumDur > logWeeks) {
+        for (let i=chunks.length-1; i>=0 && sumDur>logWeeks; i--){
+          if (chunks[i].dur>1){ chunks[i].dur--; sumDur--; }
+        }
+      } else {
+        for (let i=0; i<chunks.length && sumDur<logWeeks; i++){
+          chunks[i].dur++; sumDur++;
+        }
+      }
+    }
+    chunks.forEach(ch=>{
+      const deps = Array.from(new Set([...(ch.deps||[]), ...baseDeps]));
+      addChild(pId, { id:ch.id, name:ch.name, dur:ch.dur, deps, resp:ch.resp });
+    });
+    parent._summary = true;
+    parent.dur = 0;
+    parent.deps = Array.from(new Set([...(parent.deps||[]), ...(summaryChildren[pId]||[])]));
+  }
+
+  // 4) Строим граф предшественников/последователей
+  const preds={}, succs={};
+  const ids = Object.keys(tasks);
+  ids.forEach(id=>{
+    const d = tasks[id].deps || [];
+    preds[id] = new Set(d);
+    d.forEach(p=> (succs[p] ||= new Set()).add(id));
+  });
+  preds.START = new Set();
+  ids.forEach(id=>{ if ((preds[id]||new Set()).size===0){ preds[id].add("START"); (succs.START ||= new Set()).add(id);} });
+
+  // 5) Топосорт
+  const indeg={}; Object.keys(preds).forEach(k=> indeg[k]=preds[k].size);
+  const topo=[], q=[]; Object.keys(indeg).forEach(k=>{ if(indeg[k]===0) q.push(k); });
+  while(q.length){ const u=q.shift(); topo.push(u); (succs[u]||[]).forEach(v=>{ indeg[v]--; if(indeg[v]===0) q.push(v); }); }
+
+  // 6) Прямой проход
+  const ES={}, EF={}, DUR={}; ES.START=0; EF.START=0; DUR.START=0;
+  ids.forEach(id=> DUR[id]=tasks[id].dur);
+  topo.forEach(u=>{ ES[u]=Math.max(0,...Array.from(preds[u]||[]).map(p=>EF[p]||0)); EF[u]=ES[u]+(DUR[u]||0); });
+
+  const endProject="11.2", endProgram="12.3";
+
+  // 7) Обратные проходы и критический путь
+  function backward(endId){
+    const LF={}, LS={};
+    const endTime = EF[endId];
+    [...topo].reverse().forEach(u=>{
+      const successors = Array.from(succs[u]||[]);
+      LF[u] = successors.length ? Math.min(...successors.map(v=> LS[v])) : endTime;
+      LS[u] = LF[u] - (DUR[u]||0);
+    });
+    const TF={}; Object.keys(ES).forEach(k=> TF[k]=(LS[k]-ES[k]));
+    return {LF,LS,TF};
+  }
+  function restorePath(endId){
+    const path=[endId]; let cur=endId;
+    while(cur && cur!=="START"){
+      const cand = Array.from(preds[cur]||[]);
+      const tight = cand.filter(p=> Math.abs((EF[p]||0) - (ES[cur]||0)) < 1e-9);
+      const take = (tight.length? tight : cand).sort((a,b)=> (EF[b]||0)-(EF[a]||0))[0];
+      if(!take) break; path.push(take); cur=take;
+    }
+    return path.reverse().filter(x=>x!=="START");
+  }
+  const Bp = backward(endProject);
+  const Bg = backward(endProgram);
+
+  return {
+    tasks, preds, succs, ES, EF, topo,
+    projectEnd: EF[endProject],
+    programEnd: EF[endProgram],
+    TF_project: Bp.TF, TF_program: Bg.TF,
+    critPathProject: restorePath(endProject),
+    critPathProgram: restorePath(endProgram),
+    summaryChildren, // карта сводных задач -> дети
+  };
+}
+
+/* ---------------------- ВСПОМОГАТЕЛЬНОЕ ---------------------- */
+let STATE = computeSchedule(9);
+
+const cfg = {
+  rowH: 28,
+  gapY: 6,
+  weekW: 32,
+  pad: 24,
+  axisBaseH: 64,
+  msPadTop: 10,
+  msPadBot: 10,
+  groupTopPad: 48,
+};
+
+/* колонки таблицы слева */
+const COLS = [
+  {key:'wbs',    title:'WBS',          w:54,  align:'left'},
+  {key:'name',   title:'Наименование', w:420, align:'left'},
+  {key:'dur',    title:'Длит.',        w:72,  align:'right'},
+  {key:'start',  title:'Старт',        w:126, align:'left'},
+  {key:'finish', title:'Финиш',        w:126, align:'left'},
+  {key:'cost',   title:'Цена',         w:140, align:'right'},
+  {key:'resp',   title:'Ответственный',w:444, align:'left'},
+];
+
+/* сортировка WBS любой глубины: 4, 4.1, 4.1.2, 4.10, 10.2.1 … */
+function wbsSort(a,b){
+  const pa=a.split('.').map(Number), pb=b.split('.').map(Number);
+  const n=Math.max(pa.length,pb.length);
+  for(let i=0;i<n;i++){
+    const va = (i<pa.length?pa[i]:-1);
+    const vb = (i<pb.length?pb[i]:-1);
+    if(va!==vb) return va-vb;
+  }
+  return 0;
+}
+
+/* даты и форматирование */
+const RU_DAYS = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+function parseStartDate(){ const v=document.getElementById('startDate').value||'2025-01-06'; return new Date(v+'T00:00:00'); }
+function addDays(d, n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
+function addWeeks(d, w){ return addDays(d, w*7); }
+function formatDate(d){
+  const dd=String(d.getDate()).padStart(2,'0'); const mm=String(d.getMonth()+1).padStart(2,'0'); const yyyy=d.getFullYear();
+  const dow=RU_DAYS[d.getDay()]; return `${dow} ${dd}.${mm}.${yyyy}`;
+}
+
+/* деньги */
+function fmtMlnRub(x){ const v = Math.round(x*10)/10; const s = v.toFixed(1).replace('.', ','); return `${s} млн ₽`; }
+
+/* укрупнённые ставки (млн ₽ / нед) */
+const RATE_TABLE = [
+  { test:/Поставщик|робот|AMR/i, rate:1.5 },
+  { test:/ИТ|WMS|сервер|сеть|Wi-?Fi/i, rate:1.3 },
+  { test:/Энергет|электро/i, rate:1.0 },
+  { test:/Генподрядчик|СКС/i, rate:0.9 },
+  { test:/Автоматизац|инженер/i, rate:1.1 },
+  { test:/Логист/i, rate:0.5 },
+  { test:/ОТ|ПБ|безопас/i, rate:0.4 },
+  { test:/HR|обуч/i, rate:0.4 },
+  { test:/Закуп/i, rate:0.5 },
+  { test:/РП|инициатор|Заказчик/i, rate:0.6 },
+];
+function calcRate(resp,name,id){
+  const hits = RATE_TABLE.filter(r=> r.test.test(resp)||r.test.test(name));
+  if (id?.startsWith('4.4.')) return 2.0; // длинный цикл — дороже
+  if (hits.length===0) return 0.6;
+  const avg = hits.reduce((a,b)=>a+b.rate,0)/hits.length;
+  return Math.max(0.4, Math.min(1.6, avg));
+}
+function calcCostMln(taskId, t){ return calcRate(t.resp||'', t.name||'', taskId) * t.dur; }
+
+/* измерение текста + обрезка */
+const measureText = (() => {
+  const c = document.createElement('canvas'); const ctx = c.getContext('2d');
+  const font = '12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial';
+  return (text) => { ctx.font = font; return Math.ceil(ctx.measureText(text).width); };
+})();
+function fitText(s, max){
+  if (measureText(s) <= max) return s;
+  let lo=0, hi=s.length;
+  while (lo<hi){
+    const mid=Math.floor((lo+hi)/2); const cut=s.slice(0, mid)+'…';
+    if (measureText(cut) <= max) lo=mid+1; else hi=mid;
+  }
+  const take=Math.max(0, lo-1); return s.slice(0,take)+'…';
+}
+
+/* ---------------------- РЕНДЕР ---------------------- */
+function render(){
+  const onlyCrit = document.getElementById('onlyCrit').checked;
+  const dimNonCrit = document.getElementById('dimNonCrit').checked;
+  const critToProgram = document.getElementById('cpToProgram').checked;
+  drawGantt(STATE, {onlyCrit, dimNonCrit, critToProgram});
+}
+function isSummary(st, id){ return !!(st.summaryChildren && st.summaryChildren[id] && st.summaryChildren[id].length); }
+
+function drawGantt(st, opts){
+  const startDate = parseStartDate();
+
+  const gantt = document.getElementById('gantt');
+  const gGrid = document.getElementById('grid');
+  const gBands= document.getElementById('bands');
+  const gLabels=document.getElementById('labels');
+  const gBars = document.getElementById('bars');
+  const gEdges= document.getElementById('edges');
+  const gMs   = document.getElementById('milestones');
+  const gAxis = document.getElementById('axis');
+  const gGroups=document.getElementById('groups');
+  [gGrid,gBands,gLabels,gBars,gEdges,gMs,gAxis,gGroups].forEach(g=> g.innerHTML='');
+
+  const TF = opts.critToProgram ? st.TF_program : st.TF_project;
+  const isCritTask = (id)=> Math.abs((TF[id]??0))<1e-9;
+
+  let taskIds = Object.keys(st.tasks).sort(wbsSort);
+  if (opts.onlyCrit) taskIds = taskIds.filter(isCritTask);
+
+  // индекс строк
+  const rows = new Map();
+  taskIds.forEach((id,idx)=> rows.set(id, idx));
+  const tasksH = taskIds.length * (cfg.rowH + cfg.gapY);
+
+  const totalW = Math.max(st.programEnd, st.projectEnd);
+  const chartW = Math.ceil(totalW * cfg.weekW);
+
+  // таблица слева / высота полосы групп
+  const leftW = COLS.reduce((s,c)=> s + c.w, 0);
+  const groupLaneGap = 20;
+  const axisH = Math.max(cfg.axisBaseH, cfg.groupTopPad + GROUPS.length*groupLaneGap);
+
+  // координаты
+  const chartLeftX = cfg.pad + leftW;
+  const chartRightX = chartLeftX + chartW;
+
+  /* ===== Хедер таблицы ===== */
+  const headerY = cfg.pad + axisH - 18;
+  const th = document.createElementNS('http://www.w3.org/2000/svg','rect');
+  th.setAttribute('x', cfg.pad);
+  th.setAttribute('y', headerY-22);
+  th.setAttribute('width', leftW);
+  th.setAttribute('height', 28);
+  th.setAttribute('class','th');
+  gLabels.appendChild(th);
+
+  let cx = cfg.pad;
+  COLS.forEach((c)=>{
+    const sep = document.createElementNS('http://www.w3.org/2000/svg','line');
+    sep.setAttribute('x1', cx + c.w); sep.setAttribute('x2', cx + c.w);
+    sep.setAttribute('y1', cfg.pad); sep.setAttribute('y2', cfg.pad + axisH + tasksH + cfg.msPadTop + cfg.msPadBot + 60);
+    sep.setAttribute('class','col-sep');
+    gLabels.appendChild(sep);
+
+    const ttl = document.createElementNS('http://www.w3.org/2000/svg','text');
+    ttl.setAttribute('x', cx + (c.align==='right'? c.w-6 : 6));
+    ttl.setAttribute('y', headerY);
+    ttl.setAttribute('class','th-title');
+    ttl.setAttribute('text-anchor', c.align==='right'?'end':'start');
+    ttl.textContent = c.title;
+    gLabels.appendChild(ttl);
+
+    c._x = cx; cx += c.w;
+  });
+
+  /* ===== МИЛСТОУНЫ (ромбы + M#) ===== */
+  const msSize = 10;
+  const msItems = MILESTONES.map(m=>{
+    const arr = Array.isArray(m.after)? m.after : [m.after];
+    const week = Math.max(...arr.map(a=> st.EF[a]||0));
+    const x = chartLeftX + week*cfg.weekW;
+    return { id:m.id, label:m.label, week, x };
+  }).sort((a,b)=> a.x - b.x);
+
+  const msBlockH = cfg.msPadTop + 20 + cfg.msPadBot;
+  const msLineY = cfg.pad + axisH + tasksH + (cfg.msPadTop + 10);
+
+  /* ===== SVG размеры ===== */
+  const width  = cfg.pad + leftW + chartW + cfg.pad;
+  const height = cfg.pad + axisH + tasksH + msBlockH + cfg.pad;
+  gantt.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  gantt.setAttribute('width', String(width));
+  gantt.setAttribute('height', String(height));
+
+  /* фон строк */
+  for (const [id,idx] of rows){
+    const y = cfg.pad + axisH + idx*(cfg.rowH+cfg.gapY);
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('x', cfg.pad);
+    rect.setAttribute('y', y);
+    rect.setAttribute('width', leftW + chartW);
+    rect.setAttribute('height', cfg.rowH);
+    rect.setAttribute('class', 'row-band ' + (idx%2 ? 'alt':''));
+    gBands.appendChild(rect);
+  }
+
+  /* сетка недель и подписи каждые 5 недель */
+  for (let w=0; w<=totalW; w++){
+    const x = chartLeftX + w*cfg.weekW;
+    const gl = document.createElementNS('http://www.w3.org/2000/svg','line');
+    gl.setAttribute('x1', x); gl.setAttribute('x2', x);
+    gl.setAttribute('y1', cfg.pad); gl.setAttribute('y2', height - cfg.pad);
+    gl.setAttribute('class', (w%5===0? 'grid-5w':'grid-week'));
+    gGrid.appendChild(gl);
+
+    if (w%5===0){
+      const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x', x+4);
+      t.setAttribute('y', cfg.pad + 12);
+      t.setAttribute('class','axis');
+      t.textContent = `нед ${w}`;
+      gAxis.appendChild(t);
+    }
+  }
+
+  /* ===== Сводные группы (серые стрелки) + hover-подсветка детей ===== */
+  GROUPS.forEach((g, i)=>{
+    // расширяем списки групп на детей summary-задач
+    const expandId = (id)=> [id, ...((st.summaryChildren[id]||[]))];
+    const inScope = g.items.flatMap(expandId).filter(id=> id in st.tasks);
+
+    if (inScope.length===0) return;
+    const startW = Math.min(...inScope.map(id=> st.ES[id]));
+    const endW   = Math.max(...inScope.map(id=> st.EF[id]));
+    const y = cfg.pad + cfg.groupTopPad + i*groupLaneGap;
+
+    const x1 = chartLeftX + startW*cfg.weekW, x2 = chartLeftX + endW*cfg.weekW;
+
+    const grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+    grp.setAttribute('class','sum-group');
+    grp.dataset.items = inScope.join(',');
+    gGroups.appendChild(grp);
+
+    const band = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    band.setAttribute('x', x1);
+    band.setAttribute('y', y-8);
+    band.setAttribute('width', Math.max(2,(endW-startW)*cfg.weekW));
+    band.setAttribute('height', 16);
+    band.setAttribute('class','sum-band');
+    grp.appendChild(band);
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', x1); line.setAttribute('y1', y);
+    line.setAttribute('x2', x2); line.setAttribute('y2', y);
+    line.setAttribute('class','sum-bar'); grp.appendChild(line);
+
+    const capL = document.createElementNS('http://www.w3.org/2000/svg','path');
+    capL.setAttribute('d', `M ${x1} ${y-7} L ${x1-6} ${y} L ${x1} ${y+7} Z`);
+    capL.setAttribute('class','sum-cap'); grp.appendChild(capL);
+    const capR = document.createElementNS('http://www.w3.org/2000/svg','path');
+    capR.setAttribute('d', `M ${x2} ${y-7} L ${x2+8} ${y} L ${x2} ${y+7} Z`);
+    capR.setAttribute('class','sum-cap'); grp.appendChild(capR);
+
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('x', x1 + 6);
+    lbl.setAttribute('y', y - 10);
+    lbl.setAttribute('class','sum-label');
+    lbl.textContent = g.name;
+    grp.appendChild(lbl);
+
+    const hit = document.createElementNS('http://www.w3.org/2000/svg','path');
+    hit.setAttribute('d', `M ${x1} ${y} L ${x2} ${y}`);
+    hit.setAttribute('class','sum-hit');
+    grp.appendChild(hit);
+
+    grp.addEventListener('mouseenter', ()=>{
+      grp.classList.add('hover');
+      const ids = grp.dataset.items.split(',');
+      ids.forEach(id=>{
+        const bar = gBars.querySelector(`.bar[data-id="${CSS.escape(id)}"]`);
+        if (bar) bar.classList.add('group-hl');
+      });
+    });
+    grp.addEventListener('mouseleave', ()=>{
+      grp.classList.remove('hover');
+      const ids = grp.dataset.items.split(',');
+      ids.forEach(id=>{
+        const bar = gBars.querySelector(`.bar[data-id="${CSS.escape(id)}"]`);
+        if (bar) bar.classList.remove('group-hl');
+      });
+      hideTip();
+    });
+    grp.addEventListener('mousemove', (ev)=>{
+      const d1 = formatDate(addWeeks(startDate, startW));
+      const d2 = formatDate(addDays(addWeeks(startDate, endW), -2));
+      showTip(ev, `<b>${g.name}</b><br>С: <b>${d1}</b> · По: <b>${d2}</b><br>${inScope.length} работ`);
+    });
+  });
+
+  /* ===== Таблица слева: строки ===== */
+  function rollupMeta(id){
+    const kids = st.summaryChildren[id]||[];
+    if (!kids.length) return null;
+    const s = Math.min(...kids.map(k=> st.ES[k]));
+    const f = Math.max(...kids.map(k=> st.EF[k]));
+    const cost = kids.reduce((acc,k)=> acc + calcCostMln(k, st.tasks[k]), 0);
+    return { startW:s, endW:f, dur:(f-s), cost:cost };
+  }
+
+  for (const id of taskIds){
+    const y = cfg.pad + axisH + rows.get(id)*(cfg.rowH+cfg.gapY);
+    const t = st.tasks[id];
+
+    const roll = rollupMeta(id);
+    const startW = roll ? roll.startW : st.ES[id];
+    const endW   = roll ? roll.endW   : st.EF[id];
+
+    const d1 = addWeeks(startDate, startW);
+    const d2 = addDays(addWeeks(startDate, endW), -2);
+
+    const cells = {
+      wbs: id,
+      name: t.name + (roll ? " (сводная)" : ""),
+      dur: `${roll ? roll.dur : t.dur} нед.`,
+      start: formatDate(d1),
+      finish: formatDate(d2),
+      cost: fmtMlnRub( roll ? roll.cost : calcCostMln(id,t) ),
+      resp: t.resp || '—'
+    };
+
+    COLS.forEach(c=>{
+      const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
+      const baseX = c._x + (c.align==='right' ? c.w-8 : 8);
+      tx.setAttribute('x', baseX);
+      tx.setAttribute('y', y + 17);
+      tx.setAttribute('class', c.key==='name' ? 'label-name' :
+                               c.key==='wbs'  ? 'label-id'   :
+                               c.key==='resp' ? 'label-resp' : 'cell-text');
+      tx.setAttribute('text-anchor', c.align==='right'?'end':'start');
+      const maxW = c.w - 12;
+      const val = (c.key==='name' || c.key==='resp') ? fitText(cells[c.key], maxW) : cells[c.key];
+      tx.textContent = val;
+      gLabels.appendChild(tx);
+    });
+  }
+
+  /* ===== Бары задач (с учётом роллапа для сводных) ===== */
+  const barMeta = new Map();
+  for (const id of taskIds){
+    const t = st.tasks[id];
+    const roll = rollupMeta(id);
+
+    const x = chartLeftX + (roll ? roll.startW : st.ES[id]) * cfg.weekW;
+    const y = cfg.pad + axisH + rows.get(id)*(cfg.rowH+cfg.gapY) + 4;
+    const w = (roll ? roll.dur : t.dur) * cfg.weekW;
+    const h = cfg.rowH - 8;
+
+    const crit = isCritTask(id);
+    const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    r.setAttribute('x', x); r.setAttribute('y', y);
+    r.setAttribute('width', Math.max(2,w)); r.setAttribute('height', h);
+    r.setAttribute('class', 'bar ' + (crit? 'crit':'noncrit') + (roll?'':''));
+    if (!crit && opts.dimNonCrit) r.classList.add('dim');
+    r.dataset.id = id;
+    gBars.appendChild(r);
+    barMeta.set(id, {x,y,w,h,crit});
+
+    r.addEventListener('mouseenter', ()=>{ r.classList.add('hover'); highlightLinks(id,true); });
+    r.addEventListener('mouseleave', ()=>{ r.classList.remove('hover'); highlightLinks(id,false); hideTip(); });
+
+    r.addEventListener('mousemove', (ev)=>{
+      const TFv = (opts.critToProgram ? (st.TF_program[id]??0) : (st.TF_project[id]??0));
+      const price = roll ? fmtMlnRub(roll.cost) : fmtMlnRub(calcCostMln(id,t));
+      const sd = formatDate(addWeeks(startDate, roll?roll.startW:st.ES[id]));
+      const fd = formatDate(addDays(addWeeks(startDate, roll?roll.endW:st.EF[id]), -2));
+      showTip(ev, `<b>${id}</b>: ${t.name}${roll?' <i>(сводная)</i>':''}<br>`+
+        `Длит.: <b>${roll?roll.dur:t.dur}</b> нед · Запас: <b>${TFv}</b> нед<br>`+
+        `Старт: <b>${sd}</b> · Финиш: <b>${fd}</b><br>`+
+        `Цена: <b>${price}</b><br>`+
+        `Ответственный: <b>${t.resп||t.resp||'—'}</b>`);
+    });
+  }
+
+  /* ===== Вехи ===== */
+  const base = document.createElementNS('http://www.w3.org/2000/svg','line');
+  base.setAttribute('x1', chartLeftX);
+  base.setAttribute('x2', chartRightX);
+  base.setAttribute('y1', msLineY); base.setAttribute('y2', msLineY);
+  base.setAttribute('class','grid-5w'); base.setAttribute('opacity','.35');
+  gMs.appendChild(base);
+
+  const tms = document.createElementNS('http://www.w3.org/2000/svg','text');
+  tms.setAttribute('x', cfg.pad + 8);
+  tms.setAttribute('y', msLineY + 4);
+  tms.setAttribute('class','label-id');
+  tms.textContent = 'Вехи';
+  gMs.appendChild(tms);
+
+  msItems.forEach(mi=>{
+    const d = `M ${mi.x} ${msLineY-msSize} L ${mi.x+msSize} ${msLineY} L ${mi.x} ${msLineY+msSize} L ${mi.x-msSize} ${msLineY} Z`;
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d', d);
+    p.setAttribute('class','ms');
+    p.dataset.id = mi.id; gMs.appendChild(p);
+
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('x', mi.x + msSize + 4);
+    lbl.setAttribute('y', msLineY + 4);
+    lbl.setAttribute('class','ms-label');
+    lbl.textContent = mi.id.toUpperCase();
+    gMs.appendChild(lbl);
+
+    const tipCommon = (ev)=>{
+      const tgt = mi.targetWeek ? `, целевой конец ${mi.targetWeek}-й нед.` : '';
+      const d2 = formatDate(addDays(addWeeks(startDate, mi.week), -2));
+      showTip(ev, `<b>${mi.id}</b> — ${mi.label}<br>`+
+                      `По расчёту: конец ${mi.week}-й нед${tgt}<br>`+
+                      `Финиш (дата): <b>${d2}</b>`);
+    };
+    p.addEventListener('mousemove', tipCommon);
+    lbl.addEventListener('mousemove', tipCommon);
+    p.addEventListener('mouseleave', hideTip);
+    lbl.addEventListener('mouseleave', hideTip);
+  });
+
+  /* ===== Связи ===== */
+  function edgeIsCrit(src,tgt){
+    return isCritTask(src) && isCritTask(tgt) && Math.abs(st.EF[src] - st.ES[tgt]) < 1e-9;
+  }
+  function routeRightward(x1,y1,x2,y2, toMilestone=false){
+    const PAD = 14; const INSET = toMilestone ? 8 : 6; const gap = x2 - x1;
+    if (gap >= 2*PAD){
+      const a = x1 + PAD, b = x2 - PAD;
+      return `M ${x1} ${y1} L ${a} ${y1} L ${a} ${y2} L ${b} ${y2} L ${x2-INSET} ${y2}`;
+    } else {
+      const j = Math.min(x2 - PAD, x1 + PAD);
+      return `M ${x1} ${y1} L ${j} ${y1} L ${j} ${y2} L ${x2-INSET} ${y2}`;
+    }
+  }
+
+  const edges = [];
+  for (const id of Object.keys(st.tasks)){
+    if (opts.onlyCrit && !isCritTask(id)) continue;
+    for (const p of st.tasks[id].deps||[]){
+      if (opts.onlyCrit && !isCritTask(p)) continue;
+      edges.push({src:p, tgt:id, toMs:false});
+    }
+  }
+  MILESTONES.forEach(m=>{
+    const arr = Array.isArray(m.after)? m.after : [m.after];
+    arr.forEach(a=>{
+      if (opts.onlyCrit && !isCritTask(a)) return;
+      edges.push({src:a, tgt:m.id, toMs:true});
+    });
+  });
+
+  for (const e of edges){
+    let x1,y1,x2,y2;
+    if (barMeta.has(e.src)){
+      const b1 = barMeta.get(e.src);
+      x1 = b1.x + b1.w; y1 = b1.y + b1.h/2;
+    } else continue;
+
+    if (barMeta.has(e.tgt)){
+      const b2 = barMeta.get(e.tgt);
+      x2 = b2.x; y2 = b2.y + b2.h/2;
+    } else {
+      const mi = msItems.find(x=> x.id===e.tgt);
+      if (!mi) continue;
+      x2 = mi.x; y2 = msLineY;
+    }
+
+    const d = routeRightward(x1,y1,x2,y2, e.toMs);
+    const critEdge = edgeIsCrit(e.src, e.tgt);
+
+    const eg = document.createElementNS('http://www.w3.org/2000/svg','g');
+    eg.setAttribute('class','edge-group');
+    eg.dataset.src = e.src; eg.dataset.tgt = e.tgt;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', d);
+    path.setAttribute('class','edge ' + (critEdge?'crit':''));
+    path.setAttribute('marker-end', `url(#${critEdge?'arrowCrit':'arrowEdge'})`);
+    if (!critEdge && opts.dimNonCrit) path.classList.add('dim');
+    eg.appendChild(path);
+
+    const hit = document.createElementNS('http://www.w3.org/2000/svg','path');
+    hit.setAttribute('d', d);
+    hit.setAttribute('class','edge-hit');
+    eg.appendChild(hit);
+
+    eg.addEventListener('mouseenter', ()=>{
+      if (!critEdge) { eg.classList.add('incoming'); gEdges.appendChild(eg); }
+    });
+    eg.addEventListener('mouseleave', ()=>{ eg.classList.remove('incoming'); hideTip(); });
+    eg.addEventListener('mousemove', (ev)=>{
+      const t = st.tasks[e.tgt];
+      const d1 = t ? formatDate(addWeeks(startDate, st.ES[e.tgt])) : '';
+      const tip = `<b>${e.src} → ${e.tgt}</b> ${critEdge?'<span style="color:#ff9b9c">(КП)</span>':''}<br>`+
+                  (t? `Старт цели: <b>${d1}</b>; длит.: <b>${t.dur}</b> нед;<br>`:'')+
+                  `EF(${e.src})=${st.EF[e.src]} → ES(${e.tgt})=${st.ES[e.tgt]}`;
+      showTip(ev, tip);
+    });
+
+    gEdges.appendChild(eg);
+  }
+
+  /* ===== Футер ===== */
+  const critPath = (opts.critToProgram? st.critPathProgram : st.critPathProject).join(' → ');
+  const withReserve = Math.ceil(st.projectEnd * 1.15);
+  document.getElementById('footer').innerHTML =
+    `<div class="kpi">
+       <b>Критический путь:</b> ${critPath}
+       <span>•</span>
+       <b>До 11.2:</b> <span class="value">${st.projectEnd}</span> нед.
+       <small>(+15% ≈ ${withReserve} нед.)</small>
+       <span>•</span>
+       <b>До M12 (12.3):</b> <span class="value">${st.programEnd}</span> нед.
+     </div>`;
+
+  function highlightLinks(nodeId, on){
+    const incoming = gEdges.querySelectorAll(`.edge-group[data-tgt="${CSS.escape(nodeId)}"]`);
+    incoming.forEach(eg=>{
+      const p = eg.querySelector('.edge');
+      if (on){ eg.classList.add('incoming'); p.setAttribute('marker-end','url(#arrowIn)'); gEdges.appendChild(eg); }
+      else   { eg.classList.remove('incoming'); const isCrit = p.classList.contains('crit'); p.setAttribute('marker-end', `url(#${isCrit?'arrowCrit':'arrowEdge'})`); }
+    });
+    const outgoing = gEdges.querySelectorAll(`.edge-group[data-src="${CSS.escape(nodeId)}"]`);
+    outgoing.forEach(eg=>{
+      const p = eg.querySelector('.edge');
+      if (on){ eg.classList.add('outgoing'); p.setAttribute('marker-end','url(#arrowOut)'); gEdges.appendChild(eg); }
+      else   { eg.classList.remove('outgoing'); const isCrit = p.classList.contains('crit'); p.setAttribute('marker-end', `url(#${isCrit?'arrowCrit':'arrowEdge'})`); }
+    });
+  }
+}
+
+/* ---------------------- Подсказки ---------------------- */
+function showTip(ev, html){
+  const tip = document.getElementById('tooltip');
+  tip.innerHTML = html; tip.style.opacity = 1;
+  const board = document.querySelector('.board');
+  const rect = board.getBoundingClientRect();
+  tip.style.left = (ev.clientX - rect.left + board.scrollLeft + 12) + 'px';
+  tip.style.top  = (ev.clientY - rect.top  + board.scrollTop  + 12) + 'px';
+}
+function hideTip(){ document.getElementById('tooltip').style.opacity = 0; }
+
+/* ---------------------- Экспорт PNG (светлая тема) — без изменений визуала ---------------------- */
+function buildLightSVGForExport(){
+  const svg = document.getElementById('gantt');
+  const bbox = svg.viewBox.baseVal;
+
+  const PAD = 0;
+  const FOOTER_H = 48;
+
+  const W = Math.ceil(bbox.width + PAD*2);
+  const H = Math.ceil(bbox.height + PAD*2 + FOOTER_H);
+
+  const critToProgram = document.getElementById('cpToProgram').checked;
+  const critPath = (critToProgram ? STATE.critPathProgram : STATE.critPathProject).join(' → ');
+  const withReserve = Math.ceil(STATE.projectEnd * 1.15);
+  const footerText =
+    `Критический путь: ${critPath} • До 11.2: ${STATE.projectEnd} нед. (+15% ≈ ${withReserve} нед.) • До M12 (12.3): ${STATE.programEnd} нед.`;
+
+  // ===== настройки экспорта =====
+  // 'crit' — оставить только критические связи (рекомендуется)
+  // 'all'  — оставить все связи (может давать "кляксы")
+  // 'none' — удалить связи полностью
+  const EXPORT_LINKS_MODE = 'crit';
+  // Если пятна всё ещё заметны — убрать стрелочные наконечники у оставшихся связей
+  const REMOVE_MARKERS = false;
+
+  const NS = 'http://www.w3.org/2000/svg';
+
+  const out = document.createElementNS(NS, 'svg');
+  out.setAttribute('xmlns', NS);
+  out.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+  out.setAttribute('width', W);
+  out.setAttribute('height', H);
+  out.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  // фон
+  const bg = document.createElementNS(NS, 'rect');
+  bg.setAttribute('x', '0');
+  bg.setAttribute('y', '0');
+  bg.setAttribute('width', W);
+  bg.setAttribute('height', H);
+  bg.setAttribute('fill', '#ffffff');
+  out.appendChild(bg);
+
+  // светлая тема + важные правки для чистого растера
+  const style = document.createElementNS(NS, 'style');
+  style.textContent = `
+    .row-band{fill:#fafbfc}.row-band.alt{fill:#f5f7fa}
+    .grid-week{stroke:#e5e7eb;stroke-width:1;opacity:.9}
+    .grid-5w{stroke:#d1d5db;stroke-width:1}
+    .axis{fill:#6b7280;font:11px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    .th{fill:#eef2f7}.th-title{fill:#374151;font:700 12px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    .cell-text{fill:#1f2937}.label-name{fill:#374151}.label-id{fill:#111827;font-weight:700}
+    .label-resp{fill:#1f6db1}
+    .col-sep{stroke:#e5e7eb;stroke-width:1}
+
+    .bar.noncrit{fill:#e6f0fb;stroke:#8fb3e0;stroke-width:1.25}
+    .bar.crit{fill:#fee2e2;stroke:#ff4d4f;stroke-width:2}
+
+    /* Связи послабее + не масштабировать толщину линий */
+    .edge{stroke:#8fb3e0;stroke-width:1;opacity:.25;vector-effect:non-scaling-stroke}
+    .edge.crit{stroke:#ff4d4f;stroke-width:2.5;opacity:1;vector-effect:non-scaling-stroke}
+
+    .ms{fill:#fff7ed;stroke:#f59e0b;stroke-width:2}
+    .ms-label{fill:#b45309;font:700 12px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    .sum-group .sum-bar{stroke:#9aa8bd;stroke-width:6}
+    .sum-cap{fill:#9aa8bd}.sum-band{fill:rgba(154,168,189,.18)}
+    .sum-label{fill:#6b7280;font-weight:700}
+
+    /* критично: убрать невидимые толстые "хиты" и любые фильтры/тени */
+    .edge-hit,.sum-hit{stroke:none !important; fill:none !important; display:none !important}
+    .bar,.edge,.ms{filter:none !important}
+  `;
+  out.appendChild(style);
+
+  // маркеры (для крит. связей)
+  const defs = document.createElementNS(NS, 'defs');
+  function mkMarker(id, fill){
+    const m = document.createElementNS(NS,'marker');
+    m.setAttribute('id', id);
+    m.setAttribute('viewBox', '0 0 10 10');
+    m.setAttribute('refX', '10'); m.setAttribute('refY', '5');
+    m.setAttribute('markerWidth', '10'); m.setAttribute('markerHeight', '10');
+    m.setAttribute('orient', 'auto-start-reverse');
+    const p = document.createElementNS(NS,'path');
+    p.setAttribute('d', 'M 0 0 L 10 5 L 0 10 z');
+    p.setAttribute('fill', fill);
+    m.appendChild(p);
+    defs.appendChild(m);
+  }
+  mkMarker('arrowEdge', '#8fb3e0');
+  mkMarker('arrowCrit', '#ff4d4f');
+  out.appendChild(defs);
+
+  // клонируем текущую диаграмму и чистим "тяжёлые" элементы
+  const cloned = svg.cloneNode(true);
+  cloned.style.background = 'transparent';
+
+  // 1) убрать широкие невидимые дорожки для ховера
+  cloned.querySelectorAll('.edge-hit,.sum-hit').forEach(n => n.remove());
+  // 2) убрать временные hover-классы
+  cloned.querySelectorAll('.edge-group').forEach(g => g.classList.remove('incoming','outgoing'));
+
+  // 3) обработка связей под выбранный режим
+  const edgesRoot = cloned.querySelector('#edges');
+  if (edgesRoot) {
+    if (EXPORT_LINKS_MODE === 'none') {
+      edgesRoot.remove();
+    } else if (EXPORT_LINKS_MODE === 'crit') {
+      edgesRoot.querySelectorAll('.edge').forEach(p => {
+        if (!p.classList.contains('crit')) {
+          const grp = p.closest('.edge-group');
+          if (grp) grp.remove();
+        } else {
+          p.removeAttribute('filter');
+          p.setAttribute('stroke-width', '2.5');
+          p.setAttribute('stroke-opacity', '1');
+          p.setAttribute('stroke-linecap', 'round');
+          p.setAttribute('stroke-linejoin', 'round');
+          if (REMOVE_MARKERS) p.removeAttribute('marker-end');
+        }
+      });
+    } else { // 'all'
+      edgesRoot.querySelectorAll('.edge').forEach(p => {
+        p.removeAttribute('filter');
+        p.setAttribute('stroke-width','1');
+        p.setAttribute('stroke-opacity','.35');
+        p.setAttribute('stroke-linecap','round');
+        p.setAttribute('stroke-linejoin','round');
+        if (REMOVE_MARKERS) p.removeAttribute('marker-end');
+      });
+    }
+  }
+
+  // переносим содержимое (кроме исходных <defs>)
+  Array.from(cloned.children).forEach(ch => {
+    if (ch.tagName && ch.tagName.toLowerCase() === 'defs') return;
+    out.appendChild(ch);
+  });
+
+  // разделительная линия + футер
+  const line = document.createElementNS(NS,'line');
+  line.setAttribute('x1','0'); line.setAttribute('x2', String(W));
+  line.setAttribute('y1', String(H-FOOTER_H)); line.setAttribute('y2', String(H-FOOTER_H));
+  line.setAttribute('stroke','#e5e7eb'); line.setAttribute('stroke-width','1');
+  out.appendChild(line);
+
+  const t = document.createElementNS(NS,'text');
+  t.setAttribute('x','16'); t.setAttribute('y', String(H-16));
+  t.setAttribute('fill','#111827');
+  t.setAttribute('font-family','ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial');
+  t.setAttribute('font-size','12');
+  t.textContent = footerText;
+  out.appendChild(t);
+
+  return { svg: out, width: W, height: H };
+}
+function downloadPNG(){
+  const {svg:out, width:W, height:H} = buildLightSVGForExport();
+  const serializer = new XMLSerializer();
+  const src = serializer.serializeToString(out);
+  const blob = new Blob([src], {type:'image/svg+xml;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+
+  const img = new Image();
+  img.onload = ()=>{
+    const scale = 2;
+    const canvas = document.createElement('canvas');
+    canvas.width = W*scale; canvas.height = H*scale;
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(scale,0,0,scale,0,0);
+    ctx.clearRect(0,0,W,H);
+    ctx.drawImage(img,0,0,W,H);
+    canvas.toBlob(png=>{
+      const a = document.createElement('a');
+      const date = new Date().toISOString().slice(0,10);
+      a.href = URL.createObjectURL(png);
+      a.download = `Gantt_ETM_light_${date}.png`;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+      setTimeout(()=> URL.revokeObjectURL(a.href), 500);
+    }, 'image/png');
+  };
+  img.onerror = ()=>{ URL.revokeObjectURL(url); alert('Не удалось сформировать PNG'); };
+  img.src = url;
+}
+
+/* ---------------------- UI ---------------------- */
+function rerender(){ render(); }
+document.getElementById('logWeeks').addEventListener('input', ()=>{
+  STATE = computeSchedule(+document.getElementById('logWeeks').value); render();
+});
+document.getElementById('onlyCrit').addEventListener('change', rerender);
+document.getElementById('dimNonCrit').addEventListener('change', rerender);
+document.getElementById('cpToProgram').addEventListener('change', rerender);
+document.getElementById('startDate').addEventListener('change', rerender);
+document.getElementById('downloadBtn').addEventListener('click', downloadPNG);
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>CPM диаграмма связности — ЭТМ (п.4)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121821;
+      --ink: #e8eef7;
+      --muted: #9bb0c9;
+      --critical: #ff4d4f;
+      --noncrit: #5aa7ff;
+      --milestone: #ffd166;
+      --edge: #8fb3e0;
+      --grid: #253042;
+      --grid-mid: #1b2432;
+      --accent: #50e3c2;
+
+      --hover-in: #35d2ff;   /* входящие в узел */
+      --hover-out: #a78bfa;  /* исходящие из узла */
+    }
+    html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    .wrap { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+    header { padding: 12px 16px; background: var(--panel); display: grid; gap: 8px; grid-template-columns: 1fr auto; align-items: center; border-bottom: 1px solid #202a36; }
+    h1 { font-size: 16px; font-weight: 600; margin: 0; letter-spacing: .2px; }
+    .controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .control { background: #0f141c; border: 1px solid #223146; border-radius: 10px; padding: 8px 10px; display: flex; gap: 8px; align-items: center; }
+    .control label { color: var(--muted); font-size: 12px; }
+    .control input[type="number"] { width: 60px; background: transparent; border: 1px solid #26364d; color: var(--ink); border-radius: 8px; padding: 4px 6px; }
+    .control input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px; }
+    .buttons { display: flex; gap: 8px; }
+    button { background: #1b2839; color: var(--ink); border: 1px solid #314765; padding: 8px 10px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+    button:hover { background: #24364f; }
+    .legend { display: flex; gap: 14px; align-items: center; color: var(--muted); font-size: 12px; }
+    .pill { display: inline-flex; gap: 6px; align-items: center; padding: 2px 8px; border-radius: 999px; border: 1px solid #2a3a52; background: #0f141c; }
+    .sw { width: 14px; height: 3px; border-radius: 2px; }
+    .sw.crit { background: var(--critical); }
+    .sw.norm { background: var(--noncrit); }
+    .sw.milestone { background: var(--milestone); }
+
+    .board { position: relative; }
+    svg { width: 100%; height: 100%; display: block; background: var(--bg); }
+
+    /* Рёбра (видимые) */
+    .edge { fill: none; stroke: var(--edge); stroke-width: 2.25; opacity: 0.95; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+    .edge.noncrit.dim { opacity: 0.18; }
+    .edge.crit { stroke: var(--critical); stroke-width: 4; filter: drop-shadow(0 0 4px rgba(255,77,79,.45)); }
+    .edge-label { font-size: 11px; fill: var(--muted); user-select: none; paint-order: stroke; stroke: rgba(11,15,20,0.7); stroke-width: 3; pointer-events: none; }
+    .edge-label.crit { fill: var(--ink); font-weight: 800; }
+
+    /* Невидимый «широкий хитбокс» поверх рёбер */
+    .edge-hit { fill: none; stroke: #000; stroke-opacity: 0; stroke-width: 18; cursor: pointer; pointer-events: stroke; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Ховер-подсветка конкретной некритичной связи */
+    .edge-group.hover .edge.noncrit { opacity: 1 !important; stroke-width: 4; filter: drop-shadow(0 0 4px rgba(90,167,255,.45)); }
+    .edge-group.hover .edge-label { fill: var(--ink); font-weight: 800; }
+
+    /* Подсветка по ховеру узла: входящие/исходящие */
+    .edge-group.incoming .edge { opacity: 1 !important; stroke: var(--hover-in) !important; stroke-width: 4; filter: drop-shadow(0 0 5px rgba(53,210,255,.55)); }
+    .edge-group.outgoing .edge { opacity: 1 !important; stroke: var(--hover-out) !important; stroke-width: 4; filter: drop-shadow(0 0 5px rgba(167,139,250,.55)); }
+    .edge-group.incoming .edge-label,
+    .edge-group.outgoing .edge-label { fill: var(--ink); font-weight: 800; }
+
+    /* Узлы */
+    .node { cursor: default; }
+    .node circle { fill: #102133; stroke: #2a405d; stroke-width: 2; }
+    .node.crit circle { fill: #2f0f13; stroke: var(--critical); }
+    .node.milestone path { fill: #2b2410; stroke: var(--milestone); stroke-width: 2; }
+    .node-label { font-size: 12px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; fill: var(--ink); pointer-events: none; }
+    .node-sub { font-size: 10px; fill: var(--muted); pointer-events: none; }
+
+    /* Подсветка самого кружка при ховере */
+    .node.hovered circle { stroke-width: 3; filter: drop-shadow(0 0 10px rgba(80,227,194,.25)); }
+
+    .tooltip { position: absolute; pointer-events: none; background: #0f141c; color: #d7e6ff; border: 1px solid #2d3e57; border-radius: 10px; padding: 8px 10px; font-size: 12px; line-height: 1.25; white-space: nowrap; z-index: 10; box-shadow: 0 8px 20px rgba(0,0,0,.35); opacity: 0; transition: opacity .12s ease; }
+    .footer { position: absolute; left: 16px; bottom: 12px; color: var(--muted); font-size: 12px; background: rgba(16,22,31,.75); padding: 6px 10px; border-radius: 10px; border: 1px solid #25354d; }
+    .footer b { color: var(--ink); }
+
+    .kpi { display:inline-flex; gap: 10px; align-items:center; }
+    .kpi .value { font-weight: 800; color: var(--accent); }
+    .kpi small { color: var(--muted); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Диаграмма связности CPM — критический путь, длительности и вехи (п.4)</h1>
+      <div class="legend" style="margin-top:6px">
+        <span class="pill"><span class="sw crit"></span> критический путь</span>
+        <span class="pill"><span class="sw norm"></span> остальные связи</span>
+        <span class="pill"><span class="sw milestone"></span> вехи (M1…M12)</span>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="control">
+        <label>4.4 Поставки (недель):</label>
+        <input id="logWeeks" type="number" min="8" max="12" step="1" value="9" />
+      </div>
+      <div class="control">
+        <label><input id="cpToProgram" type="checkbox" checked /> КП до M12</label>
+        <label><input id="dimNonCrit" type="checkbox" checked /> приглушать некрит.</label>
+        <label><input id="onlyCrit" type="checkbox" /> только критический путь</label>
+      </div>
+      <div class="buttons">
+        <button id="downloadBtn">Скачать PNG</button>
+      </div>
+    </div>
+  </header>
+  <div class="board">
+    <svg id="svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Маркеры с фиксированным цветом под каждое состояние: чёрные стрелки больше не появятся -->
+        <marker id="arrowEdge" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--edge)"></path>
+        </marker>
+        <marker id="arrowCrit" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--critical)"></path>
+        </marker>
+        <marker id="arrowIn" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--hover-in)"></path>
+        </marker>
+        <marker id="arrowOut" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--hover-out)"></path>
+        </marker>
+      </defs>
+      <g id="grid"></g>
+      <g id="edges"></g>
+      <g id="nodes"></g>
+    </svg>
+    <div class="tooltip" id="tooltip"></div>
+    <div class="footer" id="footer"></div>
+  </div>
+</div>
+
+<!-- elkjs for layered DAG layout with crossing minimization -->
+<script src="https://cdn.jsdelivr.net/npm/elkjs@0.8.2/lib/elk.bundled.js"></script>
+<script>
+// ---- Исходные данные ----
+const BASE_TASKS = {
+  "1.1": { name: "Подготовить бизнес-кейс и ТЭО", dur: 2, deps: [] },
+  "1.2": { name: "Сформировать и утвердить устав проекта", dur: 1, deps: ["1.1"] },
+  "2.1": { name: "Провести обследование складских процессов", dur: 2, deps: ["1.2"] },
+  "2.2": { name: "Разработать концепцию робототехники и зон", dur: 2, deps: ["2.1"] },
+  "2.3": { name: "Разработать концепцию ИТ и интеграций", dur: 2, deps: ["2.1"] },
+  "2.4": { name: "Разработать концепцию безопасности и ОТ", dur: 1, deps: ["2.2"] },
+  "3.1": { name: "Разработать ТЗ на поставку и интеграцию", dur: 2, deps: ["2.2","2.3"] },
+  "3.2": { name: "Выполнить инженерное проектирование ИТ и электроснабжения", dur: 4, deps: ["3.1"] },
+  "3.3": { name: "Спроектировать складскую инфраструктуру и маркировку", dur: 3, deps: ["3.1"] },
+  "3.4": { name: "Спроектировать меры безопасности зоны", dur: 2, deps: ["3.2","3.3"] },
+  "4.1": { name: "Выбрать поставщика роботов и СУ флотом, заключить контракт", dur: 4, deps: ["3.1"] },
+  "4.2": { name: "Заключить договоры на ИТ-оборудование и сеть", dur: 3, deps: ["3.2"] },
+  "4.3": { name: "Заключить договоры на электрооборудование и ограждения", dur: 3, deps: ["3.2","3.4"] },
+  // 4.4 — из UI
+  "5.1": { name: "Подготовить пол и провести тесты", dur: 2, deps: ["3.3"] },
+  "5.2": { name: "Выполнить разметку и маркировку", dur: 2, deps: ["5.1"] },
+  "5.3": { name: "Смонтировать ограждения и сигнальные системы", dur: 2, deps: ["3.4"] },
+  "6.1": { name: "Развернуть серверную и системы хранения", dur: 2, deps: ["4.2"] },
+  "6.2": { name: "Развернуть СКС и промышленную Wi-Fi сеть", dur: 3, deps: ["6.1"] },
+  "6.3": { name: "Выполнить электроснабжение и установить зарядные станции", dur: 3, deps: ["4.3"] },
+  "7.1": { name: "Провести приемку поставки", dur: 1, deps: ["4.4"] },
+  "7.2": { name: "Собрать роботов и выполнить базовую калибровку", dur: 2, deps: ["6.2","6.3"] },
+  "7.3": { name: "Обучить навигации и построить карту помещения", dur: 2, deps: ["7.2"] },
+  "8.1": { name: "Доработать WMS под «товар к человеку»", dur: 4, deps: ["3.1","6.1"] },
+  "8.2": { name: "Интегрировать WMS и систему управления роботами", dur: 3, deps: ["8.1","7.3"] },
+  "8.3": { name: "Провести нагрузочные и приемочные испытания ИТ", dur: 2, deps: ["8.2"] },
+  "9.1": { name: "Обучить операторов и техподдержку", dur: 2, deps: ["8.3"] },
+  "9.2": { name: "Обновить регламенты и инструкции", dur: 1, deps: ["8.3","9.1"] },
+  "10.1": { name: "Выполнить пусконаладочные работы", dur: 2, deps: ["8.3","9.1"] },
+  "10.2": { name: "Провести опытно-промышленную эксплуатацию", dur: 6, deps: ["10.1"] },
+  "11.1": { name: "Провести приемо-сдаточные испытания", dur: 1, deps: ["10.2"] },
+  "11.2": { name: "Закрыть проект и передать в эксплуатацию", dur: 1, deps: ["11.1"] },
+  "12.1": { name: "Организовать дежурства L1/L2 и мониторинг", dur: 8, deps: ["11.2"] },
+  "12.2": { name: "Исправлять дефекты класса B/C", dur: 8, deps: ["11.1","11.2"] },
+  "12.3": { name: "Подготовить итоговый отчёт hypercare и передать на штатную поддержку", dur: 1, deps: ["12.1","12.2"] },
+};
+
+const MILESTONES = [
+  { id: "M1",  label: "М1 Утверждены устав и бюджет", after: "1.2", targetWeek: 3 },
+  { id: "M2",  label: "М2 Утверждены концепция и ТЗ", after: ["2.2","2.3"], targetWeek: 7 },
+  { id: "M3",  label: "М3 Завершено проектирование", after: "3.4", targetWeek: 13 },
+  { id: "M4",  label: "М4 Подписаны основные договоры", after: ["4.1","4.2","4.3"], targetWeek: 17 },
+  { id: "M5",  label: "М5 Готовы сети, СКС/Wi-Fi и зарядные зоны", after: ["6.2","6.3"], targetWeek: 27 },
+  { id: "M6",  label: "М6 Парк AMR поставлен, собран и передан в монтаж", after: ["7.1","7.2"], targetWeek: 34 },
+  { id: "M7",  label: "М7 Пройдены ИТ-приёмочные испытания", after: "8.3", targetWeek: 36 },
+  { id: "M8",  label: "М8 Завершены ПНР; старт ОПЭ", after: "10.1", targetWeek: 38 },
+  { id: "M9",  label: "М9 Достигнуты целевые KPI в опыте", after: "10.2", targetWeek: 44 },
+  { id: "M10", label: "М10 Go-Live / предварительная приёмка", after: "11.1", targetWeek: 46 },
+  { id: "M11", label: "М11 Завершён постпусковой период Hypercare (8 недель)", after: "12.1", targetWeek: 54 },
+  { id: "M12", label: "М12 Окончательная приёмка и закрытие проекта", after: "12.3", targetWeek: 55 },
+];
+
+// ------- CPM расчёт -------
+function computeSchedule(logWeeks){
+  const tasks = JSON.parse(JSON.stringify(BASE_TASKS));
+  tasks["4.4"] = { name: "Организовать поставки длинного цикла", dur: logWeeks, deps: ["4.1"] };
+
+  const preds = {}, succs = {};
+  const ids = Object.keys(tasks);
+  ids.forEach(id => {
+    preds[id] = new Set(tasks[id].deps);
+    tasks[id].deps.forEach(p => (succs[p] ||= new Set()).add(id));
+  });
+  preds.START = new Set();
+  ids.forEach(id => { if (preds[id].size===0){ preds[id].add("START"); (succs.START ||= new Set()).add(id);} });
+
+  // topo
+  const indeg = {}; Object.keys(preds).forEach(k=> indeg[k]=preds[k].size);
+  const topo=[], q=[]; Object.keys(indeg).forEach(k=>{ if(indeg[k]===0) q.push(k); });
+  while(q.length){ const u=q.shift(); topo.push(u); (succs[u]||[]).forEach(v=>{ indeg[v]--; if(indeg[v]===0) q.push(v); }); }
+
+  // forward
+  const ES={}, EF={}, DUR={}; ES.START=0; EF.START=0; DUR.START=0;
+  ids.forEach(id=> DUR[id]=tasks[id].dur);
+  topo.forEach(u=> { ES[u]=Math.max(0,...Array.from(preds[u]||[]).map(p=>EF[p]||0)); EF[u]=ES[u]+(DUR[u]||0); });
+
+  const endProject = "11.2";
+  const endProgram = "12.3";
+
+  function backward(endId){
+    const LF={}, LS={};
+    const endTime = EF[endId];
+    [...topo].reverse().forEach(u=>{
+      const successors = Array.from(succs[u]||[]);
+      LF[u] = successors.length ? Math.min(...successors.map(v=> LS[v])) : endTime;
+      LS[u] = LF[u] - (DUR[u]||0);
+    });
+    const TF={}; Object.keys(ES).forEach(k=> TF[k]=(LS[k]-ES[k]));
+    return {LF,LS,TF};
+  }
+
+  function restorePath(endId){
+    const path=[endId];
+    let cur=endId;
+    while(cur && cur!=="START"){
+      const cand = Array.from(preds[cur]||[]);
+      const tight = cand.filter(p=> Math.abs((EF[p]||0) - (ES[cur]||0)) < 1e-9);
+      const take = (tight.length? tight : cand).sort((a,b)=> (EF[b]||0)-(EF[a]||0))[0];
+      if(!take) break; path.push(take); cur=take;
+    }
+    return path.reverse().filter(x=>x!=="START");
+  }
+
+  const {LF:LFp, LS:LSp, TF:TFp} = backward(endProject);
+  const {LF:LFg, LS:LSg, TF:TFg} = backward(endProgram);
+
+  return {
+    tasks, preds, succs, topo, ES, EF,
+    projectEnd: EF[endProject],
+    programEnd: EF[endProgram],
+    LS_project: LSp, LF_project: LFp, TF_project: TFp,
+    LS_program: LSg, LF_program: LFg, TF_program: TFg,
+    critPathProject: restorePath(endProject),
+    critPathProgram: restorePath(endProgram)
+  };
+}
+
+// ------- Генерация разметки через ELK -------
+const elk = new ELK();
+
+function layoutAndRender(state, options) {
+  const { onlyCrit, dimNonCrit, critToProgram } = options;
+  const critPath = critToProgram ? state.critPathProgram : state.critPathProject;
+
+  const nodes = []; const edges = [];
+
+  // tasks
+  for (const id of Object.keys(state.tasks)) nodes.push({ id, width: 64, height: 64 });
+  // milestones
+  for (const m of MILESTONES) nodes.push({ id: m.id, width: 72, height: 72 });
+
+  // edges tasks
+  for (const id of Object.keys(state.tasks)) {
+    for (const p of (state.tasks[id].deps||[])) {
+      edges.push({ id: `${p}->${id}`, sources:[p], targets:[id], label: `${state.tasks[id].dur}н` });
+    }
+  }
+  // edges milestones
+  for (const m of MILESTONES) {
+    const arr = Array.isArray(m.after)? m.after : [m.after];
+    for (const a of arr) edges.push({ id: `${a}->${m.id}`, sources:[a], targets:[m.id], label: `веха` });
+  }
+
+  const critSet = new Set(critPath);
+  const isCritEdge = (e)=> critSet.has(e.sources[0]) && critSet.has(e.targets[0]) &&
+    Math.abs(state.EF[e.sources[0]] - state.ES[e.targets[0]]) < 1e-9;
+
+  const graph = {
+    id: "root",
+    layoutOptions: {
+      'elk.algorithm': 'layered',
+      'elk.direction': 'RIGHT',
+      'elk.edgeRouting': 'ORTHOGONAL',
+      'elk.layered.spacing.nodeNodeBetweenLayers': '96',
+      'elk.spacing.nodeNode': '56',
+      'elk.spacing.edgeEdge': '18',
+      'elk.layered.nodePlacement.strategy': 'BRANDES_KOEPF',
+      'elk.layered.crossingMinimization.strategy': 'LAYER_SWEEP',
+      'elk.considerModelOrder': 'true'
+    },
+    children: nodes.map(n=>({ id:n.id, width:n.width, height:n.height })),
+    edges: edges.filter(e=> !onlyCrit || isCritEdge(e)).map(e=> ({ id:e.id, sources:e.sources, targets:e.targets }))
+  };
+
+  elk.layout(graph).then(g=>{
+    const svg = document.getElementById('svg');
+    const gGrid  = document.getElementById('grid');
+    const gEdges = document.getElementById('edges');
+    const gNodes = document.getElementById('nodes');
+    gGrid.innerHTML = ''; gEdges.innerHTML = ''; gNodes.innerHTML = '';
+
+    const eMeta = new Map(edges.map(e=> [e.id, e]));
+
+    function sectionToPoints(sec){
+      return [[sec.startPoint.x, sec.startPoint.y], ...(sec.bendPoints||[]).map(p=>[p.x,p.y]), [sec.endPoint.x, sec.endPoint.y]];
+    }
+
+    // --- GRID: вертикальные линии через центры кружков + межколоночные (в 2 раза чаще) ---
+    const taskChildren = g.children.filter(c=> !String(c.id).startsWith('M'));
+    const centersX = taskChildren.map(c=> c.x + c.width/2).sort((a,b)=>a-b);
+    const cols = []; const EPS = 1;
+    centersX.forEach(x=>{ if (!cols.length || Math.abs(cols[cols.length-1]-x)>EPS) cols.push(x); });
+    const mids = []; for (let i=0;i<cols.length-1;i++) mids.push((cols[i]+cols[i+1])/2);
+    const linesX = [...cols, ...mids].sort((a,b)=>a-b);
+
+    const pad = 48;
+    const maxX = Math.max(...g.children.map(c=> c.x + c.width), 0);
+    const maxY = Math.max(...g.children.map(c=> c.y + c.height), 0);
+    svg.setAttribute('viewBox', `0 0 ${maxX+pad} ${maxY+pad}`);
+
+    linesX.forEach(x=>{
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', x); line.setAttribute('y1', 0);
+      line.setAttribute('x2', x); line.setAttribute('y2', maxY+pad);
+      line.setAttribute('stroke', mids.includes(x)? 'var(--grid-mid)' : 'var(--grid)');
+      line.setAttribute('stroke-width', mids.includes(x)? '1' : '1.5');
+      line.setAttribute('opacity', mids.includes(x)? '0.25' : '0.35');
+      line.setAttribute('shape-rendering','crispEdges');
+      gGrid.appendChild(line);
+    });
+
+    const isCritNode = new Set(critPath);
+
+    // --- EDGES (группами, с hover и широким хитбоксом) ---
+    for (const e of g.edges) {
+      const meta = eMeta.get(e.id);
+      const crit = isCritEdge(e);
+      if (options.onlyCrit && !crit) continue;
+
+      const eg = document.createElementNS('http://www.w3.org/2000/svg','g');
+      eg.setAttribute('class','edge-group');
+      eg.dataset.id = e.id;
+      eg.dataset.src = e.sources[0];
+      eg.dataset.tgt = e.targets[0];
+
+      const sections = e.sections || [];
+      sections.forEach(sec=>{
+        const d = sectionToPoints(sec).map((p,i)=> (i? 'L':'M') + p[0] + ' ' + p[1]).join(' ');
+
+        // видимая линия
+        const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+        path.setAttribute('d', d);
+        path.setAttribute('class', 'edge ' + (crit ? 'crit' : 'noncrit'));
+        const baseMarker = crit ? 'arrowCrit' : 'arrowEdge';
+        path.dataset.baseMarker = baseMarker;
+        path.setAttribute('marker-end', `url(#${baseMarker})`);
+        eg.appendChild(path);
+        if (!crit && options.dimNonCrit) path.classList.add('dim');
+
+        // невидимый «широкий» хитбокс
+        const hit = document.createElementNS('http://www.w3.org/2000/svg','path');
+        hit.setAttribute('d', d);
+        hit.setAttribute('class', 'edge-hit');
+        eg.appendChild(hit);
+      });
+
+      // подпись (одна, по средней секции)
+      if (sections.length){
+        const midIdx = Math.floor(sections.length/2);
+        const pts = sectionToPoints(sections[midIdx]);
+        const i2 = Math.floor(pts.length/2);
+        const [x1,y1] = pts[i2-1] || pts[0];
+        const [x2,y2] = pts[i2] || pts[pts.length-1];
+        const lx = (x1+x2)/2, ly=(y1+y2)/2;
+        const label = document.createElementNS('http://www.w3.org/2000/svg','text');
+        label.setAttribute('x', lx);
+        label.setAttribute('y', ly - 6);
+        label.setAttribute('class', 'edge-label' + (crit ? ' crit' : ''));
+        label.textContent = meta?.label || '';
+        eg.appendChild(label);
+      }
+
+      // hover-подсветка (только для некритичных) и тултип по ребру
+      eg.addEventListener('mouseenter', ()=>{
+        if (!crit) {
+          eg.classList.add('hover');
+          gEdges.appendChild(eg); // поверх
+        }
+      });
+      eg.addEventListener('mouseleave', ()=>{
+        eg.classList.remove('hover');
+        hideTip();
+      });
+      eg.addEventListener('mousemove', (ev)=>{
+        showEdgeTip(ev, meta, e.sources[0], e.targets[0], crit, state);
+      });
+
+      gEdges.appendChild(eg);
+    }
+
+    // --- NODES ---
+    for (const n of g.children) {
+      const group = document.createElementNS('http://www.w3.org/2000/svg','g');
+      group.setAttribute('class', 'node');
+      group.setAttribute('transform', `translate(${n.x},${n.y})`);
+      group.dataset.id = n.id;
+
+      const isM = String(n.id).startsWith('M');
+      if (isM) group.classList.add('milestone');
+      if (isCritNode.has(n.id)) group.classList.add('crit');
+
+      if (isM) {
+        const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+        const w=n.width, h=n.height; const cx=w/2, cy=h/2;
+        const d = `M ${cx} ${cy-34} L ${cx+34} ${cy} L ${cx} ${cy+34} L ${cx-34} ${cy} Z`;
+        path.setAttribute('d', d);
+        group.appendChild(path);
+      } else {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        const r = Math.min(n.width,n.height)/2 - 6;
+        circle.setAttribute('cx', n.width/2); circle.setAttribute('cy', n.height/2); circle.setAttribute('r', r);
+        group.appendChild(circle);
+      }
+
+      const text = document.createElementNS('http://www.w3.org/2000/svg','text');
+      text.setAttribute('class','node-label');
+      text.setAttribute('x', n.width/2);
+      text.setAttribute('y', n.height/2 + (String(n.id).startsWith('M')? 0 : -4));
+      text.textContent = n.id;
+      group.appendChild(text);
+
+      const sub = document.createElementNS('http://www.w3.org/2000/svg','text');
+      sub.setAttribute('class','node-sub');
+      sub.setAttribute('x', n.width/2);
+      sub.setAttribute('text-anchor','middle');
+      if (!String(n.id).startsWith('M')) {
+        sub.setAttribute('y', n.height/2 + 12);
+        sub.textContent = `${state.tasks[n.id].dur}н`;
+      } else {
+        sub.setAttribute('y', n.height - 6);
+        sub.textContent = (MILESTONES.find(m=>m.id===n.id)?.label)||'';
+      }
+      group.appendChild(sub);
+
+      // тултип по узлу
+      group.addEventListener('mousemove', (ev)=> showTip(ev, n.id, critToProgram));
+      group.addEventListener('mouseleave', hideTip);
+
+      // подсветка входящих/исходящих рёбер по ховеру узла (+ смена маркеров)
+      group.addEventListener('mouseenter', ()=> highlightNodeEdges(n.id, true, gEdges, group));
+      group.addEventListener('mouseleave', ()=> highlightNodeEdges(n.id, false, gEdges, group));
+
+      gNodes.appendChild(group);
+    }
+
+    // футер/KPI
+    const cp = critPath.join(' → ');
+    const withReserve = Math.ceil(state.projectEnd * 1.15);
+    document.getElementById('footer').innerHTML =
+      `<div class="kpi">
+         <b>Критический путь:</b> ${cp}
+         <span>•</span>
+         <b>До 11.2:</b> <span class="value">${state.projectEnd}</span> нед.
+         <small>(+15% ≈ ${withReserve} нед.)</small>
+         <span>•</span>
+         <b>До M12 (12.3):</b> <span class="value">${state.programEnd}</span> нед.
+       </div>`;
+  });
+}
+
+// Подсветка входящих/исходящих рёбер для узла + корректные маркеры
+function highlightNodeEdges(nodeId, on, gEdges, nodeGroup){
+  if (on) nodeGroup.classList.add('hovered'); else nodeGroup.classList.remove('hovered');
+
+  // входящие
+  const incoming = gEdges.querySelectorAll(`.edge-group[data-tgt="${CSS.escape(nodeId)}"]`);
+  incoming.forEach(eg=>{
+    const paths = eg.querySelectorAll('path.edge');
+    if (on) {
+      eg.classList.add('incoming'); gEdges.appendChild(eg);
+      paths.forEach(p=> p.setAttribute('marker-end', 'url(#arrowIn)'));
+    } else {
+      eg.classList.remove('incoming');
+      paths.forEach(p=> p.setAttribute('marker-end', `url(#${p.dataset.baseMarker||'arrowEdge'})`));
+    }
+  });
+
+  // исходящие
+  const outgoing = gEdges.querySelectorAll(`.edge-group[data-src="${CSS.escape(nodeId)}"]`);
+  outgoing.forEach(eg=>{
+    const paths = eg.querySelectorAll('path.edge');
+    if (on) {
+      eg.classList.add('outgoing'); gEdges.appendChild(eg);
+      paths.forEach(p=> p.setAttribute('marker-end', 'url(#arrowOut)'));
+    } else {
+      eg.classList.remove('outgoing');
+      paths.forEach(p=> p.setAttribute('marker-end', `url(#${p.dataset.baseMarker||'arrowEdge'})`));
+    }
+  });
+}
+
+function showEdgeTip(ev, meta, src, tgt, isCrit, st){
+  const tip = document.getElementById('tooltip');
+  const dur = st.tasks[tgt]?.dur ?? '';
+  const es_src = st.ES[src], ef_src = st.EF[src];
+  const es_tgt = st.ES[tgt], ef_tgt = st.EF[tgt];
+  const tf_tgt = (st.TF_program?.[tgt] ?? st.TF_project?.[tgt] ?? 0);
+  tip.innerHTML =
+    `<b>${src} → ${tgt}</b> ${isCrit? ' <span style="color:#ff9b9c">(КП)</span>':''}<br>`+
+    `Длительность целевой: <b>${dur}</b> нед.<br>`+
+    `EF(${src}) = ${ef_src} → ES(${tgt}) = ${es_tgt}<br>`+
+    `EF(${tgt}) = ${ef_tgt}, TF(${tgt}) = ${tf_tgt}`;
+  tip.style.opacity = 1;
+  tip.style.left = (ev.clientX + 12) + 'px';
+  tip.style.top = (ev.clientY + 12) + 'px';
+}
+
+function showTip(ev, id, critToProgram){
+  const tip = document.getElementById('tooltip');
+  const st = STATE;
+  if (id.startsWith('M')) {
+    const m = MILESTONES.find(x=> x.id===id);
+    const arr = Array.isArray(m.after)? m.after : [m.after];
+    const ef = Math.max(...arr.map(a=> st.EF[a]||0));
+    const tgt = m.targetWeek ? `, целевой: конец ${m.targetWeek}-й нед.` : '';
+    tip.innerHTML = `<b>${m.id}</b> — ${m.label}<br>По расчёту: конец ${ef}-й нед${tgt}`;
+  } else {
+    const name = st.tasks[id].name;
+    const TF = critToProgram ? (st.TF_program[id]??0) : (st.TF_project[id]??0);
+    const note = (id==="9.1") ? " (по тексту: частично параллельно)" : "";
+    tip.innerHTML =
+      `<b>${id}</b>: ${name}${note}<br>` +
+      `Длительность: <b>${st.tasks[id].dur}</b> нед.<br>` +
+      `ES/EF: ${st.ES[id]} / ${st.EF[id]}<br>` +
+      `Запас (TF): ${TF} нед.`;
+  }
+  tip.style.opacity = 1;
+  tip.style.left = (ev.clientX + 12) + 'px';
+  tip.style.top = (ev.clientY + 12) + 'px';
+}
+function hideTip(){ document.getElementById('tooltip').style.opacity = 0; }
+
+// ------- UI bindings -------
+let STATE = computeSchedule(9);
+render();
+
+function render(){
+  const opts = {
+    onlyCrit: document.getElementById('onlyCrit').checked,
+    dimNonCrit: document.getElementById('dimNonCrit').checked,
+    critToProgram: document.getElementById('cpToProgram').checked
+  };
+  layoutAndRender(STATE, opts);
+}
+
+document.getElementById('logWeeks').addEventListener('input', ()=>{
+  STATE = computeSchedule(+document.getElementById('logWeeks').value);
+  render();
+});
+document.getElementById('onlyCrit').addEventListener('change', render);
+document.getElementById('dimNonCrit').addEventListener('change', render);
+document.getElementById('cpToProgram').addEventListener('change', render);
+
+/* ---------- Экспорт: компактная светлая PNG с подписью критического пути ---------- */
+function getUnionBBox(elements){
+  let union = null;
+  elements.forEach(el=>{
+    if (!el) return;
+    try {
+      const b = el.getBBox();
+      if (!union) union = {x:b.x, y:b.y, w:b.width, h:b.height};
+      else {
+        const x1 = Math.min(union.x, b.x);
+        const y1 = Math.min(union.y, b.y);
+        const x2 = Math.max(union.x + union.w, b.x + b.width);
+        const y2 = Math.max(union.y + union.h, b.y + b.height);
+        union = {x:x1, y:y1, w:x2-x1, h:y2-y1};
+      }
+    } catch(e){}
+  });
+  return union || {x:0,y:0,w:800,h:600};
+}
+
+function buildLightSVGForExport() {
+  const svg = document.getElementById('svg');
+  const gEdges = document.getElementById('edges');
+  const gNodes = document.getElementById('nodes');
+
+  // tight bbox по содержимому (без grid)
+  const bbox = getUnionBBox([gEdges, gNodes]);
+  const PAD = 24;
+  const FOOTER_H = 44;
+
+  const W = Math.ceil(bbox.w + PAD*2);
+  const H = Math.ceil(bbox.h + PAD*2 + FOOTER_H);
+
+  // строка из футера
+  const critToProgram = document.getElementById('cpToProgram').checked;
+  const critPath = (critToProgram ? STATE.critPathProgram : STATE.critPathProject).join(' → ');
+  const withReserve = Math.ceil(STATE.projectEnd * 1.15);
+  const footerText = `Критический путь: ${critPath} • До 11.2: ${STATE.projectEnd} нед. (+15% ≈ ${withReserve} нед.) • До M12 (12.3): ${STATE.programEnd} нед.`;
+
+  // создать новый SVG-документ
+  const NS = "http://www.w3.org/2000/svg";
+  const out = document.createElementNS(NS, 'svg');
+  out.setAttribute('xmlns', NS);
+  out.setAttribute('width', W);
+  out.setAttribute('height', H);
+  out.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  // белый фон
+  const bg = document.createElementNS(NS, 'rect');
+  bg.setAttribute('x','0'); bg.setAttribute('y','0');
+  bg.setAttribute('width', W); bg.setAttribute('height', H);
+  bg.setAttribute('fill', '#ffffff');
+  out.appendChild(bg);
+
+  // defs: маркеры только для базовых состояний
+  const defs = document.createElementNS(NS, 'defs');
+  function mkMarker(id, fill){
+    const m = document.createElementNS(NS, 'marker');
+    m.setAttribute('id', id);
+    m.setAttribute('viewBox','0 0 10 10');
+    m.setAttribute('refX','10'); m.setAttribute('refY','5');
+    m.setAttribute('markerWidth','10'); m.setAttribute('markerHeight','10');
+    m.setAttribute('orient','auto-start-reverse');
+    const p = document.createElementNS(NS, 'path');
+    p.setAttribute('d','M 0 0 L 10 5 L 0 10 z');
+    p.setAttribute('fill', fill);
+    m.appendChild(p);
+    defs.appendChild(m);
+  }
+  mkMarker('arrowEdge', '#8fb3e0');
+  mkMarker('arrowCrit', '#ff4d4f');
+  out.appendChild(defs);
+
+  // минимальные стили для светлой темы (лёгкие кружки/ромбики и светлые подписи)
+  const style = document.createElementNS(NS, 'style');
+  style.textContent = `
+    .edge { fill:none; stroke:#8fb3e0; stroke-width:2.25; opacity:.95; stroke-linecap:round; stroke-linejoin:round; }
+    .edge.noncrit.dim { opacity:.22; }
+    .edge.crit { stroke:#ff4d4f; stroke-width:4; }
+    .edge-label { font: 11px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#4b5563; paint-order:stroke; stroke:#ffffff; stroke-width:3 }
+    .edge-label.crit { fill:#111827; font-weight:800; }
+    .node circle { fill:#f8fafc; stroke:#cbd5e1; stroke-width:2; }             /* светлый кружок */
+    .node.crit circle { fill:#fff1f2; stroke:#ff4d4f; }                         /* крит. узел чуть розоватый */
+    .node.milestone path { fill:#fff7ed; stroke:#f59e0b; stroke-width:2; }      /* светлый ромбик */
+    .node-label { font: 700 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#111827; text-anchor:middle; dominant-baseline:middle; }
+    .node-sub { font: 10px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#6b7280; text-anchor:middle; }
+  `;
+  out.appendChild(style);
+
+  // wrapper со сдвигом, чтобы контент начинался с PAD
+  const wrap = document.createElementNS(NS, 'g');
+  wrap.setAttribute('transform', `translate(${PAD - bbox.x}, ${PAD - bbox.y})`);
+  out.appendChild(wrap);
+
+  // клонировать узлы и рёбра (без grid и без хитбоксов)
+  const edgesClone = gEdges.cloneNode(true);
+  edgesClone.querySelectorAll('.edge-hit').forEach(el=> el.remove());
+  wrap.appendChild(edgesClone);
+
+  const nodesClone = gNodes.cloneNode(true);
+  wrap.appendChild(nodesClone);
+
+  // разделительная тонкая линия над подписью
+  const line = document.createElementNS(NS, 'line');
+  line.setAttribute('x1', 0);
+  line.setAttribute('x2', W);
+  line.setAttribute('y1', H - FOOTER_H);
+  line.setAttribute('y2', H - FOOTER_H);
+  line.setAttribute('stroke', '#e5e7eb');
+  line.setAttribute('stroke-width', '1');
+  out.appendChild(line);
+
+  // подпись критического пути
+  const text = document.createElementNS(NS, 'text');
+  text.setAttribute('x', 16);
+  text.setAttribute('y', H - 16);
+  text.setAttribute('fill', '#111827');
+  text.setAttribute('font-family', 'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial');
+  text.setAttribute('font-size', '12');
+  text.textContent = footerText;
+  out.appendChild(text);
+
+  return { svg: out, width: W, height: H };
+}
+
+function downloadPNGCompactLight() {
+  const { svg: out, width: W, height: H } = buildLightSVGForExport();
+
+  // сериализация SVG
+  const serializer = new XMLSerializer();
+  const src = serializer.serializeToString(out);
+  const blob = new Blob([src], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+
+  // рисуем на canvas и сохраняем PNG
+  const img = new Image();
+  img.onload = () => {
+    const scale = 2; // Retina PNG
+    const canvas = document.createElement('canvas');
+    canvas.width = W * scale;
+    canvas.height = H * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(img, 0, 0, W, H);
+
+    canvas.toBlob((pngBlob)=>{
+      const pngUrl = URL.createObjectURL(pngBlob);
+      const a = document.createElement('a');
+      const date = new Date().toISOString().slice(0,10);
+      a.href = pngUrl; a.download = `CPM_ETM_compact_light_${date}.png`;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=> URL.revokeObjectURL(pngUrl), 500);
+      URL.revokeObjectURL(url);
+    }, 'image/png');
+  };
+  img.onerror = () => {
+    URL.revokeObjectURL(url);
+    alert('Не удалось сформировать PNG.');
+  };
+  img.src = url;
+}
+
+// кнопка «Скачать PNG»
+document.getElementById('downloadBtn').addEventListener('click', downloadPNGCompactLight);
+</script>
+</body>
+</html>
