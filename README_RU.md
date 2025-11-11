@@ -9,8 +9,8 @@
 
   # SUAI Software Engineering and Management
 
-  [![Русский](https://img.shields.io/badge/README_Language-Русский-brightgreen)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README_RU.md)
-  [![English](https://img.shields.io/badge/README_Language-English-blue)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering/blob/study/README.md) 
+  [![Русский](https://img.shields.io/badge/README_Language-Русский-brightgreen)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering-and-Management/blob/study/README_RU.md)
+  [![English](https://img.shields.io/badge/README_Language-English-blue)](https://github.com/TheAndreyZakharov/SUAI-Software-Engineering-and-Management/blob/study/README.md) 
 
 </div>
 
